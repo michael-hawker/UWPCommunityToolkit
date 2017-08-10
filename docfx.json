@@ -1,0 +1,25 @@
+﻿{
+
+  "metadata": [
+    {
+      "src": [
+        {
+          "files": [
+            "**/Microsoft.Toolkit.Uwp.csproj",
+            "**/Microsoft.Toolkit.Uwp.DeveloperTools.csproj",
+            "**/Microsoft.Toolkit.Uwp.Services.csproj",
+            "**/Microsoft.Toolkit.Uwp.UI.csproj",
+            "**/Microsoft.Toolkit.Uwp.UI.Animations.csproj",
+            "**/Microsoft.Toolkit.Uwp.UI.Controls.csproj",
+            "**/Microsoft.Toolkit.Uwp.Notifications.UWP.csproj"
+          ],
+          "exclude": [
+            "**/bin/**",
+            "**/obj/**"
+          ]
+        }
+      ],
+      "dest": "api"
+    }
+  ]
+}
