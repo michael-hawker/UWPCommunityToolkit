@@ -21,12 +21,16 @@ using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Media;
+using System.Collections.Generic;
 
 namespace Microsoft.Toolkit.Uwp.SampleApp.Controls
 {
     public sealed partial class PropertyControl
     {
         private Sample _currentSample;
+
+        // TODO: Create custom event handler.
+        public event DependencyPropertyChangedEventHandler PropertyChanged;
 
         public PropertyControl()
         {
@@ -126,6 +130,11 @@ namespace Microsoft.Toolkit.Uwp.SampleApp.Controls
                             dependencyProperty = TextBox.TextProperty;
                             break;
                     }
+
+                    ((propertyDesc.Expando as IDictionary<string, object>)[option.Name] as ValueHolder).PropertyChanged += (s, e) =>
+                    {
+                        PropertyChanged?.Invoke(s, null);
+                    };
 
                     var binding = new Binding
                     {

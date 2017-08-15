@@ -25,6 +25,7 @@ using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media.Imaging;
 using Windows.UI.Xaml.Navigation;
 using Microsoft.Toolkit.Uwp.SampleApp.SamplePages;
+using System.ComponentModel;
 
 namespace Microsoft.Toolkit.Uwp.SampleApp
 {
@@ -418,12 +419,12 @@ namespace Microsoft.Toolkit.Uwp.SampleApp
                 return;
             }
 
-            if (_currentSample.HasXAMLCode)
+            /*if (_currentSample.HasXAMLCode)
             {
                 XamlCodeRenderer.Text = _currentSample.UpdatedXamlCode;
 
                 UpdateXamlRender(_currentSample.UpdatedXamlCode);
-            }
+            }*/
 
             if (_currentSample.HasCSharpCode)
             {
@@ -601,6 +602,27 @@ namespace Microsoft.Toolkit.Uwp.SampleApp
                             UpdateXamlRender(XamlCodeRenderer.Text);
                         });
                     }, TimeSpan.FromSeconds(0.5));
+            }
+        }
+
+        private void Properties_PropertyChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            if (_currentSample.HasXAMLCode)
+            {
+                XamlCodeRenderer.Text = _currentSample.UpdatedXamlCode;
+
+                // Setup Time for Auto-Compile
+                this._autocompileTimer?.Cancel(); // Stop Old Timer
+
+                // Create Compile Timer
+                this._autocompileTimer = ThreadPoolTimer.CreateTimer(
+                    async (e2) =>
+                    {
+                        await Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Low, () =>
+                        {
+                            UpdateXamlRender(XamlCodeRenderer.Text);
+                        });
+                    }, TimeSpan.FromSeconds(0.25));
             }
         }
     }

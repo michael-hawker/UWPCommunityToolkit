@@ -145,7 +145,8 @@
                                     <RowDefinition Height="Auto" />
                                     <RowDefinition Height="*" />
                                 </Grid.RowDefinitions>
-                                <controlsLocal:PropertyControl x:Name="Properties" />
+                                <controlsLocal:PropertyControl x:Name="Properties" 
+                                                               PropertyChanged="Properties_PropertyChanged"/>
                                 <StackPanel x:Name="CommandArea"
                                             Grid.Row="1"
                                             HorizontalAlignment="Stretch"
