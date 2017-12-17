@@ -326,6 +326,7 @@
     <Content Include="SamplePages\Mouse\MouseCursor.png" />
     <Content Include="SamplePages\OneDrive Service\OneDriveLogo.png" />
     <Content Include="SamplePages\ParallaxService\Parallax.png" />
+    <Content Include="SamplePages\PivotStyles\PivotStyles.png" />
     <Content Include="SamplePages\RadialGauge\RadialGauge.png" />
     <Content Include="SamplePages\RadialProgressBar\RadialProgressBar.png" />
     <Content Include="SamplePages\ReorderGridAnimation\ReorderGrid.png" />
@@ -465,6 +466,9 @@
     <Content Include="SamplePages\HeaderedContentControl\HeaderedContentControlXaml.bind" />
     <Content Include="SamplePages\AppPinManager\AppPinManagerHelperCode.bind" />
     <Content Include="SamplePages\Mouse\MouseCursorPage.bind" />
+    <Content Include="SamplePages\PivotStyles\PivotStyles.bind">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App.xaml.cs">
@@ -546,6 +550,9 @@
       <DependentUpon>FocusTrackerPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="SamplePages\BackgroundTaskHelper\TestBackgroundTask.cs" />
+    <Compile Include="SamplePages\PivotStyles\PivotStylesPage.xaml.cs">
+      <DependentUpon>PivotStylesPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="SamplePages\TextToolbar\SampleFormatter.cs" />
     <Compile Include="SamplePages\TextToolbar\TextToolbarPage.xaml.cs">
       <DependentUpon>TextToolbarPage.xaml</DependentUpon>
@@ -834,6 +841,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="SamplePages\Mouse\MouseCursorPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="SamplePages\PivotStyles\PivotStylesPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

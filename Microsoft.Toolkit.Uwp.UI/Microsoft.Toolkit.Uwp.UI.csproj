@@ -17,5 +17,17 @@
 
   </ItemGroup>
 
+
+  <ItemGroup>
+    <None Update="Extensions\Pivot\Styles\MSEdgeTabStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Extensions\Pivot\Styles\SystemTabStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+  </ItemGroup>
+
   <Import Project="$(MSBuildSDKExtrasTargets)" Condition="Exists('$(MSBuildSDKExtrasTargets)')" />
 </Project>

@@ -676,6 +676,16 @@
         "Icon": "/SamplePages/Visual Extensions/VisualExtensions.png",
         "BadgeUpdateVersionRequired": "Creators Update required",
         "DocumentationUrl": "https://raw.githubusercontent.com/Microsoft/UWPCommunityToolkit/master/docs/extensions/VisualEx.md"
+      },
+      {
+        "Name": "PivotStyles",
+        "Type": "PivotStylesPage",
+        "About": "Various style resources for the Pivot control.",
+        "CodeUrl": "https://github.com/Microsoft/UWPCommunityToolkit/tree/master/Microsoft.Toolkit.Uwp.UI/Extensions/Pivot",
+        "XamlCodeFile": "PivotStyles.bind",
+        "Icon": "/SamplePages/PivotStyles/PivotStyles.png",
+        "Tags":  ["Tab", "Style", "VSCode"],
+        "DocumentationUrl": "https://raw.githubusercontent.com/Microsoft/UWPCommunityToolkit/master/docs/extensions/Pivot.md"
       }
     ]
   },

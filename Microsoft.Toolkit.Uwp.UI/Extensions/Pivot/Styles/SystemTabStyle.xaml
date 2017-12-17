@@ -1,0 +1,18 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Microsoft.Toolkit.Uwp.UI.Extensions">
+
+    <ControlTemplate x:Key="SystemTabTemplate" 
+                     TargetType="PivotHeaderItem">
+    </ControlTemplate>
+
+    <Style x:Key="SystemTabStyle" TargetType="PivotHeaderItem">
+        <Setter Property="Padding" Value="0" />
+        <Setter Property="MinWidth" Value="64" />
+        <Setter Property="Height" Value="68" />
+        <Setter Property="HorizontalAlignment" Value="Stretch"/>
+        <Setter Property="VerticalAlignment" Value="Stretch"/>
+        <Setter Property="Template" Value="{StaticResource SystemTabTemplate}" />
+    </Style>
+</ResourceDictionary>
