@@ -43,7 +43,14 @@
                             </ObjectAnimationUsingKeyFrames>
                         </Storyboard>
                     </VisualState>
-                    <VisualState x:Name="Unselected" />
+                    <VisualState x:Name="Unselected">
+                        <Storyboard>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="CloseButton"
+                                                           Storyboard.TargetProperty="Visibility">
+                                <DiscreteObjectKeyFrame KeyTime="0" Value="Collapsed" />
+                            </ObjectAnimationUsingKeyFrames>
+                        </Storyboard>
+                    </VisualState>
                     <VisualState x:Name="UnselectedLocked">
                         <Storyboard>
                             <DoubleAnimation Storyboard.TargetName="ContentPresenterTranslateTransform"
@@ -64,6 +71,10 @@
                                                Storyboard.TargetProperty="Background" >
                                 <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SystemControlHighlightTransparentBrush}" />
                             </ObjectAnimationUsingKeyFrames>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="CloseButton"
+                                                           Storyboard.TargetProperty="Visibility">
+                                <DiscreteObjectKeyFrame KeyTime="0" Value="Visible" />
+                            </ObjectAnimationUsingKeyFrames>
                         </Storyboard>
                     </VisualState>
                     <VisualState x:Name="UnselectedPointerOver">
@@ -75,6 +86,10 @@
                             <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Grid"
                                                Storyboard.TargetProperty="Background" >
                                 <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SystemControlHighlightTransparentBrush}" />
+                            </ObjectAnimationUsingKeyFrames>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="CloseButton"
+                                                           Storyboard.TargetProperty="Visibility">
+                                <DiscreteObjectKeyFrame KeyTime="0" Value="Visible" />
                             </ObjectAnimationUsingKeyFrames>
                         </Storyboard>
                     </VisualState>
@@ -138,6 +153,7 @@
                 </ContentPresenter.RenderTransform>
             </ContentPresenter>
             <Button Grid.Column="2" 
+                    x:Name="CloseButton"
                     Style="{StaticResource MSEdgeCloseButtonStyle}">&#xE10A;</Button>
             <!-- Command Reach up, visibility look at command not null...-->
         </Grid>
