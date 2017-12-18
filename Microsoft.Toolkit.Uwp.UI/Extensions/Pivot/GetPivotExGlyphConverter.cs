@@ -15,6 +15,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.Toolkit.Uwp.UI.Extensions;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -23,46 +24,37 @@ using Windows.UI.Xaml.Data;
 namespace Microsoft.Toolkit.Uwp.UI.Extensions
 {
     /// <summary>
-    /// Set of extensions for the Pivot control.
+    /// Helper to retrieve the Glyph Attached Property from a PivotItem for the PivotHeaderItem Style Templates.
     /// </summary>
-    [Bindable]
-    public partial class PivotEx
+    public class GetPivotExGlyphConverter : IValueConverter
     {
-        private static void InitPivotStyle(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        public object Convert(object value, Type targetType, object parameter, string language)
         {
-            var pivot = d as Pivot;
+            var pivotheader = value as PivotHeaderItem;
 
-            if (pivot == null)
+            var panel = pivotheader?.Parent as PivotHeaderPanel;
+            var index = panel?.Children?.IndexOf(pivotheader);
+
+            var pivot = (value as DependencyObject)?.FindAscendant<Pivot>();
+
+            if (index != null)
             {
-                return;
+                var pivotitem = pivot?.Items[index.Value] as PivotItem;
+
+                if (pivotitem != null)
+                {
+                    var glyph = PivotEx.GetGlyph(pivotitem);
+
+                    return glyph ?? string.Empty; // ""; // PivotEx.GetGlyph(pivot);
+                }
             }
 
-            pivot.Loaded -= Pivot_Loaded;
-            pivot.Loaded += Pivot_Loaded; ;
+            return string.Empty;
         }
 
-        private static void Pivot_Loaded(object sender, RoutedEventArgs e)
+        public object ConvertBack(object value, Type targetType, object parameter, string language)
         {
-            var pivot = sender as Pivot;
-
-            if (pivot == null)
-            {
-                return;
-            }
-
-            var panel = pivot.FindDescendant<PivotHeaderPanel>();
-
-            var style = GetPivotHeaderItemStyle(pivot);
-
-            foreach (var child in panel.Children)
-            {
-                var phi = child as PivotHeaderItem;
-                phi.Style = style;
-            }
-
-            // TODO: Listen to Children count change:
-            // https://toresenneseth.wordpress.com/2010/10/29/uielementcollection-changed-notification/
-            // Add as extension type event to UIElementCollection?
+            throw new NotImplementedException();
         }
     }
 }

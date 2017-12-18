@@ -27,11 +27,28 @@
         </PivotItem>
         <PivotItem Header="System Style Tabs">
           <Pivot extensions:PivotEx.PivotHeaderItemStyle="{StaticResource SystemTabStyle}">
-            <PivotItem Header="Documentation">
+            <PivotItem Header="Documentation" extensions:PivotEx.Glyph="&#xE1D3;">
               <TextBlock>
-                This Pivot style provides the look and feel of the recommended restyling as
-                outlined at docs.microsoft.com... TODO: Provide link.
+                <Run>This Pivot style provides the look and feel of the recommended restyling as
+                outlined at</Run> <Hyperlink>https://docs.microsoft.com/en-us/windows/uwp/design/controls-and-patterns/tabs-pivot</Hyperlink><!-- TODO: Make sure link can open browser in SampleApp. -->
               </TextBlock>
+            </PivotItem>
+            <PivotItem Header="History" extensions:PivotEx.Glyph="&#xE81C;">
+                <Pivot Title="Normal Pivot">
+                    <PivotItem Header="Testing"/>
+                </Pivot>
+            </PivotItem>
+            <PivotItem Header="Phonebook" extensions:PivotEx.Glyph="&#xE1D4;">
+                <Grid/>
+            </PivotItem>
+            <PivotItem Header="Speed Dial" extensions:PivotEx.Glyph="&#xE734;">
+                <Grid/>
+            </PivotItem>
+            <PivotItem Header="Dialer" extensions:PivotEx.Glyph="&#xE75F;">
+                <Grid/>
+            </PivotItem>
+            <PivotItem Header="Voicemail" extensions:PivotEx.Glyph="&#xE1D5;">
+                <Grid/>
             </PivotItem>
           </Pivot>
         </PivotItem>
