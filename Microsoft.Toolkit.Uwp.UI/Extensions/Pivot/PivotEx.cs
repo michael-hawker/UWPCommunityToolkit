@@ -15,6 +15,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -38,7 +39,7 @@ namespace Microsoft.Toolkit.Uwp.UI.Extensions
             }
 
             pivot.Loaded -= Pivot_Loaded;
-            pivot.Loaded += Pivot_Loaded; ;
+            pivot.Loaded += Pivot_Loaded;
         }
 
         private static void Pivot_Loaded(object sender, RoutedEventArgs e)
@@ -60,9 +61,22 @@ namespace Microsoft.Toolkit.Uwp.UI.Extensions
                 phi.Style = style;
             }
 
-            // TODO: Listen to Children count change:
-            // https://toresenneseth.wordpress.com/2010/10/29/uielementcollection-changed-notification/
-            // Add as extension type event to UIElementCollection?
+            // Listen to Pivot's Collection changes as better exposed than internal PivotHeaderPanel
+            // We need to do a delegate here so we don't have to save a reference to the Pivots, as
+            // otherwise the callback doesn't have a way to get to the Pivot/PivotHeaderItems we need.
+            VectorChangedEventHandler<object> collectionHandler = (Windows.Foundation.Collections.IObservableVector<object> collection, Windows.Foundation.Collections.IVectorChangedEventArgs @event) =>
+            {
+                // Need to listen to new collection changes and make sure we catch new PivotHeaderItems to update their styles.
+                if (@event.CollectionChange == Windows.Foundation.Collections.CollectionChange.ItemInserted
+                    && panel.Children.Count > @event.Index)
+                {
+                    var phi = panel.Children[(int)@event.Index] as PivotHeaderItem;
+                    phi.Style = style;
+                }
+            };
+
+            pivot.Items.VectorChanged -= collectionHandler;
+            pivot.Items.VectorChanged += collectionHandler;
         }
     }
 }

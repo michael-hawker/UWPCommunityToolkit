@@ -18,7 +18,8 @@
     </Page.Resources>
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-      <Pivot extensions:PivotEx.PivotHeaderItemStyle="{StaticResource MSEdgeTabStyle}">
+      <Pivot x:Name="DocumentTabs"
+             extensions:PivotEx.PivotHeaderItemStyle="{StaticResource MSEdgeTabStyle}">
         <PivotItem Header="Edge Style Tabs">
           <TextBlock>
             The Pivot Extensions allow for easier restyling and added behavior
