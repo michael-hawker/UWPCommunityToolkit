@@ -3,6 +3,9 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:Microsoft.Toolkit.Uwp.UI.Extensions">
 
+    <local:GetPivotExCloseButtonCommandConverter x:Key="GetPivotExCloseCommand" />
+    <local:GetPivotItemConverter x:Key="GetPivotItem" />
+
     <ControlTemplate x:Key="MSEdgeTabTemplate" 
                      TargetType="PivotHeaderItem">
         <Grid
@@ -115,6 +118,10 @@
                                                Storyboard.TargetProperty="Background" >
                                 <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SystemControlHighlightTransparentBrush}" />
                             </ObjectAnimationUsingKeyFrames>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="CloseButton"
+                                                           Storyboard.TargetProperty="Visibility">
+                                <DiscreteObjectKeyFrame KeyTime="0" Value="Visible" />
+                            </ObjectAnimationUsingKeyFrames>
                         </Storyboard>
                     </VisualState>
                     <VisualState x:Name="SelectedPressed">
@@ -154,6 +161,8 @@
             </ContentPresenter>
             <Button Grid.Column="2" 
                     x:Name="CloseButton"
+                    Command="{Binding RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource GetPivotExCloseCommand} }"
+                    CommandParameter="{Binding RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource GetPivotItem} }"
                     Style="{StaticResource MSEdgeCloseButtonStyle}">&#xE10A;</Button>
             <!-- Command Reach up, visibility look at command not null...-->
         </Grid>
@@ -189,7 +198,8 @@
         <Setter Property="BorderThickness" Value="0" />
 
         <Setter Property="Foreground" Value="{ThemeResource SystemControlForegroundBaseHighBrush}"/>
-        <Setter Property="Padding" Value="10,4,10,4" />
+        <Setter Property="Padding" Value="4" />
+        <Setter Property="Margin" Value="6,0,6,0" />
         <Setter Property="HorizontalAlignment" Value="Center" />
         <Setter Property="VerticalAlignment" Value="Center" />
         <Setter Property="FontFamily" Value="Segoe MDL2 Assets" />
@@ -218,10 +228,10 @@
                                 </VisualState>
                                 <VisualState x:Name="Pressed">
                                     <Storyboard>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="RootGrid"
+                                        <!--<ObjectAnimationUsingKeyFrames Storyboard.TargetName="RootGrid"
                                                    Storyboard.TargetProperty="Background">
                                             <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SystemControlBackgroundBaseMediumLowBrush}" />
-                                        </ObjectAnimationUsingKeyFrames>
+                                        </ObjectAnimationUsingKeyFrames>-->
                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter"
                                                    Storyboard.TargetProperty="BorderBrush">
                                             <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SystemControlHighlightTransparentBrush}" />

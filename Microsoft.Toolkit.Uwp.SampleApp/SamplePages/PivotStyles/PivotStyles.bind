@@ -5,7 +5,7 @@
     xmlns:extensions="using:Microsoft.Toolkit.Uwp.UI.Extensions"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:models="using:Microsoft.Toolkit.Uwp.SampleApp.Models"
+    xmlns:local="using:Microsoft.Toolkit.Uwp.SampleApp.SamplePages"
     mc:Ignorable="d">
 
     <Page.Resources>
@@ -14,12 +14,15 @@
           <ResourceDictionary Source="ms-appx:///Microsoft.Toolkit.Uwp.UI/Extensions/Pivot/Styles/MSEdgeTabStyle.xaml" />
           <ResourceDictionary Source="ms-appx:///Microsoft.Toolkit.Uwp.UI/Extensions/Pivot/Styles/SystemTabStyle.xaml" />
         </ResourceDictionary.MergedDictionaries>
+
+        <local:CloseCommand x:Key="CloseCommand" />
       </ResourceDictionary>
     </Page.Resources>
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
       <Pivot x:Name="DocumentTabs"
-             extensions:PivotEx.PivotHeaderItemStyle="{StaticResource MSEdgeTabStyle}">
+             extensions:PivotEx.PivotHeaderItemStyle="{StaticResource MSEdgeTabStyle}"
+             extensions:PivotEx.CloseButtonCommand="{StaticResource CloseCommand}">
         <PivotItem Header="Edge Style Tabs">
           <TextBlock>
             The Pivot Extensions allow for easier restyling and added behavior

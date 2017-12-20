@@ -24,21 +24,25 @@ using Windows.UI.Xaml.Data;
 namespace Microsoft.Toolkit.Uwp.UI.Extensions
 {
     /// <summary>
-    /// Helper to retrieve the Glyph Attached Property from a PivotItem for the PivotHeaderItem Style Templates.
+    /// Helper to retrieve the CloseCommandButton Attached Property from a Pivot for the PivotHeaderItem Style Templates.
     /// </summary>
-    public class GetPivotExGlyphConverter : IValueConverter
+    public class GetPivotExCloseButtonCommandConverter : IValueConverter
     {
-        // TODO: See if I can use GetPivotItemConverter as a base class?
         public object Convert(object value, Type targetType, object parameter, string language)
         {
-            var pivotheader = value as PivotHeaderItem;
+            /*var pivotheader = value as PivotHeaderItem;
 
             var panel = pivotheader?.Parent as PivotHeaderPanel;
-            var index = panel?.Children?.IndexOf(pivotheader);
+            var index = panel?.Children?.IndexOf(pivotheader);*/
 
             var pivot = (value as DependencyObject)?.FindAscendant<Pivot>();
 
-            if (index != null)
+            if (pivot != null)
+            {
+                return PivotEx.GetCloseButtonCommand(pivot);
+            }
+
+            /*if (index != null)
             {
                 var pivotitem = pivot?.Items[index.Value] as PivotItem;
 
@@ -48,9 +52,9 @@ namespace Microsoft.Toolkit.Uwp.UI.Extensions
 
                     return glyph ?? string.Empty; // ""; // PivotEx.GetGlyph(pivot);
                 }
-            }
+            }*/
 
-            return string.Empty;
+            return null;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, string language)

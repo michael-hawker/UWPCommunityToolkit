@@ -15,6 +15,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -66,5 +67,31 @@ namespace Microsoft.Toolkit.Uwp.UI.Extensions
         /// </summary>
         public static readonly DependencyProperty GlyphProperty =
             DependencyProperty.RegisterAttached("Glyph", typeof(string), typeof(PivotEx), new PropertyMetadata(string.Empty));
+
+        /// <summary>
+        /// Gets the CloseButtonCommand attached property value.
+        /// </summary>
+        /// <param name="obj">Pivot to get value from.</param>
+        /// <returns>Command value for the MSEdgeTabStyle Close Button.</returns>
+        public static ICommand GetCloseButtonCommand(Pivot obj) // TODO: Should this be per PivotHeaderItem? Thinking no?
+        {
+            return (ICommand)obj.GetValue(CloseButtonCommandProperty);
+        }
+
+        /// <summary>
+        /// Sets the attached property value for CloseButtonCommand.
+        /// </summary>
+        /// <param name="obj">Pivot to set value for.</param>
+        /// <param name="value">Command value for the MSEdgeTabStyle Close Button.</param>
+        public static void SetCloseButtonCommand(Pivot obj, ICommand value)
+        {
+            obj.SetValue(CloseButtonCommandProperty, value);
+        }
+
+        /// <summary>
+        /// Used with the MSEdgeTab Pivot Styles to specify a Close Command for the Tab's Close Button.
+        /// </summary>
+        public static readonly DependencyProperty CloseButtonCommandProperty =
+            DependencyProperty.RegisterAttached("CloseButtonCommand", typeof(ICommand), typeof(PivotEx), new PropertyMetadata(null));
     }
 }
