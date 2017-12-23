@@ -1,7 +1,7 @@
 ﻿<ResourceDictionary
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:Microsoft.Toolkit.Uwp.UI.Extensions">
+    xmlns:local="using:Microsoft.Toolkit.Uwp.UI.Extensions.Pivot">
 
     <local:GetPivotExGlyphConverter x:Key="GetPivotExGlyph"/>
 
@@ -100,20 +100,6 @@
                     </VisualState>
                 </VisualStateGroup>
             </VisualStateManager.VisualStateGroups>
-            <!--<VisualStateManager.VisualStateGroups>
-                <VisualStateGroup>
-                    <VisualState>
-                        <VisualState.StateTriggers>
-                            <local:PivotItemIsSelectedTrigger Element="{x:Bind PivotHeaderItemRootGrid}"/>
-                        </VisualState.StateTriggers>
-                        <VisualState.Setters>
-                            <Setter Target="SelectionRect.Visibility" Value="Visible"/>
-                            <Setter Target="FontIcon.Foreground" Value="{ThemeResource SystemControlHighlightAccentBrush}"/>
-                            <Setter Target="HeaderText.Foreground" Value="{ThemeResource SystemControlHighlightAccentBrush}"/>
-                        </VisualState.Setters>
-                    </VisualState>
-                </VisualStateGroup>
-            </VisualStateManager.VisualStateGroups>-->
             <Grid.RowDefinitions>
                 <RowDefinition/>
                 <RowDefinition/>
@@ -124,13 +110,6 @@
                 Margin="0,12,0,0"
                 Glyph="{Binding RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource GetPivotExGlyph} }"
                 FontSize="16"/>
-            <!--Glyph="{Binding ElementName=Grid, Converter={StaticResource GetPivotExGlyph} }"-->
-            <!--<ContentPresenter
-                Grid.Column="0"
-                ContentTemplateSelector="">
-                16x16
-                Visible if content != null (prevent reaching up again)
-            </ContentPresenter>-->                
             <ContentPresenter
                     Grid.Row="1"
                     x:Name="ContentPresenter"

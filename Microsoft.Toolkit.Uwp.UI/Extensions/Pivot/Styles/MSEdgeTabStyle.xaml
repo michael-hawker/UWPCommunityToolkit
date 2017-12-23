@@ -1,7 +1,7 @@
 ﻿<ResourceDictionary
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:Microsoft.Toolkit.Uwp.UI.Extensions">
+    xmlns:local="using:Microsoft.Toolkit.Uwp.UI.Extensions.Pivot">
 
     <local:GetPivotExCloseButtonCommandConverter x:Key="GetPivotExCloseCommand" />
     <local:GetPivotItemConverter x:Key="GetPivotItem" />
@@ -138,12 +138,9 @@
                     </VisualState>
                 </VisualStateGroup>
             </VisualStateManager.VisualStateGroups>
-            <!--<ContentPresenter
-                Grid.Column="0"
-                ContentTemplateSelector="">
-                16x16
-                Visible if content != null (prevent reaching up again)
-            </ContentPresenter>-->
+            <!--<Image x:Name="Icon"
+                   Grid.Column="0"
+                   Margin="0,4,0,0"/>-->
             <ContentPresenter
                     Grid.Column="1"
                     x:Name="ContentPresenter"

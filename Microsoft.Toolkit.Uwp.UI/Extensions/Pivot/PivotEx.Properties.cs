@@ -28,12 +28,12 @@ namespace Microsoft.Toolkit.Uwp.UI.Extensions
     /// </summary>
     public partial class PivotEx
     {
-        public static Style GetPivotHeaderItemStyle(Pivot obj)
+        public static Style GetPivotHeaderItemStyle(Windows.UI.Xaml.Controls.Pivot obj)
         {
             return (Style)obj.GetValue(PivotHeaderItemStyleProperty);
         }
 
-        public static void SetPivotHeaderItemStyle(Pivot obj, Style value)
+        public static void SetPivotHeaderItemStyle(Windows.UI.Xaml.Controls.Pivot obj, Style value)
         {
             obj.SetValue(PivotHeaderItemStyleProperty, value);
         }
@@ -73,7 +73,7 @@ namespace Microsoft.Toolkit.Uwp.UI.Extensions
         /// </summary>
         /// <param name="obj">Pivot to get value from.</param>
         /// <returns>Command value for the MSEdgeTabStyle Close Button.</returns>
-        public static ICommand GetCloseButtonCommand(Pivot obj) // TODO: Should this be per PivotHeaderItem? Thinking no?
+        public static ICommand GetCloseButtonCommand(Windows.UI.Xaml.Controls.Pivot obj) // TODO: Should this be per PivotHeaderItem? Thinking no?
         {
             return (ICommand)obj.GetValue(CloseButtonCommandProperty);
         }
@@ -83,7 +83,7 @@ namespace Microsoft.Toolkit.Uwp.UI.Extensions
         /// </summary>
         /// <param name="obj">Pivot to set value for.</param>
         /// <param name="value">Command value for the MSEdgeTabStyle Close Button.</param>
-        public static void SetCloseButtonCommand(Pivot obj, ICommand value)
+        public static void SetCloseButtonCommand(Windows.UI.Xaml.Controls.Pivot obj, ICommand value)
         {
             obj.SetValue(CloseButtonCommandProperty, value);
         }

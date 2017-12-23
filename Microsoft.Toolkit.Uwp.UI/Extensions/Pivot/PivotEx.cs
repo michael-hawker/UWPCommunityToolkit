@@ -31,7 +31,7 @@ namespace Microsoft.Toolkit.Uwp.UI.Extensions
     {
         private static void InitPivotStyle(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            var pivot = d as Pivot;
+            var pivot = d as Windows.UI.Xaml.Controls.Pivot;
 
             if (pivot == null)
             {
@@ -44,7 +44,7 @@ namespace Microsoft.Toolkit.Uwp.UI.Extensions
 
         private static void Pivot_Loaded(object sender, RoutedEventArgs e)
         {
-            var pivot = sender as Pivot;
+            var pivot = sender as Windows.UI.Xaml.Controls.Pivot;
 
             if (pivot == null)
             {

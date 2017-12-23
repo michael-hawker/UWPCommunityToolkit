@@ -21,7 +21,7 @@ using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Data;
 
-namespace Microsoft.Toolkit.Uwp.UI.Extensions
+namespace Microsoft.Toolkit.Uwp.UI.Extensions.Pivot
 {
     /// <summary>
     /// Helper to retrieve the Glyph Attached Property from a PivotItem for the PivotHeaderItem Style Templates.
@@ -36,7 +36,7 @@ namespace Microsoft.Toolkit.Uwp.UI.Extensions
             var panel = pivotheader?.Parent as PivotHeaderPanel;
             var index = panel?.Children?.IndexOf(pivotheader);
 
-            var pivot = (value as DependencyObject)?.FindAscendant<Pivot>();
+            var pivot = (value as DependencyObject)?.FindAscendant<Windows.UI.Xaml.Controls.Pivot>();
 
             if (index != null)
             {
