@@ -20,6 +20,7 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Data;
+using Windows.UI.Xaml.Media;
 
 namespace Microsoft.Toolkit.Uwp.UI.Extensions
 {
@@ -67,6 +68,32 @@ namespace Microsoft.Toolkit.Uwp.UI.Extensions
         /// </summary>
         public static readonly DependencyProperty GlyphProperty =
             DependencyProperty.RegisterAttached("Glyph", typeof(string), typeof(PivotEx), new PropertyMetadata(string.Empty));
+
+        /// <summary>
+        /// Gets the ImageSource attached property value.
+        /// </summary>
+        /// <param name="obj">PivotItem to get value from.</param>
+        /// <returns>Resource to use for an Image in the MSEdgeTabStyle.</returns>
+        public static ImageSource GetImageSource(PivotItem obj)
+        {
+            return (ImageSource)obj.GetValue(ImageSourceProperty);
+        }
+
+        /// <summary>
+        /// Sets the attached property value for ImageSource.
+        /// </summary>
+        /// <param name="obj">PivotItem to set value for.</param>
+        /// <param name="value">Resource to use for an Image in the MSEdgeTabStyle.</param>
+        public static void SetImageSource(PivotItem obj, ImageSource value)
+        {
+            obj.SetValue(ImageSourceProperty, value);
+        }
+
+        /// <summary>
+        /// Used with the Pivot Styles to specify an ImageSource for the MSEdgeTabStyle.
+        /// </summary>
+        public static readonly DependencyProperty ImageSourceProperty =
+            DependencyProperty.RegisterAttached("ImageSource", typeof(ImageSource), typeof(PivotEx), new PropertyMetadata(null));
 
         /// <summary>
         /// Gets the CloseButtonCommand attached property value.

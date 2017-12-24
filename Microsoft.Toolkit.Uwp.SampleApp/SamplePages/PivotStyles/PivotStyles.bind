@@ -23,7 +23,7 @@
       <Pivot x:Name="DocumentTabs"
              extensions:PivotEx.PivotHeaderItemStyle="{StaticResource MSEdgeTabStyle}"
              extensions:PivotEx.CloseButtonCommand="{StaticResource CloseCommand}">
-        <PivotItem Header="Edge Style Tabs">
+        <PivotItem Header="Edge Style Tabs" extensions:PivotEx.ImageSource="ms-appx:///Assets/People/dave.png">
           <TextBlock>
             The Pivot Extensions allow for easier restyling and added behavior
             to the system Pivot control.

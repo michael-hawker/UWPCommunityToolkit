@@ -24,28 +24,25 @@ using Windows.UI.Xaml.Data;
 namespace Microsoft.Toolkit.Uwp.UI.Extensions.Pivot
 {
     /// <summary>
-    /// Helper to retrieve the PivotItem from the PivotHeaderItem.
+    /// Helper to retrieve the Image Attached Property from a PivotItem for the PivotHeaderItem Style Templates.
     /// </summary>
-    public class GetPivotItemConverter : IValueConverter
+    public class GetPivotExImageConverter : GetPivotItemConverter
     {
-        public virtual object Convert(object value, Type targetType, object parameter, string language)
+        public override object Convert(object value, Type targetType, object parameter, string language)
         {
-            var pivotheader = value as PivotHeaderItem;
+            var pivotitem = base.Convert(value, targetType, parameter, language) as PivotItem;
 
-            var panel = pivotheader?.Parent as PivotHeaderPanel;
-            var index = panel?.Children?.IndexOf(pivotheader);
-
-            var pivot = (value as DependencyObject)?.FindAscendant<Windows.UI.Xaml.Controls.Pivot>();
-
-            if (index != null)
+            if (pivotitem != null)
             {
-                return pivot?.Items[index.Value] as PivotItem;
+                var source = PivotEx.GetImageSource(pivotitem);
+
+                return source;
             }
 
-            return string.Empty;
+            return null;
         }
 
-        public virtual object ConvertBack(object value, Type targetType, object parameter, string language)
+        public object ConvertBack(object value, Type targetType, object parameter, string language)
         {
             throw new NotImplementedException();
         }

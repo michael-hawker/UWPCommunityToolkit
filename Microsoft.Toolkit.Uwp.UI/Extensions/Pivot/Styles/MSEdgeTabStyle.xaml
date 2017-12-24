@@ -1,10 +1,13 @@
 ﻿<ResourceDictionary
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:Microsoft.Toolkit.Uwp.UI.Extensions.Pivot">
+    xmlns:local="using:Microsoft.Toolkit.Uwp.UI.Extensions.Pivot"
+    xmlns:converters="using:Microsoft.Toolkit.Uwp.UI.Converters">
 
     <local:GetPivotExCloseButtonCommandConverter x:Key="GetPivotExCloseCommand" />
+    <local:GetPivotExImageConverter x:Key="GetPivotExImage"/>
     <local:GetPivotItemConverter x:Key="GetPivotItem" />
+    <converters:EmptyObjectToObjectConverter x:Key="NotNullToVisibility" EmptyValue="Collapsed" NotEmptyValue="Visible"/>
 
     <ControlTemplate x:Key="MSEdgeTabTemplate" 
                      TargetType="PivotHeaderItem">
@@ -138,9 +141,14 @@
                     </VisualState>
                 </VisualStateGroup>
             </VisualStateManager.VisualStateGroups>
-            <!--<Image x:Name="Icon"
+            <Image x:Name="Icon"
                    Grid.Column="0"
-                   Margin="0,4,0,0"/>-->
+                   Width="16"
+                   Height="16"
+                   Margin="8,0,0,0"
+                   Source="{Binding RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource GetPivotExImage} }"
+                   Visibility="{Binding Path=Source, ElementName=Icon, Converter={StaticResource NotNullToVisibility}}"
+                   />
             <ContentPresenter
                     Grid.Column="1"
                     x:Name="ContentPresenter"
