@@ -51,14 +51,17 @@ namespace Microsoft.Toolkit.Uwp.UI.Extensions
                 return;
             }
 
-            var panel = pivot.FindDescendant<PivotHeaderPanel>();
+            var panels = pivot.FindDescendants<PivotHeaderPanel>();
 
             var style = GetPivotHeaderItemStyle(pivot);
 
-            foreach (var child in panel.Children)
+            foreach (var panel in panels)
             {
-                var phi = child as PivotHeaderItem;
-                phi.Style = style;
+                foreach (var child in panel.Children)
+                {
+                    var phi = child as PivotHeaderItem;
+                    phi.Style = style;
+                }
             }
 
             // Listen to Pivot's Collection changes as better exposed than internal PivotHeaderPanel
@@ -67,11 +70,14 @@ namespace Microsoft.Toolkit.Uwp.UI.Extensions
             VectorChangedEventHandler<object> collectionHandler = (Windows.Foundation.Collections.IObservableVector<object> collection, Windows.Foundation.Collections.IVectorChangedEventArgs @event) =>
             {
                 // Need to listen to new collection changes and make sure we catch new PivotHeaderItems to update their styles.
-                if (@event.CollectionChange == Windows.Foundation.Collections.CollectionChange.ItemInserted
-                    && panel.Children.Count > @event.Index)
+                foreach (var panel in panels)
                 {
-                    var phi = panel.Children[(int)@event.Index] as PivotHeaderItem;
-                    phi.Style = style;
+                    if (@event.CollectionChange == Windows.Foundation.Collections.CollectionChange.ItemInserted
+                        && panel.Children.Count > @event.Index)
+                    {
+                        var phi = panel.Children[(int)@event.Index] as PivotHeaderItem;
+                        phi.Style = style;
+                    }
                 }
             };
 
