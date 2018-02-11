@@ -24,33 +24,22 @@ using Windows.UI.Xaml.Data;
 namespace Microsoft.Toolkit.Uwp.UI.Extensions.Pivot
 {
     /// <summary>
-    /// Helper to retrieve the Glyph Attached Property from a PivotItem for the PivotHeaderItem Style Templates.
+    /// Helper to retrieve the Image Attached Property from a PivotItem for the PivotHeaderItem Style Templates.
     /// </summary>
-    public class GetPivotExGlyphConverter : IValueConverter
+    public class GetPivotImageConverter : GetPivotItemConverter
     {
-        // TODO: See if I can use GetPivotItemConverter as a base class?
-        public object Convert(object value, Type targetType, object parameter, string language)
+        public override object Convert(object value, Type targetType, object parameter, string language)
         {
-            var pivotheader = value as PivotHeaderItem;
+            var pivotitem = base.Convert(value, targetType, parameter, language) as PivotItem;
 
-            var panel = pivotheader?.Parent as PivotHeaderPanel;
-            var index = panel?.Children?.IndexOf(pivotheader);
-
-            var pivot = (value as DependencyObject)?.FindAscendant<Windows.UI.Xaml.Controls.Pivot>();
-
-            if (index != null)
+            if (pivotitem != null)
             {
-                var pivotitem = pivot?.Items[index.Value] as PivotItem;
+                var source = PivotExtensions.GetImageSource(pivotitem);
 
-                if (pivotitem != null)
-                {
-                    var glyph = PivotEx.GetGlyph(pivotitem);
-
-                    return glyph ?? string.Empty; // ""; // PivotEx.GetGlyph(pivot);
-                }
+                return source;
             }
 
-            return string.Empty;
+            return null;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, string language)

@@ -4,8 +4,8 @@
     xmlns:local="using:Microsoft.Toolkit.Uwp.UI.Extensions.Pivot"
     xmlns:converters="using:Microsoft.Toolkit.Uwp.UI.Converters">
 
-    <local:GetPivotExCloseButtonCommandConverter x:Key="GetPivotExCloseCommand" />
-    <local:GetPivotExImageConverter x:Key="GetPivotExImage"/>
+    <local:GetPivotCloseButtonCommandConverter x:Key="GetPivotCloseCommand" />
+    <local:GetPivotImageConverter x:Key="GetPivotImage"/>
     <local:GetPivotItemConverter x:Key="GetPivotItem" />
     <converters:EmptyObjectToObjectConverter x:Key="NotNullToVisibility" EmptyValue="Collapsed" NotEmptyValue="Visible"/>
 
@@ -146,7 +146,7 @@
                    Width="16"
                    Height="16"
                    Margin="8,0,0,0"
-                   Source="{Binding RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource GetPivotExImage} }"
+                   Source="{Binding RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource GetPivotImage} }"
                    Visibility="{Binding Path=Source, ElementName=Icon, Converter={StaticResource NotNullToVisibility}}"
                    />
             <ContentPresenter
@@ -166,7 +166,7 @@
             </ContentPresenter>
             <Button Grid.Column="2" 
                     x:Name="CloseButton"
-                    Command="{Binding RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource GetPivotExCloseCommand} }"
+                    Command="{Binding RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource GetPivotCloseCommand} }"
                     CommandParameter="{Binding RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource GetPivotItem} }"
                     Style="{StaticResource MSEdgeCloseButtonStyle}">&#xE10A;</Button>
             <!-- Command Reach up, visibility look at command not null...-->

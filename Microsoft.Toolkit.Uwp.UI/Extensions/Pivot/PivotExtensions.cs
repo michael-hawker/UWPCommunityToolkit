@@ -27,7 +27,7 @@ namespace Microsoft.Toolkit.Uwp.UI.Extensions
     /// Set of extensions for the Pivot control.
     /// </summary>
     [Bindable]
-    public partial class PivotEx
+    public partial class PivotExtensions
     {
         private static void InitPivotStyle(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {

@@ -26,33 +26,16 @@ namespace Microsoft.Toolkit.Uwp.UI.Extensions.Pivot
     /// <summary>
     /// Helper to retrieve the CloseCommandButton Attached Property from a Pivot for the PivotHeaderItem Style Templates.
     /// </summary>
-    public class GetPivotExCloseButtonCommandConverter : IValueConverter
+    public class GetPivotCloseButtonCommandConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, string language)
         {
-            /*var pivotheader = value as PivotHeaderItem;
-
-            var panel = pivotheader?.Parent as PivotHeaderPanel;
-            var index = panel?.Children?.IndexOf(pivotheader);*/
-
             var pivot = (value as DependencyObject)?.FindAscendant<Windows.UI.Xaml.Controls.Pivot>();
 
             if (pivot != null)
             {
-                return PivotEx.GetCloseButtonCommand(pivot);
+                return PivotExtensions.GetCloseButtonCommand(pivot);
             }
-
-            /*if (index != null)
-            {
-                var pivotitem = pivot?.Items[index.Value] as PivotItem;
-
-                if (pivotitem != null)
-                {
-                    var glyph = PivotEx.GetGlyph(pivotitem);
-
-                    return glyph ?? string.Empty; // ""; // PivotEx.GetGlyph(pivot);
-                }
-            }*/
 
             return null;
         }

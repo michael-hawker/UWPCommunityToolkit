@@ -2,7 +2,7 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
-    xmlns:extensions="using:Microsoft.Toolkit.Uwp.UI.Extensions"
+    xmlns:ex="using:Microsoft.Toolkit.Uwp.UI.Extensions"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:local="using:Microsoft.Toolkit.Uwp.SampleApp.SamplePages"
@@ -21,53 +21,40 @@
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
       <Pivot x:Name="DocumentTabs"
-             extensions:PivotEx.PivotHeaderItemStyle="{StaticResource MSEdgeTabStyle}"
-             extensions:PivotEx.CloseButtonCommand="{StaticResource CloseCommand}">
-        <PivotItem Header="Edge Style Tabs" extensions:PivotEx.ImageSource="ms-appx:///Assets/People/dave.png">
+             ex:PivotExtensions.PivotHeaderItemStyle="{StaticResource MSEdgeTabStyle}"
+             ex:PivotExtensions.CloseButtonCommand="{StaticResource CloseCommand}">
+        <PivotItem Header="Edge Style Tabs" ex:PivotExtensions.ImageSource="ms-appx:///Assets/People/dave.png">
           <TextBlock>
             The Pivot Extensions allow for easier restyling and added behavior
             to the system Pivot control.
           </TextBlock>
         </PivotItem>
         <PivotItem Header="System Style Tabs">
-          <Pivot extensions:PivotEx.PivotHeaderItemStyle="{StaticResource SystemTabStyle}">
-            <PivotItem Header="Documentation" extensions:PivotEx.Glyph="&#xE1D3;">
+          <Pivot ex:PivotExtensions.PivotHeaderItemStyle="{StaticResource SystemTabStyle}">
+            <PivotItem Header="Documentation" ex:PivotExtensions.Glyph="&#xE1D3;">
               <TextBlock>
                 <Run>This Pivot style provides the look and feel of the recommended restyling as
                 outlined at</Run> <Hyperlink>https://docs.microsoft.com/en-us/windows/uwp/design/controls-and-patterns/tabs-pivot</Hyperlink><!-- TODO: Make sure link can open browser in SampleApp. -->
               </TextBlock>
             </PivotItem>
-            <PivotItem Header="History" extensions:PivotEx.Glyph="&#xE81C;">
+            <PivotItem Header="History" ex:PivotExtensions.Glyph="&#xE81C;">
                 <Pivot Title="Normal Pivot">
                     <PivotItem Header="Testing"/>
                 </Pivot>
             </PivotItem>
-            <PivotItem Header="Phonebook" extensions:PivotEx.Glyph="&#xE1D4;">
+            <PivotItem Header="Phonebook" ex:PivotExtensions.Glyph="&#xE1D4;">
                 <Grid/>
             </PivotItem>
-            <PivotItem Header="Speed Dial" extensions:PivotEx.Glyph="&#xE734;">
+            <PivotItem Header="Speed Dial" ex:PivotExtensions.Glyph="&#xE734;">
                 <Grid/>
             </PivotItem>
-            <PivotItem Header="Dialer" extensions:PivotEx.Glyph="&#xE75F;">
+            <PivotItem Header="Dialer" ex:PivotExtensions.Glyph="&#xE75F;">
                 <Grid/>
             </PivotItem>
-            <PivotItem Header="Voicemail" extensions:PivotEx.Glyph="&#xE1D5;">
+            <PivotItem Header="Voicemail" ex:PivotExtensions.Glyph="&#xE1D5;">
                 <Grid/>
             </PivotItem>
           </Pivot>
-        </PivotItem>
-        <PivotItem Header="VSCode Activity Bar">
-          <!--TODO: Check what pattern we need for this one...-->
-          <!--<Pivot Style="{StaticResource VerticalPivotHeaderItemStyle}"
-                 extensions:PivotEx.PivotHeaderItemStyle="{StaticResource VSCodeActivityBarStyle}">
-            <TextBlock>
-              These combinations of styles provide the ability to use the Pivot like
-              an Activity Bar ala Visual Studio Code's IDE.
-              
-              These is an additional Property which can be used to collapse the Pivot's
-              content area to mimic VSCode's behavior as well.
-            </TextBlock>
-          </Pivot>-->
         </PivotItem>
       </Pivot>
     </Grid>

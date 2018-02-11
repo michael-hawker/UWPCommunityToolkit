@@ -5,6 +5,5 @@
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="ms-appx:///Microsoft.Toolkit.Uwp.UI/Extensions/Pivot/Styles/MSEdgeTabStyle.xaml" />
         <ResourceDictionary Source="ms-appx:///Microsoft.Toolkit.Uwp.UI/Extensions/Pivot/Styles/SystemTabStyle.xaml" />
-        <ResourceDictionary Source="ms-appx:///Microsoft.Toolkit.Uwp.UI/Extensions/Pivot/Styles/VSCodeActivityBarStyle.xaml" />
     </ResourceDictionary.MergedDictionaries>
 </ResourceDictionary>

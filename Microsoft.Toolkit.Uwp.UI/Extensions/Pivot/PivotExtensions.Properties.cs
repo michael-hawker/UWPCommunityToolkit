@@ -27,21 +27,33 @@ namespace Microsoft.Toolkit.Uwp.UI.Extensions
     /// <summary>
     /// Set of extensions for the Pivot control.
     /// </summary>
-    public partial class PivotEx
+    public partial class PivotExtensions
     {
+        /// <summary>
+        /// Gets the <see cref="PivotHeaderItem"/> <see cref="Style"/> instance assocaited with the specified <see cref="Windows.UI.Xaml.Controls.Pivot"/>
+        /// </summary>
+        /// <param name="obj">The <see cref="Windows.UI.Xaml.Controls.Pivot"/> from which to get the associated <see cref="Style"/> instance</param>
+        /// <returns>The <see cref="Style"/> instance associated with the the <see cref="Windows.UI.Xaml.Controls.Pivot"/> or null</returns>
         public static Style GetPivotHeaderItemStyle(Windows.UI.Xaml.Controls.Pivot obj)
         {
             return (Style)obj.GetValue(PivotHeaderItemStyleProperty);
         }
 
+        /// <summary>
+        /// Sets the <see cref="PivotHeaderItem"/> <see cref="Style"/> instance assocaited with the specified <see cref="Windows.UI.Xaml.Controls.Pivot"/>
+        /// </summary>
+        /// <param name="obj">The <see cref="Windows.UI.Xaml.Controls.Pivot"/> to associated the <see cref="Style"/> instance to</param>
+        /// <param name="value">The <see cref="Style"/> instance to bind to the <see cref="Windows.UI.Xaml.Controls.Pivot"/></param>
         public static void SetPivotHeaderItemStyle(Windows.UI.Xaml.Controls.Pivot obj, Style value)
         {
             obj.SetValue(PivotHeaderItemStyleProperty, value);
         }
 
-        // Using a DependencyProperty as the backing store for PivotHeaderItemStyle.  This enables animation, styling, binding, etc...
+        /// <summary>
+        /// Attached <see cref="DependencyProperty"/> for binding a <see cref="PivotHeaderItem"/> <see cref="Style"/> as an alternate template to a <see cref="Windows.UI.Xaml.Controls.Pivot"/>
+        /// </summary>
         public static readonly DependencyProperty PivotHeaderItemStyleProperty =
-            DependencyProperty.RegisterAttached("PivotHeaderItemStyle", typeof(Style), typeof(PivotEx), new PropertyMetadata(null, InitPivotStyle));
+            DependencyProperty.RegisterAttached("PivotHeaderItemStyle", typeof(Style), typeof(PivotExtensions), new PropertyMetadata(null, InitPivotStyle));
 
         /// <summary>
         /// Gets the Glyph attached property value.
@@ -67,7 +79,7 @@ namespace Microsoft.Toolkit.Uwp.UI.Extensions
         /// Used with the Pivot Styles to specify a FontIcon Glyph using the Segoe MDL2 Assets font.
         /// </summary>
         public static readonly DependencyProperty GlyphProperty =
-            DependencyProperty.RegisterAttached("Glyph", typeof(string), typeof(PivotEx), new PropertyMetadata(string.Empty));
+            DependencyProperty.RegisterAttached("Glyph", typeof(string), typeof(PivotExtensions), new PropertyMetadata(string.Empty));
 
         /// <summary>
         /// Gets the ImageSource attached property value.
@@ -93,7 +105,7 @@ namespace Microsoft.Toolkit.Uwp.UI.Extensions
         /// Used with the Pivot Styles to specify an ImageSource for the MSEdgeTabStyle.
         /// </summary>
         public static readonly DependencyProperty ImageSourceProperty =
-            DependencyProperty.RegisterAttached("ImageSource", typeof(ImageSource), typeof(PivotEx), new PropertyMetadata(null));
+            DependencyProperty.RegisterAttached("ImageSource", typeof(ImageSource), typeof(PivotExtensions), new PropertyMetadata(null));
 
         /// <summary>
         /// Gets the CloseButtonCommand attached property value.
@@ -119,6 +131,6 @@ namespace Microsoft.Toolkit.Uwp.UI.Extensions
         /// Used with the MSEdgeTab Pivot Styles to specify a Close Command for the Tab's Close Button.
         /// </summary>
         public static readonly DependencyProperty CloseButtonCommandProperty =
-            DependencyProperty.RegisterAttached("CloseButtonCommand", typeof(ICommand), typeof(PivotEx), new PropertyMetadata(null));
+            DependencyProperty.RegisterAttached("CloseButtonCommand", typeof(ICommand), typeof(PivotExtensions), new PropertyMetadata(null));
     }
 }
