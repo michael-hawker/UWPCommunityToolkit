@@ -51,7 +51,8 @@ namespace Microsoft.Toolkit.Uwp.UI.Extensions
                 return;
             }
 
-            var panels = pivot.FindDescendants<PivotHeaderPanel>();
+            // Make sure we find the PivotHeaderPanels for just this Pivot (in case we have embedded pivots)
+            var panels = pivot.FindDescendants<PivotHeaderPanel>().Where(panel => panel.FindAscendant<Windows.UI.Xaml.Controls.Pivot>() == pivot);
 
             var style = GetPivotHeaderItemStyle(pivot);
 
