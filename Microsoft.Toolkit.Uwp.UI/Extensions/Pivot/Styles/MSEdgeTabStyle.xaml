@@ -11,13 +11,14 @@
 
     <ControlTemplate x:Key="MSEdgeTabTemplate" 
                      TargetType="PivotHeaderItem">
-        <Grid
-          x:Name="Grid" 
-          Background="{TemplateBinding Background}">
+        <Grid x:Name="Grid"
+              Width="200"
+              BorderThickness="0,0,1,0"
+              BorderBrush="{ThemeResource SystemBaseLowColor}"
+              Background="{TemplateBinding Background}">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
             <Grid.Resources>
                 <Style x:Key="BaseContentPresenterStyle" TargetType="ContentPresenter">
@@ -51,7 +52,7 @@
                     </VisualState>
                     <VisualState x:Name="Unselected">
                         <Storyboard>
-                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="CloseButton"
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ButtonBorder"
                                                            Storyboard.TargetProperty="Visibility">
                                 <DiscreteObjectKeyFrame KeyTime="0" Value="Collapsed" />
                             </ObjectAnimationUsingKeyFrames>
@@ -77,7 +78,11 @@
                                                Storyboard.TargetProperty="Background" >
                                 <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SystemControlHighlightTransparentBrush}" />
                             </ObjectAnimationUsingKeyFrames>
-                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="CloseButton"
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ButtonBorder"
+                                               Storyboard.TargetProperty="Background" >
+                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SystemControlHighlightTransparentBrush}" />
+                            </ObjectAnimationUsingKeyFrames>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ButtonBorder"
                                                            Storyboard.TargetProperty="Visibility">
                                 <DiscreteObjectKeyFrame KeyTime="0" Value="Visible" />
                             </ObjectAnimationUsingKeyFrames>
@@ -93,7 +98,7 @@
                                                Storyboard.TargetProperty="Background" >
                                 <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SystemControlHighlightTransparentBrush}" />
                             </ObjectAnimationUsingKeyFrames>
-                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="CloseButton"
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ButtonBorder"
                                                            Storyboard.TargetProperty="Visibility">
                                 <DiscreteObjectKeyFrame KeyTime="0" Value="Visible" />
                             </ObjectAnimationUsingKeyFrames>
@@ -121,7 +126,7 @@
                                                Storyboard.TargetProperty="Background" >
                                 <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SystemControlHighlightTransparentBrush}" />
                             </ObjectAnimationUsingKeyFrames>
-                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="CloseButton"
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ButtonBorder"
                                                            Storyboard.TargetProperty="Visibility">
                                 <DiscreteObjectKeyFrame KeyTime="0" Value="Visible" />
                             </ObjectAnimationUsingKeyFrames>
@@ -143,6 +148,7 @@
             </VisualStateManager.VisualStateGroups>
             <Image x:Name="Icon"
                    Grid.Column="0"
+                   VerticalAlignment="Center"
                    Width="16"
                    Height="16"
                    Margin="8,0,0,0"
@@ -164,24 +170,29 @@
                     <TranslateTransform x:Name="ContentPresenterTranslateTransform" />
                 </ContentPresenter.RenderTransform>
             </ContentPresenter>
-            <Button Grid.Column="2" 
-                    x:Name="CloseButton"
-                    Command="{Binding RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource GetPivotCloseCommand} }"
-                    CommandParameter="{Binding RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource GetPivotItem} }"
-                    Style="{StaticResource MSEdgeCloseButtonStyle}">&#xE10A;</Button>
+            <Border x:Name="ButtonBorder"
+                    Background="{TemplateBinding Background}" Width="32" Height="32"
+                    HorizontalAlignment="Right"
+                    Grid.Column="1">
+                <Button x:Name="CloseButton"
+                        Command="{Binding RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource GetPivotCloseCommand} }"
+                        CommandParameter="{Binding RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource GetPivotItem} }"
+                        Style="{StaticResource MSEdgeCloseButtonStyle}">&#xE711;</Button>
+            </Border>
             <!-- Command Reach up, visibility look at command not null...-->
         </Grid>
     </ControlTemplate>
 
     <Style x:Key="MSEdgeTabStyle" TargetType="PivotHeaderItem">
         <!--<Setter Property="FontSize" Value="{ThemeResource PivotHeaderItemFontSize}" />-->
-        <Setter Property="FontFamily" Value="{ThemeResource PivotHeaderItemFontFamily}" />
+        <Setter Property="FontFamily" Value="Segoe UI Regular" />
         <Setter Property="FontWeight" Value="{ThemeResource PivotHeaderItemThemeFontWeight}" />
         <Setter Property="CharacterSpacing" Value="{ThemeResource PivotHeaderItemCharacterSpacing}" />
         <Setter Property="Background" Value="Transparent" />
         <Setter Property="Foreground" Value="{ThemeResource SystemControlForegroundBaseMediumBrush}" />
         <Setter Property="Padding" Value="{ThemeResource PivotHeaderItemMargin}" />
         <!--<Setter Property="Height" Value="48" />-->
+        <Setter Property="HorizontalContentAlignment" Value="Left" />
         <Setter Property="VerticalContentAlignment" Value="Center" />
         <Setter Property="IsTabStop" Value="False" />
 
@@ -189,12 +200,12 @@
         <Setter Property="Foreground" Value="{ThemeResource ApplicationForegroundThemeBrush}" />
         <Setter Property="BorderBrush" Value="{ThemeResource SystemControlBackgroundAccentBrush}" />
         <Setter Property="BorderThickness" Value="2" />
-        <Setter Property="HorizontalAlignment" Value="Stretch" />
+        <Setter Property="HorizontalAlignment" Value="Left" />
         <Setter Property="VerticalAlignment" Value="Bottom" />
         <Setter Property="Height" Value="32" />
         <Setter Property="MinHeight" Value="32" />
         <Setter Property="MaxHeight" Value="32" />
-        <Setter Property="FontSize" Value="12" />
+        <Setter Property="FontSize" Value="13" />
         <Setter Property="Template" Value="{StaticResource MSEdgeTabTemplate}" />
     </Style>
 
@@ -202,7 +213,7 @@
         <Setter Property="Background" Value="Transparent" />
         <Setter Property="BorderThickness" Value="0" />
 
-        <Setter Property="Foreground" Value="{ThemeResource SystemControlForegroundBaseHighBrush}"/>
+        <Setter Property="Foreground" Value="{ThemeResource SystemControlForegroundBaseMediumHighBrush}"/>
         <Setter Property="Padding" Value="4" />
         <Setter Property="Margin" Value="6,0,6,0" />
         <Setter Property="HorizontalAlignment" Value="Center" />
@@ -267,15 +278,15 @@
                             </VisualStateGroup>
                         </VisualStateManager.VisualStateGroups>
                         <ContentPresenter x:Name="ContentPresenter"
-                          BorderBrush="{TemplateBinding BorderBrush}"
-                          BorderThickness="{TemplateBinding BorderThickness}"
-                          Content="{TemplateBinding Content}"
-                          ContentTransitions="{TemplateBinding ContentTransitions}"
-                          ContentTemplate="{TemplateBinding ContentTemplate}"
-                          Padding="{TemplateBinding Padding}"
-                          HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
-                          VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
-                          AutomationProperties.AccessibilityView="Raw"/>
+                                          BorderBrush="{TemplateBinding BorderBrush}"
+                                          BorderThickness="{TemplateBinding BorderThickness}"
+                                          Content="{TemplateBinding Content}"
+                                          ContentTransitions="{TemplateBinding ContentTransitions}"
+                                          ContentTemplate="{TemplateBinding ContentTemplate}"
+                                          Padding="{TemplateBinding Padding}"
+                                          HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                          VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                                          AutomationProperties.AccessibilityView="Raw"/>
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>
