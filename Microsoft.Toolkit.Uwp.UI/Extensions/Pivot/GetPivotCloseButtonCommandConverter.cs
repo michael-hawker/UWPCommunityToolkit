@@ -26,6 +26,7 @@ namespace Microsoft.Toolkit.Uwp.UI.Extensions.Pivot
     /// <summary>
     /// Helper to retrieve the CloseCommandButton Attached Property from a Pivot for the PivotHeaderItem Style Templates.
     /// </summary>
+    [Bindable]
     public class GetPivotCloseButtonCommandConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, string language)

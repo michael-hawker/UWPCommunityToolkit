@@ -26,6 +26,7 @@ namespace Microsoft.Toolkit.Uwp.UI.Extensions.Pivot
     /// <summary>
     /// Helper to retrieve the PivotItem from the PivotHeaderItem.
     /// </summary>
+    [Bindable]
     public class GetPivotItemConverter : IValueConverter
     {
         public virtual object Convert(object value, Type targetType, object parameter, string language)
@@ -42,7 +43,7 @@ namespace Microsoft.Toolkit.Uwp.UI.Extensions.Pivot
                 return pivot?.Items[index.Value] as PivotItem;
             }
 
-            return string.Empty;
+            return null;
         }
 
         public virtual object ConvertBack(object value, Type targetType, object parameter, string language)

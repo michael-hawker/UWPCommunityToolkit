@@ -26,28 +26,19 @@ namespace Microsoft.Toolkit.Uwp.UI.Extensions.Pivot
     /// <summary>
     /// Helper to retrieve the Glyph Attached Property from a PivotItem for the PivotHeaderItem Style Templates.
     /// </summary>
-    public class GetPivotGlyphConverter : IValueConverter
+    [Bindable]
+    public class GetPivotGlyphConverter : GetPivotItemConverter
     {
         // TODO: See if I can use GetPivotItemConverter as a base class?
-        public object Convert(object value, Type targetType, object parameter, string language)
+        public override object Convert(object value, Type targetType, object parameter, string language)
         {
-            var pivotheader = value as PivotHeaderItem;
+            var pivotitem = base.Convert(value, targetType, parameter, language) as PivotItem;
 
-            var panel = pivotheader?.Parent as PivotHeaderPanel;
-            var index = panel?.Children?.IndexOf(pivotheader);
-
-            var pivot = (value as DependencyObject)?.FindAscendant<Windows.UI.Xaml.Controls.Pivot>();
-
-            if (index != null)
+            if (pivotitem != null)
             {
-                var pivotitem = pivot?.Items[index.Value] as PivotItem;
+                var glyph = PivotExtensions.GetGlyph(pivotitem);
 
-                if (pivotitem != null)
-                {
-                    var glyph = PivotExtensions.GetGlyph(pivotitem);
-
-                    return glyph ?? string.Empty; // ""; // PivotEx.GetGlyph(pivot);
-                }
+                return glyph ?? string.Empty; // ""; // PivotEx.GetGlyph(pivot);
             }
 
             return string.Empty;

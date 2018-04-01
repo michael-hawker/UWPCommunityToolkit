@@ -178,15 +178,17 @@
                     <TranslateTransform x:Name="ContentPresenterTranslateTransform" />
                 </ContentPresenter.RenderTransform>
             </ContentPresenter>
-            <Border x:Name="ButtonBorder"
-                    Background="{TemplateBinding Background}" Width="32" Height="32"
-                    HorizontalAlignment="Right"
-                    Grid.Column="1">
-                <Button x:Name="CloseButton"
-                        Command="{Binding RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource GetPivotCloseCommand} }"
-                        CommandParameter="{Binding RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource GetPivotItem} }"
-                        Style="{StaticResource MSEdgeCloseButtonStyle}">&#xE711;</Button>
-            </Border>
+            <Grid HorizontalAlignment="Right"
+                  Grid.Column="1"
+                  Visibility="{Binding Path=Command, ElementName=CloseButton, Converter={StaticResource NotNullToVisibility}}">
+                <Border x:Name="ButtonBorder"
+                        Background="{TemplateBinding Background}" Width="32" Height="32">
+                    <Button x:Name="CloseButton"
+                            Command="{Binding RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource GetPivotCloseCommand} }"
+                            CommandParameter="{Binding RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource GetPivotItem} }"
+                            Style="{StaticResource MSEdgeCloseButtonStyle}">&#xE711;</Button>
+                </Border>
+            </Grid>
             <!-- Command Reach up, visibility look at command not null...-->
         </Grid>
     </ControlTemplate>

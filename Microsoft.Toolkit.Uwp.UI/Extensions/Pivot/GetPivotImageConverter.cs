@@ -26,6 +26,7 @@ namespace Microsoft.Toolkit.Uwp.UI.Extensions.Pivot
     /// <summary>
     /// Helper to retrieve the Image Attached Property from a PivotItem for the PivotHeaderItem Style Templates.
     /// </summary>
+    [Bindable]
     public class GetPivotImageConverter : GetPivotItemConverter
     {
         public override object Convert(object value, Type targetType, object parameter, string language)
