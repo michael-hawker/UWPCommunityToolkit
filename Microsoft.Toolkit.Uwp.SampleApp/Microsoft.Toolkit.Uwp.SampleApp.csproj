@@ -291,6 +291,8 @@
     <Content Include="SamplePages\**\*.*" Exclude="SamplePages\*.ps1;SamplePages\**\*.cs;SamplePages\**\*.xaml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Models\Sample.cs" />
+    <Compile Include="Models\SampleSet.cs" />
     <Compile Include="SamplePages\**\*.cs" Exclude="SamplePages\**\*.xaml.cs" />
     <Compile Include="SamplePages\**\*.xaml.cs">
       <DependentUpon>%(Filename)</DependentUpon>
@@ -351,13 +353,14 @@
     <Compile Include="Models\PropertyDescriptor\PropertyKind.cs" />
     <Compile Include="Models\PropertyDescriptor\PropertyDescriptor.cs" />
     <Compile Include="Common\BindableBase.cs" />
+    <Compile Include="Services\SampleLoader.cs" />
+    <Compile Include="Services\XamlTemplate.cs" />
+    <Compile Include="Services\XamlTemplateLoader.cs" />
     <Compile Include="Shell.xaml.cs">
       <DependentUpon>Shell.xaml</DependentUpon>
     </Compile>
     <Compile Include="Models\Option.cs" />
     <Compile Include="Models\SampleCategory.cs" />
-    <Compile Include="Models\Sample.cs" />
-    <Compile Include="Models\Samples.cs" />
     <Compile Include="Pages\About.xaml.cs">
       <DependentUpon>About.xaml</DependentUpon>
     </Compile>

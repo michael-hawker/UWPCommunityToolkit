@@ -13,6 +13,7 @@
 using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
@@ -21,6 +22,8 @@ using Microsoft.Toolkit.Uwp.SampleApp.Controls;
 using Microsoft.Toolkit.Uwp.SampleApp.Models;
 using Microsoft.Toolkit.Uwp.UI.Controls;
 using Microsoft.Toolkit.Uwp.UI.Extensions;
+using Windows.ApplicationModel;
+using Windows.Storage;
 using Windows.System;
 using Windows.System.Profile;
 using Windows.UI.Core;
@@ -37,6 +40,8 @@ namespace Microsoft.Toolkit.Uwp.SampleApp
     public sealed partial class SampleController : Page, INotifyPropertyChanged
     {
         public static SampleController Current { get; private set; }
+
+        public SampleSet SampleSuite { get; private set; }
 
         public Sample CurrentSample { get; private set; }
 
@@ -147,18 +152,19 @@ namespace Microsoft.Toolkit.Uwp.SampleApp
         protected override async void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
-            if (e.Parameter is Sample sample)
+            if (e.Parameter is SampleSet sample)
             {
-                CurrentSample = sample;
+                SampleSuite = sample;
+                CurrentSample = SampleSuite.Samples.First();
             }
 
             if (CurrentSample != null)
             {
-                if (!string.IsNullOrWhiteSpace(CurrentSample.Type))
+                if (CurrentSample.Type != null)
                 {
                     try
                     {
-                        var pageInstance = Activator.CreateInstance(CurrentSample.PageType);
+                        var pageInstance = Activator.CreateInstance(CurrentSample.Type);
                         SampleContent.Content = pageInstance;
                     }
                     catch
@@ -178,9 +184,9 @@ namespace Microsoft.Toolkit.Uwp.SampleApp
 
                 DataContext = CurrentSample;
 
-                await Samples.PushRecentSample(CurrentSample);
+                await SampleLoader.PushRecentSample(SampleSuite);
 
-                var propertyDesc = CurrentSample.PropertyDescriptor;
+                var propertyDesc = CurrentSample.XamlTemplate.Properties;
 
                 InfoAreaPivot.Items.Clear();
 
@@ -199,13 +205,13 @@ namespace Microsoft.Toolkit.Uwp.SampleApp
                     if (AnalyticsInfo.VersionInfo.GetDeviceFormFactor() != DeviceFormFactor.Desktop || CurrentSample.DisableXamlEditorRendering)
                     {
                         // Only makes sense (and works) for now to show Live Xaml on Desktop, so fallback to old system here otherwise.
-                        XamlReadOnlyCodeRenderer.SetCode(CurrentSample.UpdatedXamlCode, "xaml");
+                        XamlReadOnlyCodeRenderer.SetCode(CurrentSample.XamlTemplate.XamlWithValues, "xaml");
 
                         InfoAreaPivot.Items.Add(XamlReadOnlyPivotItem);
                     }
                     else
                     {
-                        XamlCodeEditor.Text = CurrentSample.UpdatedXamlCode;
+                        XamlCodeEditor.Text = CurrentSample.XamlTemplate.XamlWithValues;
 
                         InfoAreaPivot.Items.Add(XamlPivotItem);
 
@@ -231,9 +237,9 @@ namespace Microsoft.Toolkit.Uwp.SampleApp
                     InfoAreaPivot.Items.Add(JavaScriptPivotItem);
                 }
 
-                if (CurrentSample.HasDocumentation)
+                if (SampleSuite.HasDocumentation)
                 {
-                    var (contents, path) = await CurrentSample.GetDocumentationAsync();
+                    var (contents, path) = await SampleSuite.GetDocumentationAsync();
                     documentationPath = path;
                     if (!string.IsNullOrWhiteSpace(contents))
                     {
@@ -243,7 +249,7 @@ namespace Microsoft.Toolkit.Uwp.SampleApp
                 }
 
                 // Hide the Github button if there isn't a CodeUrl.
-                if (string.IsNullOrEmpty(CurrentSample.CodeUrl))
+                if (string.IsNullOrEmpty(SampleSuite.CodeUrl))
                 {
                     GithubButton.Visibility = Visibility.Collapsed;
                 }
@@ -258,7 +264,7 @@ namespace Microsoft.Toolkit.Uwp.SampleApp
                     SidePaneState = _onlyDocumentation ? PaneState.Full : PaneState.Normal;
                 }
 
-                Shell.Current.SetTitles($"{CurrentSample.CategoryName} > {CurrentSample.Name}");
+                Shell.Current.SetTitles($"{SampleSuite.Category} > {SampleSuite.Name} > {CurrentSample.Name}");
             }
             else
             {
@@ -279,11 +285,11 @@ namespace Microsoft.Toolkit.Uwp.SampleApp
                 var code = string.Empty;
                 if (InfoAreaPivot.SelectedItem == PropertiesPivotItem)
                 {
-                    code = CurrentSample.BindedXamlCode;
+                    code = CurrentSample.XamlTemplate.XamlWithBindings;
                 }
                 else
                 {
-                    code = CurrentSample.UpdatedXamlCode;
+                    code = CurrentSample.XamlTemplate.XamlWithValues;
                 }
 
                 if (!string.IsNullOrWhiteSpace(code))
@@ -314,7 +320,7 @@ namespace Microsoft.Toolkit.Uwp.SampleApp
                 this._lastRenderedProperties = true;
 
                 // Called to load the sample initially as we don't get an Item Pivot Selection Changed with Sample Loaded yet.
-                var t = UpdateXamlRenderAsync(CurrentSample.BindedXamlCode);
+                var t = UpdateXamlRenderAsync(CurrentSample.XamlTemplate.XamlWithBindings);
             }
         }
 
@@ -322,7 +328,7 @@ namespace Microsoft.Toolkit.Uwp.SampleApp
         {
             if (InfoAreaPivot.SelectedItem != null)
             {
-                if (DataContext is Sample sample)
+                if (DataContext is SampleSet sample)
                 {
                     TrackingManager.TrackEvent("PropertyGrid", (InfoAreaPivot.SelectedItem as FrameworkElement)?.Name, sample.Name);
                 }
@@ -340,7 +346,7 @@ namespace Microsoft.Toolkit.Uwp.SampleApp
                 {
                     _lastRenderedProperties = true;
 
-                    var t = UpdateXamlRenderAsync(CurrentSample.BindedXamlCode);
+                    var t = UpdateXamlRenderAsync(CurrentSample.XamlTemplate.XamlWithBindings);
                 }
 
                 return;
@@ -352,9 +358,9 @@ namespace Microsoft.Toolkit.Uwp.SampleApp
                 _lastRenderedProperties = false;
 
                 // If we switch to the Live Preview, then we want to use the Value based Text
-                XamlCodeEditor.Text = CurrentSample.UpdatedXamlCode;
+                XamlCodeEditor.Text = CurrentSample.XamlTemplate.XamlWithValues;
 
-                var t = UpdateXamlRenderAsync(CurrentSample.UpdatedXamlCode);
+                var t = UpdateXamlRenderAsync(CurrentSample.XamlTemplate.XamlWithValues);
                 await XamlCodeEditor.ResetPosition();
 
                 XamlCodeEditor.Focus(FocusState.Programmatic);
@@ -364,7 +370,7 @@ namespace Microsoft.Toolkit.Uwp.SampleApp
             if (CurrentSample.HasXAMLCode && InfoAreaPivot.SelectedItem == XamlReadOnlyPivotItem)
             {
                 // Update Read-Only XAML tab on non-desktop devices to show changes to Properties
-                XamlReadOnlyCodeRenderer.SetCode(CurrentSample.UpdatedXamlCode, "xaml");
+                XamlReadOnlyCodeRenderer.SetCode(CurrentSample.XamlTemplate.XamlWithValues, "xaml");
             }
 
             if (CurrentSample.HasCSharpCode && InfoAreaPivot.SelectedItem == CSharpPivotItem)
@@ -418,7 +424,7 @@ namespace Microsoft.Toolkit.Uwp.SampleApp
             }
             else
             {
-                var imageStream = await CurrentSample.GetImageStream(url);
+                var imageStream = await SampleSuite.GetImageStream(url);
 
                 if (imageStream != null)
                 {
@@ -439,7 +445,7 @@ namespace Microsoft.Toolkit.Uwp.SampleApp
 
         private async void GitHub_OnClick(object sender, RoutedEventArgs e)
         {
-            var url = CurrentSample.CodeUrl;
+            var url = SampleSuite.CodeUrl;
             TrackingManager.TrackEvent("Link", url);
             try
             {
@@ -551,7 +557,7 @@ namespace Microsoft.Toolkit.Uwp.SampleApp
                     // Update Read-Only XAML tab when switching back to show changes to TwoWay Bound Properties
                     if (CurrentSample?.HasXAMLCode == true && InfoAreaPivot.SelectedItem == XamlReadOnlyPivotItem)
                     {
-                        XamlReadOnlyCodeRenderer.SetCode(CurrentSample.UpdatedXamlCode, "xaml");
+                        XamlReadOnlyCodeRenderer.SetCode(CurrentSample.XamlTemplate.XamlWithValues, "xaml");
                     }
 
                     break;

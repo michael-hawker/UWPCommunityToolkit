@@ -51,7 +51,7 @@ namespace Microsoft.Toolkit.Uwp.SampleApp.Controls
         /// </summary>
         public event ItemClickEventHandler SamplePickerItemClick;
 
-        private Sample _currentSample;
+        private SampleSet _currentSample;
 
         public string Title
         {
@@ -62,7 +62,7 @@ namespace Microsoft.Toolkit.Uwp.SampleApp.Controls
         public static readonly DependencyProperty TitleProperty =
             DependencyProperty.Register("Title", typeof(string), typeof(ExtendedHamburgerMenu), new PropertyMetadata(string.Empty));
 
-        public Sample CurrentSample
+        public SampleSet CurrentSample
         {
             get
             {
@@ -86,7 +86,7 @@ namespace Microsoft.Toolkit.Uwp.SampleApp.Controls
             var noop = SetHamburgerMenuSelection();
         }
 
-        public async void ShowSamplePicker(Sample[] samples = null)
+        public async void ShowSamplePicker(SampleSet[] samples = null)
         {
             if (!SetupSamplePicker())
             {
@@ -95,7 +95,7 @@ namespace Microsoft.Toolkit.Uwp.SampleApp.Controls
 
             if (samples == null && _currentSample != null)
             {
-                var category = await Samples.GetCategoryBySample(_currentSample);
+                var category = await SampleLoader.GetCategoryBySample(_currentSample);
                 if (category != null)
                 {
                     samples = category.Samples.ToArray();
@@ -104,7 +104,7 @@ namespace Microsoft.Toolkit.Uwp.SampleApp.Controls
 
             if (samples == null)
             {
-                samples = (await Samples.GetCategoriesAsync()).FirstOrDefault()?.Samples?.ToArray();
+                samples = (await SampleLoader.GetCategoriesAsync()).FirstOrDefault()?.Samples?.ToArray();
             }
 
             if (samples == null)
@@ -113,7 +113,7 @@ namespace Microsoft.Toolkit.Uwp.SampleApp.Controls
             }
 
             if (_samplePickerGrid.Visibility == Visibility.Visible &&
-                _samplePickerGridView.ItemsSource is Sample[] currentSamples &&
+                _samplePickerGridView.ItemsSource is SampleSet[] currentSamples &&
                 currentSamples.Count() == samples.Count() &&
                 currentSamples.Except(samples).Count() == 0)
             {
@@ -331,7 +331,7 @@ namespace Microsoft.Toolkit.Uwp.SampleApp.Controls
 
         private async void UpdateSearchSuggestions()
         {
-            var samples = (await Samples.FindSamplesByName(_searchBox.Text)).OrderBy(s => s.Name).ToArray();
+            var samples = (await SampleLoader.FindSamplesByName(_searchBox.Text)).OrderBy(s => s.Name).ToArray();
             if (samples.Count() > 0)
             {
                 ShowSamplePicker(samples);
@@ -401,7 +401,7 @@ namespace Microsoft.Toolkit.Uwp.SampleApp.Controls
         {
             if (_currentSample != null)
             {
-                var category = await Samples.GetCategoryBySample(_currentSample);
+                var category = await SampleLoader.GetCategoryBySample(_currentSample);
 
                 if (Items.Contains(category))
                 {
@@ -494,7 +494,7 @@ namespace Microsoft.Toolkit.Uwp.SampleApp.Controls
             }
 
             var button = (Button)sender;
-            var sample = button.DataContext as Sample;
+            var sample = button.DataContext as SampleSet;
 
             var container = button.FindAscendant<GridViewItem>();
             if (container == null)

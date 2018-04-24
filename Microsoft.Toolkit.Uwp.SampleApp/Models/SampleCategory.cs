@@ -18,6 +18,6 @@ namespace Microsoft.Toolkit.Uwp.SampleApp
     {
         public string Name { get; set; }
 
-        public List<Sample> Samples { get; set; } = new List<Sample>();
+        public List<SampleSet> Samples { get; set; } = new List<SampleSet>();
     }
 }

@@ -59,7 +59,7 @@ namespace Microsoft.Toolkit.Uwp.SampleApp
                 {
                     // Launching via protocol link
                     var parser = DeepLinkParser.Create(args);
-                    var targetSample = await Sample.FindAsync(parser.Root, parser["sample"]);
+                    var targetSample = await SampleSet.FindAsync(parser.Root, parser["sample"]);
                     if (targetSample != null)
                     {
                         Shell.Current?.NavigateToSample(targetSample);

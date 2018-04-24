@@ -59,7 +59,7 @@ namespace Microsoft.Toolkit.Uwp.SampleApp.Controls
 
             if (_currentSample != null)
             {
-                var propertyDesc = _currentSample.PropertyDescriptor;
+                var propertyDesc = _currentSample.XamlTemplate.Properties;
 
                 if (propertyDesc == null)
                 {

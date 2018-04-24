@@ -73,7 +73,7 @@ namespace Microsoft.Toolkit.Uwp.SampleApp
         public async Task NavigateToSampleAsync(string deepLink)
         {
             var parser = DeepLinkParser.Create(deepLink);
-            var targetSample = await Samples.GetSampleByName(parser["sample"]);
+            var targetSample = await SampleLoader.GetSampleByName(parser["sample"]);
             if (targetSample != null)
             {
                 NavigateToSample(targetSample);
@@ -120,7 +120,7 @@ namespace Microsoft.Toolkit.Uwp.SampleApp
             ThemeChanged?.Invoke(this, args);
         }
 
-        public void NavigateToSample(Sample sample)
+        public void NavigateToSample(SampleSet sample)
         {
             NavigationFrame.Navigate(typeof(SampleController), sample);
         }
@@ -152,7 +152,7 @@ namespace Microsoft.Toolkit.Uwp.SampleApp
             SystemNavigationManager.GetForCurrentView().BackRequested += OnBackRequested;
 
             // Get list of samples
-            var sampleCategories = (await Samples.GetCategoriesAsync()).ToList();
+            var sampleCategories = (await SampleLoader.GetCategoriesAsync()).ToList();
 
             HamburgerMenu.ItemsSource = sampleCategories;
 
@@ -168,7 +168,7 @@ namespace Microsoft.Toolkit.Uwp.SampleApp
             if (!string.IsNullOrWhiteSpace(e?.Parameter?.ToString()))
             {
                 var parser = DeepLinkParser.Create(e.Parameter.ToString());
-                var targetSample = await Sample.FindAsync(parser.Root, parser["sample"]);
+                var targetSample = await SampleSet.FindAsync(parser.Root, parser["sample"]);
                 if (targetSample != null)
                 {
                     NavigateToSample(targetSample);
@@ -242,7 +242,7 @@ namespace Microsoft.Toolkit.Uwp.SampleApp
 
         private void HamburgerMenu_SamplePickerItemClick(object sender, ItemClickEventArgs e)
         {
-            NavigateToSample(e.ClickedItem as Sample);
+            NavigateToSample(e.ClickedItem as SampleSet);
         }
 
         private UIElement _parallaxView;

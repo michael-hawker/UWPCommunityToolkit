@@ -18,7 +18,7 @@ using Microsoft.Toolkit.Uwp.UI.Extensions;
 using Windows.UI.Popups;
 using Windows.UI.Xaml;
 
-namespace Microsoft.Toolkit.Uwp.SampleApp.SamplePages
+namespace Microsoft.Toolkit.Uwp.SampleApp.SamplePages.AdaptiveGridViewSamples
 {
     public sealed partial class AdaptiveGridViewPage : IXamlRenderListener
     {

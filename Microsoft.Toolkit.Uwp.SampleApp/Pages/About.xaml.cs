@@ -32,9 +32,9 @@ namespace Microsoft.Toolkit.Uwp.SampleApp.Pages
     {
         private Compositor _compositor;
 
-        private IEnumerable<Sample> _recentSamples;
+        private IEnumerable<SampleSet> _recentSamples;
 
-        public IEnumerable<Sample> RecentSamples
+        public IEnumerable<SampleSet> RecentSamples
         {
             get
             {
@@ -48,9 +48,9 @@ namespace Microsoft.Toolkit.Uwp.SampleApp.Pages
             }
         }
 
-        private static List<Sample> _newSamples;
+        private static List<SampleSet> _newSamples;
 
-        public List<Sample> NewSamples
+        public List<SampleSet> NewSamples
         {
             get
             {
@@ -101,7 +101,7 @@ namespace Microsoft.Toolkit.Uwp.SampleApp.Pages
             InitializeComponent();
         }
 
-        public static Visibility VisibleIfCollectionEmpty(IEnumerable<Sample> collection)
+        public static Visibility VisibleIfCollectionEmpty(IEnumerable<SampleSet> collection)
         {
             return collection != null && collection.Count() > 0 ? Visibility.Collapsed : Visibility.Visible;
         }
@@ -140,7 +140,7 @@ namespace Microsoft.Toolkit.Uwp.SampleApp.Pages
         private async Task Init()
         {
             var loadDataTask = UpdateSections();
-            var recentSamplesTask = Samples.GetRecentSamples();
+            var recentSamplesTask = SampleLoader.GetRecentSamples();
             var gitHubTask = Data.GitHub.GetPublishedReleases();
 
             await Task.WhenAll(loadDataTask, recentSamplesTask, gitHubTask);
@@ -186,7 +186,7 @@ namespace Microsoft.Toolkit.Uwp.SampleApp.Pages
         private void RecentSample_Click(object sender, RoutedEventArgs e)
         {
             var button = sender as HyperlinkButton;
-            if (button.DataContext is Sample sample)
+            if (button.DataContext is SampleSet sample)
             {
                 TrackingManager.TrackEvent("LandingPageRecentClick", sample.Name);
                 Shell.Current.NavigateToSample(sample);
@@ -196,7 +196,7 @@ namespace Microsoft.Toolkit.Uwp.SampleApp.Pages
         private void NewSample_Click(object sender, RoutedEventArgs e)
         {
             var button = sender as HyperlinkButton;
-            if (button.DataContext is Sample sample)
+            if (button.DataContext is SampleSet sample)
             {
                 TrackingManager.TrackEvent("LandingPageNewClick", sample.Name);
                 Shell.Current.NavigateToSample(sample);
@@ -231,11 +231,11 @@ namespace Microsoft.Toolkit.Uwp.SampleApp.Pages
                     LandingPageLinks = JsonConvert.DeserializeObject<LandingPageLinks>(jsonString);
                 }
 
-                var samples = new List<Sample>();
+                var samples = new List<SampleSet>();
 
                 foreach (var newSample in LandingPageLinks.NewSamples)
                 {
-                    var sample = await Samples.GetSampleByName(newSample);
+                    var sample = await SampleLoader.GetSampleByName(newSample);
                     if (sample != null)
                     {
                         samples.Add(sample);
