@@ -132,9 +132,9 @@ namespace Microsoft.Toolkit.Uwp.UI.Controls
                     SetAutoLayout(rd, false);
 
                     // If we don't have our attached property, assign it based on index.
-                    if (GetRow(rd) == 0)
+                    if (GetIndex(rd) == 0)
                     {
-                        SetRow(rd, RowDefinitions.IndexOf(rd));
+                        SetIndex(rd, RowDefinitions.IndexOf(rd));
                     }
                 }
             }
@@ -152,7 +152,7 @@ namespace Microsoft.Toolkit.Uwp.UI.Controls
 
                 for (int r = 0; r < rows; r++)
                 {
-                    if (!(this.RowDefinitions.Count >= r + 1 && GetRow(RowDefinitions[r]) == r))
+                    if (!(this.RowDefinitions.Count >= r + 1 && GetIndex(RowDefinitions[r]) == r))
                     {
                         var rd = new RowDefinition();
                         SetAutoLayout(rd, true);
@@ -173,9 +173,9 @@ namespace Microsoft.Toolkit.Uwp.UI.Controls
                     SetAutoLayout(cd, false);
 
                     // If we don't have our attached property, assign it based on index.
-                    if (GetColumn(cd) == 0)
+                    if (GetIndex(cd) == 0)
                     {
-                        SetColumn(cd, ColumnDefinitions.IndexOf(cd));
+                        SetIndex(cd, ColumnDefinitions.IndexOf(cd));
                     }
                 }
             }
@@ -193,7 +193,7 @@ namespace Microsoft.Toolkit.Uwp.UI.Controls
 
                 for (int c = 0; c < columns; c++)
                 {
-                    if (!(ColumnDefinitions.Count >= c + 1 && GetColumn(ColumnDefinitions[c]) == c))
+                    if (!(ColumnDefinitions.Count >= c + 1 && GetIndex(ColumnDefinitions[c]) == c))
                     {
                         var cd = new ColumnDefinition();
                         SetAutoLayout(cd, true);

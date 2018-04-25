@@ -199,7 +199,7 @@ namespace UnitTests.UI.Controls
     xmlns:controls=""using:Microsoft.Toolkit.Uwp.UI.Controls"">
     <controls:UniformGrid x:Name=""UniformGrid"" Rows=""5"">
         <controls:UniformGrid.RowDefinitions>
-            <RowDefinition Height=""48"" controls:UniformGrid.Row=""2""/>
+            <RowDefinition Height=""48"" controls:UniformGrid.Index=""2""/>
         </controls:UniformGrid.RowDefinitions>
         <Border/>
         <Border/>
@@ -222,7 +222,7 @@ namespace UnitTests.UI.Controls
             // We should find our first definition
             Assert.AreEqual(1, grid.RowDefinitions.Count, "Expected to find our row definition.");
             Assert.AreEqual(48, grid.RowDefinitions[0].Height.Value);
-            Assert.AreEqual(2, UniformGrid.GetRow(grid.RowDefinitions[0]));
+            Assert.AreEqual(2, UniformGrid.GetIndex(grid.RowDefinitions[0]));
 
             Assert.AreEqual(5, grid.Rows, "Rows not set to 5");
 
@@ -237,7 +237,7 @@ namespace UnitTests.UI.Controls
 
             // Did we mark that our row is special?
             Assert.AreEqual(false, UniformGrid.GetAutoLayout(rdo));
-            Assert.AreEqual(2, UniformGrid.GetRow(rdo));
+            Assert.AreEqual(2, UniformGrid.GetIndex(rdo));
 
             Assert.AreNotEqual(GridUnitType.Star, rdo.Height.GridUnitType);
 
@@ -276,7 +276,7 @@ namespace UnitTests.UI.Controls
 
             // Did we mark that our row is special?
             Assert.AreEqual(false, UniformGrid.GetAutoLayout(rdo));
-            Assert.AreEqual(2, UniformGrid.GetRow(rdo));
+            Assert.AreEqual(2, UniformGrid.GetIndex(rdo));
 
             Assert.AreNotEqual(GridUnitType.Star, rdo.Height.GridUnitType);
 
@@ -312,8 +312,8 @@ namespace UnitTests.UI.Controls
     xmlns:controls=""using:Microsoft.Toolkit.Uwp.UI.Controls"">
     <controls:UniformGrid x:Name=""UniformGrid"" Rows=""5"">
         <controls:UniformGrid.RowDefinitions>
-            <RowDefinition Height=""48"" controls:UniformGrid.Row=""2""/>
-            <RowDefinition Height=""128"" controls:UniformGrid.Row=""4""/>
+            <RowDefinition Height=""48"" controls:UniformGrid.Index=""2""/>
+            <RowDefinition Height=""128"" controls:UniformGrid.Index=""4""/>
         </controls:UniformGrid.RowDefinitions>
         <Border/>
         <Border/>
@@ -336,9 +336,9 @@ namespace UnitTests.UI.Controls
             // We should find our first definition
             Assert.AreEqual(2, grid.RowDefinitions.Count, "Expected to find two row definitions.");
             Assert.AreEqual(48, grid.RowDefinitions[0].Height.Value);
-            Assert.AreEqual(2, UniformGrid.GetRow(grid.RowDefinitions[0]));
+            Assert.AreEqual(2, UniformGrid.GetIndex(grid.RowDefinitions[0]));
             Assert.AreEqual(128, grid.RowDefinitions[1].Height.Value);
-            Assert.AreEqual(4, UniformGrid.GetRow(grid.RowDefinitions[1]));
+            Assert.AreEqual(4, UniformGrid.GetIndex(grid.RowDefinitions[1]));
 
             Assert.AreEqual(5, grid.Rows, "Rows not set to 5");
 
@@ -353,7 +353,7 @@ namespace UnitTests.UI.Controls
 
             // Did we mark that our row is special?
             Assert.AreEqual(false, UniformGrid.GetAutoLayout(rdo));
-            Assert.AreEqual(2, UniformGrid.GetRow(rdo));
+            Assert.AreEqual(2, UniformGrid.GetIndex(rdo));
 
             Assert.AreNotEqual(GridUnitType.Star, rdo.Height.GridUnitType);
 
@@ -364,7 +364,7 @@ namespace UnitTests.UI.Controls
 
             // Did we mark that our row is special?
             Assert.AreEqual(false, UniformGrid.GetAutoLayout(rdo2));
-            Assert.AreEqual(4, UniformGrid.GetRow(rdo2));
+            Assert.AreEqual(4, UniformGrid.GetIndex(rdo2));
 
             Assert.AreNotEqual(GridUnitType.Star, rdo2.Height.GridUnitType);
 
@@ -403,7 +403,7 @@ namespace UnitTests.UI.Controls
 
             // Did we mark that our row is special?
             Assert.AreEqual(false, UniformGrid.GetAutoLayout(rdo));
-            Assert.AreEqual(2, UniformGrid.GetRow(rdo));
+            Assert.AreEqual(2, UniformGrid.GetIndex(rdo));
 
             Assert.AreNotEqual(GridUnitType.Star, rdo.Height.GridUnitType);
 
@@ -414,7 +414,7 @@ namespace UnitTests.UI.Controls
 
             // Did we mark that our row is special?
             Assert.AreEqual(false, UniformGrid.GetAutoLayout(rdo2));
-            Assert.AreEqual(4, UniformGrid.GetRow(rdo2));
+            Assert.AreEqual(4, UniformGrid.GetIndex(rdo2));
 
             Assert.AreNotEqual(GridUnitType.Star, rdo2.Height.GridUnitType);
 
@@ -616,7 +616,7 @@ namespace UnitTests.UI.Controls
     xmlns:controls=""using:Microsoft.Toolkit.Uwp.UI.Controls"">
     <controls:UniformGrid x:Name=""UniformGrid"" Columns=""5"">
         <controls:UniformGrid.ColumnDefinitions>
-            <ColumnDefinition Width=""48"" controls:UniformGrid.Column=""2""/>
+            <ColumnDefinition Width=""48"" controls:UniformGrid.Index=""2""/>
         </controls:UniformGrid.ColumnDefinitions>
         <Border/>
         <Border/>
@@ -639,7 +639,7 @@ namespace UnitTests.UI.Controls
             // We should find our first definition
             Assert.AreEqual(1, grid.ColumnDefinitions.Count, "Expected to find our Column definition.");
             Assert.AreEqual(48, grid.ColumnDefinitions[0].Width.Value);
-            Assert.AreEqual(2, UniformGrid.GetColumn(grid.ColumnDefinitions[0]));
+            Assert.AreEqual(2, UniformGrid.GetIndex(grid.ColumnDefinitions[0]));
 
             Assert.AreEqual(5, grid.Columns, "Columns not set to 5");
 
@@ -654,7 +654,7 @@ namespace UnitTests.UI.Controls
 
             // Did we mark that our Column is special?
             Assert.AreEqual(false, UniformGrid.GetAutoLayout(rdo));
-            Assert.AreEqual(2, UniformGrid.GetColumn(rdo));
+            Assert.AreEqual(2, UniformGrid.GetIndex(rdo));
 
             Assert.AreNotEqual(GridUnitType.Star, rdo.Width.GridUnitType);
 
@@ -693,7 +693,7 @@ namespace UnitTests.UI.Controls
 
             // Did we mark that our Column is special?
             Assert.AreEqual(false, UniformGrid.GetAutoLayout(rdo));
-            Assert.AreEqual(2, UniformGrid.GetColumn(rdo));
+            Assert.AreEqual(2, UniformGrid.GetIndex(rdo));
 
             Assert.AreNotEqual(GridUnitType.Star, rdo.Width.GridUnitType);
 
@@ -730,7 +730,7 @@ namespace UnitTests.UI.Controls
     <controls:UniformGrid x:Name=""UniformGrid"" Columns=""5"">
         <controls:UniformGrid.ColumnDefinitions>
             <ColumnDefinition Width=""48""/>
-            <ColumnDefinition Width=""128"" controls:UniformGrid.Column=""4""/>
+            <ColumnDefinition Width=""128"" controls:UniformGrid.Index=""4""/>
         </controls:UniformGrid.ColumnDefinitions>
         <Border/>
         <Border/>
@@ -753,9 +753,9 @@ namespace UnitTests.UI.Controls
             // We should find our first definition
             Assert.AreEqual(2, grid.ColumnDefinitions.Count, "Expected to find two Column definitions.");
             Assert.AreEqual(48, grid.ColumnDefinitions[0].Width.Value);
-            Assert.AreEqual(0, UniformGrid.GetColumn(grid.ColumnDefinitions[0]));
+            Assert.AreEqual(0, UniformGrid.GetIndex(grid.ColumnDefinitions[0]));
             Assert.AreEqual(128, grid.ColumnDefinitions[1].Width.Value);
-            Assert.AreEqual(4, UniformGrid.GetColumn(grid.ColumnDefinitions[1]));
+            Assert.AreEqual(4, UniformGrid.GetIndex(grid.ColumnDefinitions[1]));
 
             Assert.AreEqual(5, grid.Columns, "Columns not set to 5");
 
@@ -770,7 +770,7 @@ namespace UnitTests.UI.Controls
 
             // Did we mark that our Column is special?
             Assert.AreEqual(false, UniformGrid.GetAutoLayout(rdo));
-            Assert.AreEqual(0, UniformGrid.GetColumn(rdo));
+            Assert.AreEqual(0, UniformGrid.GetIndex(rdo));
 
             Assert.AreNotEqual(GridUnitType.Star, rdo.Width.GridUnitType);
 
@@ -781,7 +781,7 @@ namespace UnitTests.UI.Controls
 
             // Did we mark that our Column is special?
             Assert.AreEqual(false, UniformGrid.GetAutoLayout(rdo2));
-            Assert.AreEqual(4, UniformGrid.GetColumn(rdo2));
+            Assert.AreEqual(4, UniformGrid.GetIndex(rdo2));
 
             Assert.AreNotEqual(GridUnitType.Star, rdo2.Width.GridUnitType);
 
@@ -820,7 +820,7 @@ namespace UnitTests.UI.Controls
 
             // Did we mark that our Column is special?
             Assert.AreEqual(false, UniformGrid.GetAutoLayout(rdo));
-            Assert.AreEqual(0, UniformGrid.GetColumn(rdo));
+            Assert.AreEqual(0, UniformGrid.GetIndex(rdo));
 
             Assert.AreNotEqual(GridUnitType.Star, rdo.Width.GridUnitType);
 
@@ -831,7 +831,7 @@ namespace UnitTests.UI.Controls
 
             // Did we mark that our Column is special?
             Assert.AreEqual(false, UniformGrid.GetAutoLayout(rdo2));
-            Assert.AreEqual(4, UniformGrid.GetColumn(rdo2));
+            Assert.AreEqual(4, UniformGrid.GetIndex(rdo2));
 
             Assert.AreNotEqual(GridUnitType.Star, rdo2.Width.GridUnitType);
 

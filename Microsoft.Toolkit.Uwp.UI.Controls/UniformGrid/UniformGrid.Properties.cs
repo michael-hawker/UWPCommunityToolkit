@@ -94,70 +94,34 @@ namespace Microsoft.Toolkit.Uwp.UI.Controls
             return (bool?)element.GetValue(AutoLayoutProperty);
         }
 
-        //// This Property is for ColumnDefinition (DependencyObject) vs. the Grid's FrameworkElement attached property.
-        #pragma warning disable CS0108 // Member hides inherited member; missing new keyword
         /// <summary>
-        /// Determines if this element in the grid participates in the auto-layout algorithm.
+        /// The index property is used on a <see cref="ColumnDefinition"/> or <see cref="RowDefinition"/> to specify a non-uniform size for a specific column or row in the UniformGrid.
         /// </summary>
-        public static readonly DependencyProperty ColumnProperty =
-        #pragma warning restore CS0108 // Member hides inherited member; missing new keyword
+        public static readonly DependencyProperty IndexProperty =
             DependencyProperty.RegisterAttached(
-              "Column",
+              "Index",
               typeof(int),
               typeof(UniformGrid),
-              new PropertyMetadata(null));
+              new PropertyMetadata(0));
 
         /// <summary>
-        /// Sets the Column Attached Property Value.
+        /// Sets the Index Attached Property Value.
         /// </summary>
-        /// <param name="element"><see cref="ColumnDefinition"/></param>
+        /// <param name="element"><see cref="ColumnDefinition"/> or <see cref="RowDefinition"/></param>
         /// <param name="value">Zero-based Index of column for this ColumnDefinition.</param>
-        public static void SetColumn(ColumnDefinition element, int value)
+        public static void SetIndex(DependencyObject element, int value)
         {
-            element.SetValue(ColumnProperty, value);
+            element.SetValue(IndexProperty, value);
         }
 
         /// <summary>
-        /// Gets the Column Attached Property Value.
+        /// Gets the Index Attached Property Value.
         /// </summary>
-        /// <param name="element"><see cref="ColumnDefinition"/></param>
+        /// <param name="element"><see cref="ColumnDefinition"/> or <see cref="RowDefinition"/></param>
         /// <returns>Specified column index for the ColumnDefinition.</returns>
-        public static int GetColumn(ColumnDefinition element)
+        public static int GetIndex(DependencyObject element)
         {
-            return (int)element.GetValue(ColumnProperty);
-        }
-
-        //// This Property is for RowDefinition (DependencyObject) vs. the Grid's FrameworkElement attached property.
-        #pragma warning disable CS0108 // Member hides inherited member; missing new keyword
-        /// <summary>
-        /// Determines if this element in the grid participates in the auto-layout algorithm.
-        /// </summary>
-        public static readonly DependencyProperty RowProperty =
-        #pragma warning restore CS0108 // Member hides inherited member; missing new keyword
-            DependencyProperty.RegisterAttached(
-              "Row",
-              typeof(int),
-              typeof(UniformGrid),
-              new PropertyMetadata(null));
-
-        /// <summary>
-        /// Sets the Row Attached Property Value.
-        /// </summary>
-        /// <param name="element"><see cref="RowDefinition"/></param>
-        /// <param name="value">Zero-based Index of row for this RowDefinition.</param>
-        public static void SetRow(RowDefinition element, int value)
-        {
-            element.SetValue(RowProperty, value);
-        }
-
-        /// <summary>
-        /// Gets the Row Attached Property Value.
-        /// </summary>
-        /// <param name="element"><see cref="RowDefinition"/></param>
-        /// <returns>Specified row index for the RowDefinition.</returns>
-        public static int GetRow(RowDefinition element)
-        {
-            return (int)element.GetValue(RowProperty);
+            return (int)element.GetValue(IndexProperty);
         }
 
         /// <summary>
