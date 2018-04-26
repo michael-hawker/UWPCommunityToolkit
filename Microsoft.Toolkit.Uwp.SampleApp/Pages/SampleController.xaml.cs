@@ -160,6 +160,7 @@ namespace Microsoft.Toolkit.Uwp.SampleApp
 
             if (CurrentSample != null)
             {
+                // TODO: Have standard blank page for samples without extra needs.
                 if (CurrentSample.Type != null)
                 {
                     try
@@ -186,7 +187,7 @@ namespace Microsoft.Toolkit.Uwp.SampleApp
 
                 await SampleLoader.PushRecentSample(SampleSuite);
 
-                var propertyDesc = CurrentSample.XamlTemplate.Properties;
+                var propertyDesc = CurrentSample?.XamlTemplate?.Properties;
 
                 InfoAreaPivot.Items.Clear();
 
@@ -211,7 +212,7 @@ namespace Microsoft.Toolkit.Uwp.SampleApp
                     }
                     else
                     {
-                        XamlCodeEditor.Text = CurrentSample.XamlTemplate.XamlWithValues;
+                        XamlCodeEditor.Text = CurrentSample?.XamlTemplate?.XamlWithValues;
 
                         InfoAreaPivot.Items.Add(XamlPivotItem);
 

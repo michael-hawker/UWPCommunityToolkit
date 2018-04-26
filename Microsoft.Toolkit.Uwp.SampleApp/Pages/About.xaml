@@ -21,7 +21,7 @@
             <Setter Property="animations:Implicit.Animations" Value="{StaticResource ImplicitOffset}"></Setter>
         </Style>
 
-        <DataTemplate x:DataType="sampleapp:Sample" x:Key="RecentSampleTemplate">
+        <DataTemplate x:DataType="sampleapp:SampleSet" x:Key="RecentSampleTemplate">
             <HyperlinkButton Width="267"
                              HorizontalContentAlignment="Left"
                              Style="{StaticResource AboutHyperlinkButtonStyle}"
@@ -30,7 +30,7 @@
             </HyperlinkButton>
         </DataTemplate>
 
-        <DataTemplate x:DataType="sampleapp:Sample" x:Key="NewSampleTemplate">
+        <DataTemplate x:DataType="sampleapp:SampleSet" x:Key="NewSampleTemplate">
             <HyperlinkButton Width="267" HorizontalContentAlignment="Left" Style="{StaticResource AboutHyperlinkButtonStyle}" Click="NewSample_Click">
                 <TextBlock Text="{x:Bind Name}"></TextBlock>
             </HyperlinkButton>

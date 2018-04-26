@@ -34,6 +34,7 @@ namespace Microsoft.Toolkit.Uwp.SampleApp.Pages
 
         private IEnumerable<SampleSet> _recentSamples;
 
+        // TODO: Make this use Samples
         public IEnumerable<SampleSet> RecentSamples
         {
             get

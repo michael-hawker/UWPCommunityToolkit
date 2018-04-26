@@ -14,7 +14,7 @@ using System.Collections.ObjectModel;
 using Microsoft.Toolkit.Uwp.UI;
 using Windows.UI.Xaml.Controls;
 
-namespace Microsoft.Toolkit.Uwp.SampleApp.SamplePages
+namespace Microsoft.Toolkit.Uwp.SampleApp.SamplePages.AdvancedCollectionViewSamples
 {
 
     /// <summary>

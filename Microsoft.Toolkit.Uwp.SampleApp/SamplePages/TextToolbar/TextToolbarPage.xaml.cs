@@ -190,9 +190,9 @@ namespace Microsoft.Toolkit.Uwp.SampleApp.SamplePages
         {
             get
             {
-                if (DataContext is SampleSet sample)
+                if (DataContext is Sample sample)
                 {
-                    if (sample.PropertyDescriptor.Expando is IDictionary<string, object> properties && properties.TryGetValue("Format", out var format))
+                    if (sample.XamlTemplate.Properties.Expando is IDictionary<string, object> properties && properties.TryGetValue("Format", out var format))
                     {
                         return format as ValueHolder;
                     }

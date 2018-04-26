@@ -186,6 +186,7 @@ namespace Microsoft.Toolkit.Uwp.SampleApp
                     {
                         case ".bind":
                             dict[file.DisplayName].XamlCodeFile = file.Name;
+                            dict[file.DisplayName].XamlTemplate = await XamlTemplateLoader.LoadTemplateFromPackagedFileAsync($"SamplePages/{sample.Name}/{file.Name}");
                             break;
                         case ".code":
                             dict[file.DisplayName].CodeFile = file.Name;
