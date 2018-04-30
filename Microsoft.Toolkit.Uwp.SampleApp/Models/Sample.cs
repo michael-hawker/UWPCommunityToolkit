@@ -7,6 +7,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.UI.Xaml.Data;
 
 namespace Microsoft.Toolkit.Uwp.SampleApp
 {
@@ -15,6 +16,7 @@ namespace Microsoft.Toolkit.Uwp.SampleApp
     /// It can contain a compiled Page (.xaml+.xaml.cs), a .bind live-editable example, and a .code flat example (or any combination thereof).
     /// These are discovered automatically by any set of files sharing the same name and bundled as a sample.
     /// </summary>
+    [Bindable]
     public class Sample
     {
         /// <summary>

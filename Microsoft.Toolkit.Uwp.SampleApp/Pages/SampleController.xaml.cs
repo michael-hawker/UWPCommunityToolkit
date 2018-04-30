@@ -157,126 +157,6 @@ namespace Microsoft.Toolkit.Uwp.SampleApp
                 SampleSuite = sample;
                 CurrentSample = SampleSuite.Samples.First();
             }
-
-            if (CurrentSample != null)
-            {
-                // TODO: Have standard blank page for samples without extra needs.
-                if (CurrentSample.Type != null)
-                {
-                    try
-                    {
-                        var pageInstance = Activator.CreateInstance(CurrentSample.Type);
-                        SampleContent.Content = pageInstance;
-                    }
-                    catch
-                    {
-                        ExceptionNotification.Show("Sample Page failed to load.");
-                    }
-
-                    if (SamplePage != null)
-                    {
-                        SamplePage.Loaded += SamplePage_Loaded;
-                    }
-                }
-                else
-                {
-                    _onlyDocumentation = true;
-                }
-
-                DataContext = CurrentSample;
-
-                await SampleLoader.PushRecentSample(SampleSuite);
-
-                var propertyDesc = CurrentSample?.XamlTemplate?.Properties;
-
-                InfoAreaPivot.Items.Clear();
-
-                if (propertyDesc != null)
-                {
-                    _xamlRenderer.DataContext = propertyDesc.Expando;
-                }
-
-                if (propertyDesc != null && propertyDesc.Options.Count > 0)
-                {
-                    InfoAreaPivot.Items.Add(PropertiesPivotItem);
-                }
-
-                if (CurrentSample.HasXAMLCode)
-                {
-                    if (AnalyticsInfo.VersionInfo.GetDeviceFormFactor() != DeviceFormFactor.Desktop || CurrentSample.DisableXamlEditorRendering)
-                    {
-                        // Only makes sense (and works) for now to show Live Xaml on Desktop, so fallback to old system here otherwise.
-                        XamlReadOnlyCodeRenderer.SetCode(CurrentSample.XamlTemplate.XamlWithValues, "xaml");
-
-                        InfoAreaPivot.Items.Add(XamlReadOnlyPivotItem);
-                    }
-                    else
-                    {
-                        XamlCodeEditor.Text = CurrentSample?.XamlTemplate?.XamlWithValues;
-
-                        InfoAreaPivot.Items.Add(XamlPivotItem);
-
-                        _xamlCodeRendererSupported = true;
-                    }
-
-                    InfoAreaPivot.SelectedIndex = 0;
-                }
-
-                if (CurrentSample.HasCSharpCode)
-                {
-                    var code = await CurrentSample.GetCSharpSourceAsync();
-
-                    CSharpCodeRenderer.SetCode(code, "c#");
-                    InfoAreaPivot.Items.Add(CSharpPivotItem);
-                }
-
-                if (CurrentSample.HasJavaScriptCode)
-                {
-                    var code = await CurrentSample.GetJavaScriptSourceAsync();
-
-                    JavaScriptCodeRenderer.SetCode(code, "js");
-                    InfoAreaPivot.Items.Add(JavaScriptPivotItem);
-                }
-
-                if (SampleSuite.HasDocumentation)
-                {
-                    var (contents, path) = await SampleSuite.GetDocumentationAsync();
-                    documentationPath = path;
-                    if (!string.IsNullOrWhiteSpace(contents))
-                    {
-                        DocumentationTextblock.Text = contents;
-                        InfoAreaPivot.Items.Add(DocumentationPivotItem);
-                    }
-                }
-
-                // Hide the Github button if there isn't a CodeUrl.
-                if (string.IsNullOrEmpty(SampleSuite.CodeUrl))
-                {
-                    GithubButton.Visibility = Visibility.Collapsed;
-                }
-
-                if (InfoAreaPivot.Items.Count == 0)
-                {
-                    SidePaneState = PaneState.None;
-                    _hasDocumentation = false;
-                }
-                else
-                {
-                    SidePaneState = _onlyDocumentation ? PaneState.Full : PaneState.Normal;
-                }
-
-                Shell.Current.SetTitles($"{SampleSuite.Category} > {SampleSuite.Name} > {CurrentSample.Name}");
-            }
-            else
-            {
-                ExceptionNotification.Show("Sample does not exist");
-            }
-
-            if (!CanChangePaneState)
-            {
-                SampleTitleBar.Children.Remove(NarrowInfoButton);
-                WindowStates.States.Clear();
-            }
         }
 
         public async Task RefreshXamlRenderAsync()
@@ -319,9 +199,6 @@ namespace Microsoft.Toolkit.Uwp.SampleApp
             if (CurrentSample != null && CurrentSample.HasXAMLCode)
             {
                 this._lastRenderedProperties = true;
-
-                // Called to load the sample initially as we don't get an Item Pivot Selection Changed with Sample Loaded yet.
-                var t = UpdateXamlRenderAsync(CurrentSample.XamlTemplate.XamlWithBindings);
             }
         }
 
@@ -329,9 +206,9 @@ namespace Microsoft.Toolkit.Uwp.SampleApp
         {
             if (InfoAreaPivot.SelectedItem != null)
             {
-                if (DataContext is SampleSet sample)
+                if (DataContext is Sample sample)
                 {
-                    TrackingManager.TrackEvent("PropertyGrid", (InfoAreaPivot.SelectedItem as FrameworkElement)?.Name, sample.Name);
+                    TrackingManager.TrackEvent("PropertyGrid", (InfoAreaPivot.SelectedItem as FrameworkElement)?.Name, sample.XamlCodeFile);
                 }
             }
 
@@ -512,6 +389,11 @@ namespace Microsoft.Toolkit.Uwp.SampleApp
             return value > 0 ? Visibility.Visible : Visibility.Collapsed;
         }
 
+        private Visibility GreaterThanOne(int value)
+        {
+            return value > 1 ? Visibility.Visible : Visibility.Collapsed;
+        }
+
         private Visibility Not(bool value)
         {
             return value ? Visibility.Collapsed : Visibility.Visible;
@@ -593,6 +475,131 @@ namespace Microsoft.Toolkit.Uwp.SampleApp
         private void ThemePicker_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             Shell.Current.SetCurrentTheme((ElementTheme)ThemePicker.SelectedIndex);
+        }
+
+        private async void SamplePicker_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (e.AddedItems.FirstOrDefault() is Sample sample)
+            {
+                // TODO: Have standard blank page for samples without extra needs.
+                if (sample.Type != null)
+                {
+                    try
+                    {
+                        var pageInstance = Activator.CreateInstance(sample.Type);
+                        SampleContent.Content = pageInstance;
+                    }
+                    catch
+                    {
+                        ExceptionNotification.Show("Sample Page failed to load.");
+                    }
+
+                    if (SamplePage != null)
+                    {
+                        SamplePage.Loaded += SamplePage_Loaded;
+                    }
+                }
+                else
+                {
+                    _onlyDocumentation = true;
+                }
+
+                DataContext = sample;
+
+                await SampleLoader.PushRecentSample(SampleSuite);
+
+                var propertyDesc = sample?.XamlTemplate?.Properties;
+
+                InfoAreaPivot.Items.Clear();
+
+                if (propertyDesc != null)
+                {
+                    _xamlRenderer.DataContext = propertyDesc.Expando;
+                }
+
+                if (propertyDesc != null && propertyDesc.Options.Count > 0)
+                {
+                    InfoAreaPivot.Items.Add(PropertiesPivotItem);
+                }
+
+                if (sample.HasXAMLCode && sample.XamlTemplate != null)
+                {
+                    if (AnalyticsInfo.VersionInfo.GetDeviceFormFactor() != DeviceFormFactor.Desktop || sample.DisableXamlEditorRendering)
+                    {
+                        // Only makes sense (and works) for now to show Live Xaml on Desktop, so fallback to old system here otherwise.
+                        XamlReadOnlyCodeRenderer.SetCode(sample.XamlTemplate.XamlWithValues, "xaml");
+
+                        InfoAreaPivot.Items.Add(XamlReadOnlyPivotItem);
+                    }
+                    else
+                    {
+                        XamlCodeEditor.Text = sample.XamlTemplate.XamlWithValues;
+
+                        InfoAreaPivot.Items.Add(XamlPivotItem);
+
+                        _xamlCodeRendererSupported = true;
+
+                        await UpdateXamlRenderAsync(sample.XamlTemplate.XamlWithBindings);
+                    }
+
+                    InfoAreaPivot.SelectedIndex = 0;
+                }
+
+                if (sample.HasCSharpCode)
+                {
+                    var code = await sample.GetCSharpSourceAsync();
+
+                    CSharpCodeRenderer.SetCode(code, "c#");
+                    InfoAreaPivot.Items.Add(CSharpPivotItem);
+                }
+
+                if (sample.HasJavaScriptCode)
+                {
+                    var code = await sample.GetJavaScriptSourceAsync();
+
+                    JavaScriptCodeRenderer.SetCode(code, "js");
+                    InfoAreaPivot.Items.Add(JavaScriptPivotItem);
+                }
+
+                if (SampleSuite.HasDocumentation)
+                {
+                    var (contents, path) = await SampleSuite.GetDocumentationAsync();
+                    documentationPath = path;
+                    if (!string.IsNullOrWhiteSpace(contents))
+                    {
+                        DocumentationTextblock.Text = contents;
+                        InfoAreaPivot.Items.Add(DocumentationPivotItem);
+                    }
+                }
+
+                // Hide the Github button if there isn't a CodeUrl.
+                if (string.IsNullOrEmpty(SampleSuite.CodeUrl))
+                {
+                    GithubButton.Visibility = Visibility.Collapsed;
+                }
+
+                if (InfoAreaPivot.Items.Count == 0)
+                {
+                    SidePaneState = PaneState.None;
+                    _hasDocumentation = false;
+                }
+                else
+                {
+                    SidePaneState = _onlyDocumentation ? PaneState.Full : PaneState.Normal;
+                }
+
+                Shell.Current.SetTitles($"{SampleSuite.Category} > {SampleSuite.Name} > {sample.XamlCodeFile}");
+            }
+            else
+            {
+                ExceptionNotification.Show("Sample does not exist");
+            }
+
+            if (!CanChangePaneState)
+            {
+                SampleTitleBar.Children.Remove(NarrowInfoButton);
+                WindowStates.States.Clear();
+            }
         }
     }
 }
