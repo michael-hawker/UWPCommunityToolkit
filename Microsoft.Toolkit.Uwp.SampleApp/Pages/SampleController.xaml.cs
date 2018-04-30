@@ -481,6 +481,8 @@ namespace Microsoft.Toolkit.Uwp.SampleApp
         {
             if (e.AddedItems.FirstOrDefault() is Sample sample)
             {
+                _onlyDocumentation = true;
+
                 // TODO: Have standard blank page for samples without extra needs.
                 if (sample.Type != null)
                 {
@@ -493,15 +495,16 @@ namespace Microsoft.Toolkit.Uwp.SampleApp
                     {
                         ExceptionNotification.Show("Sample Page failed to load.");
                     }
-
-                    if (SamplePage != null)
-                    {
-                        SamplePage.Loaded += SamplePage_Loaded;
-                    }
                 }
                 else
                 {
-                    _onlyDocumentation = true;
+                    // If we didn't specify a specific page, just create a placeholder to hold content.
+                    SampleContent.Content = new Page();
+                }
+
+                if (SamplePage != null)
+                {
+                    SamplePage.Loaded += SamplePage_Loaded;
                 }
 
                 DataContext = sample;
@@ -543,6 +546,7 @@ namespace Microsoft.Toolkit.Uwp.SampleApp
                     }
 
                     InfoAreaPivot.SelectedIndex = 0;
+                    _onlyDocumentation = false;
                 }
 
                 if (sample.HasCSharpCode)
@@ -551,6 +555,7 @@ namespace Microsoft.Toolkit.Uwp.SampleApp
 
                     CSharpCodeRenderer.SetCode(code, "c#");
                     InfoAreaPivot.Items.Add(CSharpPivotItem);
+                    _onlyDocumentation = false;
                 }
 
                 if (sample.HasJavaScriptCode)
@@ -559,6 +564,7 @@ namespace Microsoft.Toolkit.Uwp.SampleApp
 
                     JavaScriptCodeRenderer.SetCode(code, "js");
                     InfoAreaPivot.Items.Add(JavaScriptPivotItem);
+                    _onlyDocumentation = false;
                 }
 
                 if (SampleSuite.HasDocumentation)
