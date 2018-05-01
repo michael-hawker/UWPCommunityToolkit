@@ -73,7 +73,7 @@
                                 <toolkitControls:DropShadowPanel VerticalContentAlignment="Stretch"
                                                                      HorizontalContentAlignment="Stretch"
                                                                      ShadowOpacity="0.7"
-                                                                     Color="{ThemeResource Color-Alt}"
+                                                                     Color="Black"
                                                                      BlurRadius="10"
                                                                      VerticalAlignment="Bottom"
                                                                      Margin="0,0,0,-3">
@@ -173,7 +173,6 @@
                                     <FontIcon Margin="16,12"
                                                   FontFamily="Segoe MDL2 Assets"
                                                   FontSize="16"
-                                                  Foreground="{TemplateBinding PaneForeground}"
                                                   Glyph="&#xE721;" />
                                     <animations:Implicit.ShowAnimations>
                                         <animations:OpacityAnimation From="0" To="0.6" Duration="0:0:0.3"></animations:OpacityAnimation>
@@ -185,7 +184,7 @@
                                                     VerticalAlignment="Center"
                                                     IsTabStop="False"
                                                     QueryIcon="Find"
-                                                    extensions:VisualEx.NormalizedCenterPoint="0.95, 0.5, 0"
+                                                    extensions:VisualExtensions.NormalizedCenterPoint="0.95, 0.5, 0"
                                                     Visibility="Collapsed">
                                     <animations:Implicit.ShowAnimations>
                                         <animations:ScaleAnimation From="0,1,1" To="1" Duration="0:0:0.3"></animations:ScaleAnimation>
@@ -231,7 +230,7 @@
                                                     ContentTemplate="{TemplateBinding HamburgerMenuTemplate}"
                                                     Foreground="{TemplateBinding PaneForeground}"
                                                     Background="{ThemeResource Brush-Main}"
-                                                    extensions:VisualEx.NormalizedCenterPoint="0.5"
+                                                    extensions:VisualExtensions.NormalizedCenterPoint="0.5"
                                                     IsTabStop="False">
                                     <animations:Implicit.ShowAnimations>
                                         <animations:OpacityAnimation Duration="0:0:0.3" To="0.6"></animations:OpacityAnimation>
@@ -244,7 +243,7 @@
                                 </ContentControl>
                             </Button>
 
-                            <Border Background="{ThemeResource Separator-03}" Height="1" VerticalAlignment="Bottom" Grid.ColumnSpan="4"></Border>
+                            <Border Background="{ThemeResource Border-NavigationBar}" Height="1" VerticalAlignment="Bottom" Grid.ColumnSpan="4"></Border>
                         </Grid>
 
                         <Canvas Background="Transparent"
@@ -255,13 +254,13 @@
                             <Grid x:Name="MoreInfoContent"
                                       Width="260"
                                       Height="320"
-                                      extensions:VisualEx.NormalizedCenterPoint="0.5">
+                                      extensions:VisualExtensions.NormalizedCenterPoint="0.5">
                                 <Grid VerticalAlignment="Top">
 
                                     <toolkitControls:DropShadowPanel VerticalContentAlignment="Stretch"
                                                                          HorizontalContentAlignment="Stretch"
                                                                          ShadowOpacity="0.6"
-                                                                         Color="{ThemeResource Color-Alt}"
+                                                                         Color="Black"
                                                                          OffsetY="6"
                                                                          BlurRadius="60">
                                         <Border Background="{ThemeResource Menu-DropDown-Background}"

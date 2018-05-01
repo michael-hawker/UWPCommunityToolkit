@@ -97,6 +97,9 @@ namespace Microsoft.Toolkit.Uwp.SampleApp
             Current = this;
             Shell.Current.ThemeChanged += Current_ThemeChanged;
 
+            ThemePicker.SelectedIndex = (int)Shell.Current.GetCurrentTheme();
+            ThemePicker.SelectionChanged += ThemePicker_SelectionChanged;
+
             DocumentationTextblock.RequestedTheme = Shell.Current.GetCurrentTheme();
             DocumentationTextblock.SetRenderer<SampleAppMarkdownRenderer>();
 
@@ -474,7 +477,14 @@ namespace Microsoft.Toolkit.Uwp.SampleApp
 
         private void ThemePicker_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            Shell.Current.SetCurrentTheme((ElementTheme)ThemePicker.SelectedIndex);
+            try
+            {
+                Shell.Current.SetCurrentTheme((ElementTheme)ThemePicker.SelectedIndex);
+            }
+            catch (Exception ex)
+            {
+                ExceptionNotification.Show(ex.Message);
+            }
         }
 
         private async void SamplePicker_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -604,6 +614,7 @@ namespace Microsoft.Toolkit.Uwp.SampleApp
             if (!CanChangePaneState)
             {
                 SampleTitleBar.Children.Remove(NarrowInfoButton);
+				PaneStates.States.Clear();
                 WindowStates.States.Clear();
             }
         }

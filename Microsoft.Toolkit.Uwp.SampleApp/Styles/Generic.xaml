@@ -505,13 +505,13 @@
                         Background="Transparent">
             <Grid Width="120"
                       Height="80"
-                      extensions:VisualEx.CenterPoint="40,60,0">
+                      extensions:VisualExtensions.CenterPoint="40,60,0">
                 <toolkitControls:DropShadowPanel HorizontalContentAlignment="Stretch"
                                               VerticalContentAlignment="Stretch"
                                               BlurRadius="30"
                                               ShadowOpacity="0.6"
                                                      OffsetY="3"
-                                              extensions:VisualEx.Opacity="0"
+                                              extensions:VisualExtensions.Opacity="0"
                                               Visibility="Collapsed">
                     <Border></Border>
                 </toolkitControls:DropShadowPanel>
@@ -961,5 +961,11 @@
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
+    </Style>
+
+    <Style x:Key="AboutPageHeader" TargetType="TextBlock">
+        <Setter Property="FontFamily" Value="Segoe UI" />
+        <Setter Property="FontSize" Value="20" />
+        <Setter Property="FontWeight" Value="Bold" />
     </Style>
 </ResourceDictionary>
