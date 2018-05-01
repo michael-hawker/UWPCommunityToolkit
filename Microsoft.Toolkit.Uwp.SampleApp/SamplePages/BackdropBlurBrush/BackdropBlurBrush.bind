@@ -1,3 +1,8 @@
+<!--
+Name: BackdropBlur Example
+Description: Simple example to show what the BackdropBlurBrush does.
+Tags: Brush, Media, Blur, Backdrop
+-->
 <Page
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"

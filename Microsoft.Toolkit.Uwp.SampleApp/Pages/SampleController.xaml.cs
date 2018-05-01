@@ -211,7 +211,7 @@ namespace Microsoft.Toolkit.Uwp.SampleApp
             {
                 if (DataContext is Sample sample)
                 {
-                    TrackingManager.TrackEvent("PropertyGrid", (InfoAreaPivot.SelectedItem as FrameworkElement)?.Name, sample.XamlCodeFile);
+                    TrackingManager.TrackEvent("PropertyGrid", (InfoAreaPivot.SelectedItem as FrameworkElement)?.Name, sample.Name);
                 }
             }
 
@@ -604,7 +604,7 @@ namespace Microsoft.Toolkit.Uwp.SampleApp
                     SidePaneState = _onlyDocumentation ? PaneState.Full : PaneState.Normal;
                 }
 
-                Shell.Current.SetTitles($"{SampleSuite.Category} > {SampleSuite.Name} > {sample.XamlCodeFile}");
+                Shell.Current.SetTitles($"{SampleSuite.Category} > {SampleSuite.Name} > {sample.Name}");
             }
             else
             {
@@ -614,7 +614,7 @@ namespace Microsoft.Toolkit.Uwp.SampleApp
             if (!CanChangePaneState)
             {
                 SampleTitleBar.Children.Remove(NarrowInfoButton);
-				PaneStates.States.Clear();
+                PaneStates.States.Clear();
                 WindowStates.States.Clear();
             }
         }

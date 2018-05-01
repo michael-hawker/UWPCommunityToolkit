@@ -14,9 +14,9 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Reflection;
 using System.Threading;
 using System.Threading.Tasks;
-using System.Reflection;
 using Microsoft.Toolkit.Uwp.Helpers;
 using Microsoft.Toolkit.Uwp.SampleApp.Services;
 using Newtonsoft.Json;
@@ -186,10 +186,21 @@ namespace Microsoft.Toolkit.Uwp.SampleApp
                     {
                         case ".bind":
                             dict[file.DisplayName].XamlCodeFile = file.Name;
-                            dict[file.DisplayName].XamlTemplate = await XamlTemplateLoader.LoadTemplateFromPackagedFileAsync($"SamplePages/{sample.Name}/{file.Name}");
+                            var template = await XamlTemplateLoader.LoadTemplateFromPackagedFileAsync($"SamplePages/{sample.Name}/{file.Name}");
+                            dict[file.DisplayName].XamlTemplate = template;
+
+                            if (dict[file.DisplayName].Name == null)
+                            {
+                                dict[file.DisplayName].Name = template.Name;
+                                dict[file.DisplayName].Description = template.Description;
+                                dict[file.DisplayName].Tags = template.Tags;
+                            }
+
                             break;
                         case ".code":
                             dict[file.DisplayName].CodeFile = file.Name;
+
+                            // TODO: Figure out metadata here as well...
                             break;
                     }
                 }
@@ -210,8 +221,12 @@ namespace Microsoft.Toolkit.Uwp.SampleApp
                     }
 
                     dict[name].Type = type;
+
+                    // TODO: Load metadata from class somehow (if not loaded from .bind)?  Attributes?
                 }
             }
+
+            //// TODO: Check if no name provided, if so, set to key name.
 
             return dict.Values.ToList();
         }

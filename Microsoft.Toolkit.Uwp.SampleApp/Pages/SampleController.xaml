@@ -71,7 +71,7 @@
                               ItemsSource="{x:Bind SampleSuite.Samples, Mode=OneWay}"
                               SelectedItem="{x:Bind CurrentSample, Mode=TwoWay}"
                               Visibility="{x:Bind GreaterThanOne(SampleSuite.Samples.Count), Mode=OneWay}"
-                              DisplayMemberPath="XamlCodeFile"
+                              DisplayMemberPath="Name"
                               Margin="4,0,8,0"/>
 
                     <AppBarSeparator Margin="-10, 3, -10, 0" />
