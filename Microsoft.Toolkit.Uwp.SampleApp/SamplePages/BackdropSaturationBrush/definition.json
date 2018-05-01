@@ -1,9 +1,8 @@
 {
     "Name":  "BackdropSaturationBrush",
-    "Type":  "BackdropSaturationBrushPage",
+    "Namespace":  "BackdropSaturationBrushSamples",
     "About":  "Brush which applies a Saturation effect to whatever\u0027s behind it.",
     "CodeUrl":  "https://github.com/Microsoft/UWPCommunitToolkit/tree/master/Microsoft.Toolkit.Uwp.UI/Brushes/BackdropSaturationBrush.cs",
-    "XamlCodeFile":  "BackdropSaturationBrushXaml.bind",
     "Icon":  "/SamplePages/BackdropSaturationBrush/BackdropSaturationBrush.png",
     "BadgeUpdateVersionRequired":  "Creators Update required",
     "ApiCheck":  "Windows.UI.Xaml.Media.XamlCompositionBrushBase",

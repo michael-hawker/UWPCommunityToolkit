@@ -15,6 +15,7 @@
 using Microsoft.Graphics.Canvas.Effects;
 using Windows.UI.Composition;
 using Windows.UI.Xaml;
+using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Media;
 
 namespace Microsoft.Toolkit.Uwp.UI.Media
@@ -22,6 +23,7 @@ namespace Microsoft.Toolkit.Uwp.UI.Media
     /// <summary>
     /// The <see cref="BackdropBlurBrush"/> is a <see cref="Brush"/> that blurs whatever is behind it in the application.
     /// </summary>
+    [Bindable]
     public class BackdropBlurBrush : XamlCompositionBrushBase
     {
         /// <summary>

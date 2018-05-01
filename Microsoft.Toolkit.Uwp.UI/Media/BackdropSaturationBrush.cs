@@ -13,6 +13,7 @@
 using Microsoft.Graphics.Canvas.Effects;
 using Windows.UI.Composition;
 using Windows.UI.Xaml;
+using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Media;
 
 namespace Microsoft.Toolkit.Uwp.UI.Media
@@ -20,6 +21,7 @@ namespace Microsoft.Toolkit.Uwp.UI.Media
     /// <summary>
     /// Brush which applies a SaturationEffect to the Backdrop. http://microsoft.github.io/Win2D/html/T_Microsoft_Graphics_Canvas_Effects_SaturationEffect.htm
     /// </summary>
+    [Bindable]
     public class BackdropSaturationBrush : XamlCompositionBrushBase
     {
         /// <summary>

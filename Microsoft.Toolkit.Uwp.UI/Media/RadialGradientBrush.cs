@@ -18,6 +18,7 @@ using Microsoft.Graphics.Canvas.Brushes;
 using Microsoft.Toolkit.Uwp.UI.Extensions;
 using Windows.UI;
 using Windows.UI.Xaml;
+using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Markup;
 using Windows.UI.Xaml.Media;
 
@@ -27,6 +28,7 @@ namespace Microsoft.Toolkit.Uwp.UI.Media
     /// RadialGradientBrush - This GradientBrush defines its Gradient as an interpolation
     /// within an Ellipse.
     /// </summary>
+    [Bindable]
     [ContentProperty(Name = nameof(GradientStops))]
     public partial class RadialGradientBrush : CanvasBrushBase
     {

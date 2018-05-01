@@ -1,9 +1,8 @@
 {
     "Name":  "BackdropGammaTransferBrush",
-    "Type":  "BackdropGammaTransferBrushPage",
+    "Namespace":  "BackdropGammaTransferBrushSamples",
     "About":  "Brush which fills the contents with a gamma modified version of whatever\u0027s behind it.",
     "CodeUrl":  "https://github.com/Microsoft/UWPCommunitToolkit/tree/master/Microsoft.Toolkit.Uwp.UI/Brushes/BackdropGammaTransferBrush.cs",
-    "XamlCodeFile":  "BackdropGammaTransferBrushXaml.bind",
     "Icon":  "/SamplePages/BackdropGammaTransferBrush/BackdropGammaTransferBrush.png",
     "BadgeUpdateVersionRequired":  "Creators Update required",
     "ApiCheck":  "Windows.UI.Xaml.Media.XamlCompositionBrushBase",
