@@ -25,12 +25,14 @@
                 <ColumnDefinition x:Name="SideColumn" />
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
                 <RowDefinition Height="50" />
                 <RowDefinition />
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
 
             <Grid x:Name="SampleTitleBar"
+              Grid.Row="1"
               Canvas.ZIndex="999"
               Background="{ThemeResource Brush-Sample-HeaderBacking}">
                 <Grid.ColumnDefinitions>
@@ -108,6 +110,7 @@
             <Grid x:Name="InfoAreaControlsWrapper"
             Background="{ThemeResource Brush-Sample-HeaderBacking}"
             Grid.Column="1"
+            Grid.Row="1"
             Canvas.ZIndex="888">
 
                 <Grid x:Name="InfoAreaControls">
@@ -133,7 +136,7 @@
                 </Grid>
             </Grid>
 
-            <Grid x:Name="DemoAreaGrid" Grid.Row="1">
+            <Grid x:Name="DemoAreaGrid" Grid.Row="2">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*" />
                     <RowDefinition Height="Auto" />
@@ -194,7 +197,9 @@
             <Grid x:Name="InfoAreaGrid"
                   Background="{ThemeResource Brush-SampleInfo-Background}"
                   Grid.Column="1"
-                  Grid.RowSpan="3">
+                  Grid.Row="1"
+                  Grid.RowSpan="3"
+                  Canvas.ZIndex="99">
 
                 <Grid.RowDefinitions>
                     <RowDefinition Height="50" />
@@ -255,7 +260,7 @@
                             <controls:MarkdownTextBlock x:Name="DocumentationTextblock"
                                                     Foreground="{ThemeResource DocumentationForeground}"
                                                     Background="Transparent"
-                                                    LinkForeground="{ThemeResource Brush-Brand-Color}"
+                                                    LinkForeground="{ThemeResource Brush-Link-Normal}"
                                                     ImageResolving="DocumentationTextblock_ImageResolving"
                                                     LinkClicked="DocumentationTextblock_OnLinkClicked"
                                                     IsFocusEngagementEnabled="False" />
@@ -271,6 +276,18 @@
                                     GripperForeground="White"
                                     ParentLevel="1" />
             </Grid>
+
+            <Border HorizontalAlignment="Stretch"
+                    Grid.ColumnSpan="2"
+                    Visibility="{Binding DeprecatedWarning, Converter={StaticResource EmptyStringToObject}, FallbackValue=Collapsed}"
+                    Background="{StaticResource SystemControlHighlightAccentBrush}"
+                    Padding="10">
+                <TextBlock Text="{Binding DeprecatedWarning}"
+                           HorizontalAlignment="Center"
+                           TextWrapping="WrapWholeWords"
+                           Foreground="White" />
+            </Border>
+
             <controls:InAppNotification x:Name="ExceptionNotification"
                                         Grid.RowSpan="2"
                                         Style="{StaticResource ExceptionNotification}"

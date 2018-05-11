@@ -32,6 +32,11 @@ namespace Microsoft.Toolkit.Uwp.SampleApp.Controls
         public XamlCodeEditor()
         {
             this.InitializeComponent();
+            XamlCodeRenderer.RequestedTheme = Shell.Current.GetActualTheme();
+            Shell.Current.ThemeChanged += (s, e) =>
+            {
+                XamlCodeRenderer.RequestedTheme = Shell.Current.GetActualTheme();
+            };
         }
 
         public async Task ResetPosition()

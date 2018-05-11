@@ -41,11 +41,13 @@ namespace Microsoft.Toolkit.Uwp.SampleApp
     {
         public static SampleController Current { get; private set; }
 
+        public event PropertyChangedEventHandler PropertyChanged;
+
         public SampleSet SampleSuite { get; private set; }
 
-        public Sample CurrentSample { get; private set; }
-
-        public ObservableCollection<SampleCommand> Commands { get; } = new ObservableCollection<SampleCommand>();
+        public Sample CurrentSample {get; private set; }
+		
+		public ObservableCollection<SampleCommand> Commands { get; } = new ObservableCollection<SampleCommand>();
 
         public bool DisplayWaitRing
         {
@@ -78,6 +80,8 @@ namespace Microsoft.Toolkit.Uwp.SampleApp
 
         private Page SamplePage => SampleContent.Content as Page;
 
+        private bool CanChangePaneState => _hasDocumentation && !_onlyDocumentation;
+
         private XamlRenderService _xamlRenderer = new XamlRenderService();
         private bool _lastRenderedProperties = true;
         private bool _xamlCodeRendererSupported = false;
@@ -89,7 +93,6 @@ namespace Microsoft.Toolkit.Uwp.SampleApp
         private bool _onlyDocumentation;
         private string documentationPath;
 
-        private bool CanChangePaneState => _hasDocumentation && !_onlyDocumentation;
 
         public SampleController()
         {
@@ -406,8 +409,6 @@ namespace Microsoft.Toolkit.Uwp.SampleApp
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
-
-        public event PropertyChangedEventHandler PropertyChanged;
 
         private void ProcessSampleEditorTime()
         {
