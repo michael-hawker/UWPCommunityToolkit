@@ -22,7 +22,7 @@ using Windows.UI.Popups;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media.Imaging;
 
-namespace Microsoft.Toolkit.Uwp.SampleApp.SamplePages
+namespace Microsoft.Toolkit.Uwp.SampleApp.SamplePages.OneDriveHelpers
 {
     public static class OneDriveSampleHelpers
     {

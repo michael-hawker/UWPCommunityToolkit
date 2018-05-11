@@ -29,6 +29,11 @@ namespace Microsoft.Toolkit.Uwp.SampleApp
     [Bindable]
     public class Sample : ISampleMetadata
     {
+        /// <summary>
+        /// Gets parent <see cref="SampleSet"/>.
+        /// </summary>
+        public SampleSet Parent { get; private set; }
+
         /// <inheritdoc/>
         public string Name { get; set; }
 
@@ -61,9 +66,14 @@ namespace Microsoft.Toolkit.Uwp.SampleApp
 
         public bool HasJavaScriptCode => !string.IsNullOrEmpty(JavaScriptCodeFile);
 
+        public Sample(SampleSet suite)
+        {
+            Parent = suite;
+        }
+
         public async Task<string> GetCSharpSourceAsync()
         {
-            using (var codeStream = await StreamHelper.GetPackagedFileStreamAsync($"SamplePages/{Name}/{CodeFile}"))
+            using (var codeStream = await StreamHelper.GetPackagedFileStreamAsync($"SamplePages/{Parent.Name}/{CodeFile}"))
             {
                 using (var streamreader = new StreamReader(codeStream.AsStream()))
                 {
@@ -74,7 +84,7 @@ namespace Microsoft.Toolkit.Uwp.SampleApp
 
         public async Task<string> GetJavaScriptSourceAsync()
         {
-            using (var codeStream = await StreamHelper.GetPackagedFileStreamAsync($"SamplePages/{Name}/{JavaScriptCodeFile}"))
+            using (var codeStream = await StreamHelper.GetPackagedFileStreamAsync($"SamplePages/{Parent.Name}/{JavaScriptCodeFile}"))
             {
                 using (var streamreader = new StreamReader(codeStream.AsStream()))
                 {

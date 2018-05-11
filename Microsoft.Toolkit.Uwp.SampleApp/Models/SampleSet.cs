@@ -43,6 +43,9 @@ namespace Microsoft.Toolkit.Uwp.SampleApp
                 .FirstOrDefault(s => s.Name.Equals(name, StringComparison.OrdinalIgnoreCase));
         }
 
+        /// <summary>
+        /// Gets or sets name of sample directory for sample and name of sample which appears in Sample App UI lists.
+        /// </summary>
         public string Name { get; set; }
 
         public string About { get; set; }

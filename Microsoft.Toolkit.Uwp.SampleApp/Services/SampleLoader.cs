@@ -18,6 +18,7 @@ using System.Reflection;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Toolkit.Uwp.Helpers;
+using Microsoft.Toolkit.Uwp.SampleApp.Models;
 using Microsoft.Toolkit.Uwp.SampleApp.Services;
 using Newtonsoft.Json;
 using Windows.ApplicationModel;
@@ -179,7 +180,7 @@ namespace Microsoft.Toolkit.Uwp.SampleApp
                     Debug.WriteLine(file.Name);
                     if (!dict.ContainsKey(file.DisplayName))
                     {
-                        dict[file.DisplayName] = new Sample();
+                        dict[file.DisplayName] = new Sample(sample);
                     }
 
                     switch (file.FileType)
@@ -189,7 +190,7 @@ namespace Microsoft.Toolkit.Uwp.SampleApp
                             var template = await XamlTemplateLoader.LoadTemplateFromPackagedFileAsync($"SamplePages/{sample.Name}/{file.Name}");
                             dict[file.DisplayName].XamlTemplate = template;
 
-                            if (dict[file.DisplayName].Name == null)
+                            if (dict[file.DisplayName].Name == null && !string.IsNullOrWhiteSpace(template.Name))
                             {
                                 dict[file.DisplayName].Name = template.Name;
                                 dict[file.DisplayName].Description = template.Description;
@@ -217,12 +218,17 @@ namespace Microsoft.Toolkit.Uwp.SampleApp
                     var name = type.Name.Replace("Page", string.Empty);
                     if (!dict.ContainsKey(name))
                     {
-                        dict[name] = new Sample();
+                        dict[name] = new Sample(sample);
                     }
 
                     dict[name].Type = type;
 
-                    // TODO: Load metadata from class somehow (if not loaded from .bind)?  Attributes?
+                    if (dict[name].Name == null && type.GetTypeInfo().GetCustomAttribute(typeof(SampleMetadataAttribute)) is SampleMetadataAttribute attribute)
+                    {
+                        dict[name].Name = attribute.Name;
+                        dict[name].Description = attribute.Description;
+                        dict[name].Tags = attribute.Tags;
+                    }
                 }
             }
 

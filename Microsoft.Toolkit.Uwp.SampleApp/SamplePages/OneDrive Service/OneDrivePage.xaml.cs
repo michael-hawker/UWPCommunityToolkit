@@ -16,6 +16,8 @@ using System.Threading.Tasks;
 using Microsoft.Graph;
 using Microsoft.Toolkit.Services.OneDrive;
 using Microsoft.Toolkit.Services.Services.MicrosoftGraph;
+using Microsoft.Toolkit.Uwp.SampleApp.Models;
+using Microsoft.Toolkit.Uwp.SampleApp.SamplePages.OneDriveHelpers;
 using Windows.Storage.Streams;
 using Windows.UI.Core;
 using Windows.UI.Popups;
@@ -24,8 +26,12 @@ using Windows.UI.Xaml.Controls;
 
 #pragma warning disable SA1118
 
-namespace Microsoft.Toolkit.Uwp.SampleApp.SamplePages
+namespace Microsoft.Toolkit.Uwp.SampleApp.SamplePages.OneDriveSamples
 {
+    [SampleMetadata(
+        "OneDrive Sample",
+        "Sample which shows how to grab a file listing from the OneDrive service.",
+        new string[] { "OneDrive", "Service", "Microsoft" })]
     public sealed partial class OneDrivePage : Page
     {
         private OneDriveStorageFolder _graphRootFolder = null;

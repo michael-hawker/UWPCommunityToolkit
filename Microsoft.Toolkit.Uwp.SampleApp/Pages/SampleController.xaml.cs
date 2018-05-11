@@ -46,8 +46,8 @@ namespace Microsoft.Toolkit.Uwp.SampleApp
         public SampleSet SampleSuite { get; private set; }
 
         public Sample CurrentSample {get; private set; }
-		
-		public ObservableCollection<SampleCommand> Commands { get; } = new ObservableCollection<SampleCommand>();
+
+        public ObservableCollection<SampleCommand> Commands { get; } = new ObservableCollection<SampleCommand>();
 
         public bool DisplayWaitRing
         {
@@ -92,7 +92,6 @@ namespace Microsoft.Toolkit.Uwp.SampleApp
         private bool _hasDocumentation = true;
         private bool _onlyDocumentation;
         private string documentationPath;
-
 
         public SampleController()
         {

@@ -18,7 +18,7 @@ using Microsoft.Toolkit.Services.OneDrive;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
-namespace Microsoft.Toolkit.Uwp.SampleApp.SamplePages
+namespace Microsoft.Toolkit.Uwp.SampleApp.SamplePages.OneDriveHelpers
 {
     public sealed partial class FoldersPickerControl : UserControl
     {

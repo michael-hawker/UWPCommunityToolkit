@@ -14,7 +14,7 @@ using Microsoft.Toolkit.Services.OneDrive;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
-namespace Microsoft.Toolkit.Uwp.SampleApp.SamplePages
+namespace Microsoft.Toolkit.Uwp.SampleApp.SamplePages.OneDriveHelpers
 {
     /// <summary>
     /// FileFolderDataTemplateSelector class
