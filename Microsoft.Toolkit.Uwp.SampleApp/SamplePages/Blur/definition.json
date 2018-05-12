@@ -1,7 +1,7 @@
 {
     "Name":  "Blur",
     "Type":  "BlurBehaviorPage",
-    "About":  "Blur XAML elements using composition",
+    "Description":  "Blur XAML elements using composition",
     "CodeUrl":  "https://github.com/Microsoft/UWPCommunityToolkit/tree/master/Microsoft.Toolkit.Uwp.UI.Animations/Behaviors",
     "CodeFile":  "BlurBehaviorCode.code",
     "XamlCodeFile":  "BlurBehaviorXaml.bind",

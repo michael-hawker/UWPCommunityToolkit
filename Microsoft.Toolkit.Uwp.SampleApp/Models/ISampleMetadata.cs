@@ -20,18 +20,28 @@ namespace Microsoft.Toolkit.Uwp.SampleApp.Models
     public interface ISampleMetadata
     {
         /// <summary>
-        /// Gets or sets the name of the sample as it will appear in the UI.
+        /// Gets the name of the sample as it will appear in the UI.
         /// </summary>
-        string Name { get; set; }
+        string Name { get; }
 
         /// <summary>
-        /// Gets or sets the description of the sample when the user clicks the (i) info icon next to the sample listing.
+        /// Gets the description of the sample when the user clicks the (i) info icon next to the sample listing.
         /// </summary>
-        string Description { get; set; }
+        string Description { get; }
 
         /// <summary>
-        /// Gets or sets tags for search.
+        /// Gets the location of the icon representing this sample.
         /// </summary>
-        List<string> Tags { get; set; }
+        string Icon { get; }
+
+        /// <summary>
+        /// Gets the OS minimum version required for this sample.
+        /// </summary>
+        string BadgeUpdateVersionRequired { get; } ////TODO: Do we want an enum here?
+
+        /// <summary>
+        /// Gets tags for search.
+        /// </summary>
+        List<string> Tags { get; }
     }
 }

@@ -14,6 +14,7 @@ using System;
 using System.Linq;
 using System.Numerics;
 using System.Threading.Tasks;
+using Microsoft.Toolkit.Uwp.SampleApp.Models;
 using Microsoft.Toolkit.Uwp.UI.Animations;
 using Microsoft.Toolkit.Uwp.UI.Controls;
 using Microsoft.Toolkit.Uwp.UI.Extensions;
@@ -21,6 +22,7 @@ using Windows.Foundation.Metadata;
 using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Media.Animation;
 
 namespace Microsoft.Toolkit.Uwp.SampleApp.Controls
@@ -86,7 +88,8 @@ namespace Microsoft.Toolkit.Uwp.SampleApp.Controls
             var noop = SetHamburgerMenuSelection();
         }
 
-        public async void ShowSamplePicker(SampleSet[] samples = null)
+        // Sample or SampleSet
+        public async void ShowSamplePicker(ISampleMetadata[] samples = null)
         {
             if (!SetupSamplePicker())
             {
@@ -331,7 +334,7 @@ namespace Microsoft.Toolkit.Uwp.SampleApp.Controls
 
         private async void UpdateSearchSuggestions()
         {
-            var samples = (await SampleLoader.FindSamplesByName(_searchBox.Text)).OrderBy(s => s.Name).ToArray();
+            var samples = (await SampleLoader.SearchSamples(_searchBox.Text)).OrderBy(s => s.Name).ToArray();
             if (samples.Count() > 0)
             {
                 ShowSamplePicker(samples);
@@ -494,7 +497,7 @@ namespace Microsoft.Toolkit.Uwp.SampleApp.Controls
             }
 
             var button = (Button)sender;
-            var sample = button.DataContext as SampleSet;
+            var sample = button.DataContext as ISampleMetadata;
 
             var container = button.FindAscendant<GridViewItem>();
             if (container == null)

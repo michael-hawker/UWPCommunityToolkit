@@ -1,7 +1,7 @@
 {
     "Name":  "RadialGradientBrush",
     "Namespace":  "RadialGradientBrushSamples",
-    "About":  "A composition brush which creates a radial gradient effect.",
+    "Description":  "A composition brush which creates a radial gradient effect.",
     "CodeUrl":  "https://github.com/Microsoft/UWPCommunitToolkit/tree/master/Microsoft.Toolkit.Uwp.UI/Brushes/RadialGradientBrush.cs",
     "Icon":  "/SamplePages/RadialGradientBrush/RadialGradientBrush.png",
     "BadgeUpdateVersionRequired":  "Creators Update required",

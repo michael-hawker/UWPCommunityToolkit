@@ -1,7 +1,7 @@
 {
     "Name":  "BluetoothLEHelper",
     "Type":  "BluetoothLEHelperPage",
-    "About":  "The Bluetooth LE helper class is used to connect and interact with bluetooth LE devices.",
+    "Description":  "The Bluetooth LE helper class is used to connect and interact with bluetooth LE devices.",
     "CodeUrl":  "https://github.com/Microsoft/UWPCommunityToolkit/tree/master/Microsoft.Toolkit.Uwp.Connectivity/BluetoothLEHelper",
     "CodeFile":  "BluetoothLEHelperCode.code",
     "Icon":  "/SamplePages/BluetoothLEHelper/BluetoothLEHelper.png",

@@ -1,7 +1,7 @@
 {
     "Name":  "Scale",
     "Type":  "ScaleBehaviorPage",
-    "About":  "Scale of XAML elements using composition",
+    "Description":  "Scale of XAML elements using composition",
     "CodeUrl":  "https://github.com/Microsoft/UWPCommunityToolkit/tree/master/Microsoft.Toolkit.Uwp.UI.Animations/Behaviors",
     "CodeFile":  "ScaleBehaviorCode.code",
     "XamlCodeFile":  "ScaleBehaviorXaml.bind",

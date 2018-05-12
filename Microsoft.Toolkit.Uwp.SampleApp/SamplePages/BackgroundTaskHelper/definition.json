@@ -1,7 +1,7 @@
 {
     "Name":  "BackgroundTaskHelper",
     "Type":  "BackgroundTaskHelperPage",
-    "About":  "Allows easy registration and maintenance of background task",
+    "Description":  "Allows easy registration and maintenance of background task",
     "CodeUrl":  "https://github.com/Microsoft/UWPCommunityToolkit/blob/master/Microsoft.Toolkit.Uwp/Helpers/BackgroundTaskHelper.cs",
     "CodeFile":  "BackgroundTaskHelperCode.code",
     "Icon":  "/Assets/Helpers.png",

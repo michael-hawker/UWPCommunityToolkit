@@ -120,7 +120,7 @@ namespace Microsoft.Toolkit.Uwp.SampleApp
             ThemeChanged?.Invoke(this, args);
         }
 
-        public void NavigateToSample(SampleSet sample)
+        public void NavigateToSample(ISampleMetadata sample)
         {
             NavigationFrame.Navigate(typeof(SampleController), sample);
         }
@@ -242,7 +242,7 @@ namespace Microsoft.Toolkit.Uwp.SampleApp
 
         private void HamburgerMenu_SamplePickerItemClick(object sender, ItemClickEventArgs e)
         {
-            NavigateToSample(e.ClickedItem as SampleSet);
+            NavigateToSample(e.ClickedItem as ISampleMetadata);
         }
 
         private UIElement _parallaxView;

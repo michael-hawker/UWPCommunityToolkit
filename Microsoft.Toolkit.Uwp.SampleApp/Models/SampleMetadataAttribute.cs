@@ -15,6 +15,12 @@ namespace Microsoft.Toolkit.Uwp.SampleApp.Models
 
         public List<string> Tags { get; set; } = new List<string>();
 
+        // Not required on individual Sample as retrieved from parent.
+        public string Icon => throw new NotImplementedException();
+
+        // Not required on individual Sample as retrieved from parent.
+        public string BadgeUpdateVersionRequired => throw new NotImplementedException();
+
         public SampleMetadataAttribute(string name, string description)
         {
             Name = name;

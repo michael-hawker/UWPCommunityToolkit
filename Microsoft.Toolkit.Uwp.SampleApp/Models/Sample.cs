@@ -35,13 +35,19 @@ namespace Microsoft.Toolkit.Uwp.SampleApp
         public SampleSet Parent { get; private set; }
 
         /// <inheritdoc/>
-        public string Name { get; set; }
+        public string Name { get; set; } = string.Empty;
 
         /// <inheritdoc/>
-        public string Description { get; set; }
+        public string Description { get; set; } = string.Empty;
 
         /// <inheritdoc/>
-        public List<string> Tags { get; set; }
+        public List<string> Tags { get; set; } = new List<string>();
+
+        /// <inheritdoc/>
+        public string Icon => Parent.Icon;
+
+        /// <inheritdoc/>
+        public string BadgeUpdateVersionRequired => Parent.BadgeUpdateVersionRequired;
 
         /// <summary>
         /// Gets or sets the 'Page' type for this sample.

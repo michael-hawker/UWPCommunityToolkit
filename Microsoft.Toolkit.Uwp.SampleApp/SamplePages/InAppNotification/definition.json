@@ -1,7 +1,7 @@
 {
     "Name":  "InAppNotification",
     "Type":  "InAppNotificationPage",
-    "About":  "The In App Notification control offers the ability to show local notifications in your application.",
+    "Description":  "The In App Notification control offers the ability to show local notifications in your application.",
     "CodeUrl":  "https://github.com/Microsoft/UWPCommunityToolkit/tree/master/Microsoft.Toolkit.Uwp.UI.Controls/InAppNotification",
     "XamlCodeFile":  "InAppNotificationXaml.bind",
     "CodeFile":  "InAppNotificationCode.code",

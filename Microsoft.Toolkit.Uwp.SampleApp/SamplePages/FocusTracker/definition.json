@@ -1,7 +1,7 @@
 {
     "Name":  "FocusTracker",
     "Type":  "FocusTrackerPage",
-    "About":  "FocusTracker can be used to display information about the current focused XAML element.",
+    "Description":  "FocusTracker can be used to display information about the current focused XAML element.",
     "CodeUrl":  "https://github.com/Microsoft/UWPCommunityToolkit/tree/master/Microsoft.Toolkit.Uwp.DeveloperTools/FocusTracker",
     "XamlCodeFile":  "FocusTrackerXaml.bind",
     "Icon":  "/SamplePages/FocusTracker/FocusTracker.png",

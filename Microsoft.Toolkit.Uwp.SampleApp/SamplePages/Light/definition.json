@@ -1,7 +1,7 @@
 {
     "Name":  "Light",
     "Type":  "LightBehaviorPage",
-    "About":  "Light XAML elements using composition",
+    "Description":  "Light XAML elements using composition",
     "CodeUrl":  "https://github.com/Microsoft/UWPCommunityToolkit/tree/master/Microsoft.Toolkit.Uwp.UI.Animations/Behaviors",
     "CodeFile":  "LightBehaviorCode.code",
     "XamlCodeFile":  "LightBehaviorXaml.bind",

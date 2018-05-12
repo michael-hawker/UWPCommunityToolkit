@@ -1,7 +1,7 @@
 {
     "Name":  "Toast",
     "Type":  "ToastPage",
-    "About":  "This shows how to send a Toast notification.",
+    "Description":  "This shows how to send a Toast notification.",
     "CodeUrl":  "https://github.com/Microsoft/UWPCommunityToolkit/tree/master/Microsoft.Toolkit.Uwp.Notifications",
     "CodeFile":  "ToastCode.code",
     "JavaScriptCodeFile":  "ToastCodeJavaScript.bind",

@@ -1,7 +1,7 @@
 {
     "Name":  "BackdropSepiaBrush",
     "Namespace":  "BackdropSepiaBrushSamples",
-    "About":  "Brush which applies a Sepia effect to whatever\u0027s behind it.",
+    "Description":  "Brush which applies a Sepia effect to whatever\u0027s behind it.",
     "CodeUrl":  "https://github.com/Microsoft/UWPCommunitToolkit/tree/master/Microsoft.Toolkit.Uwp.UI/Brushes/BackdropSepiaBrush.cs",
     "Icon":  "/SamplePages/BackdropSepiaBrush/BackdropSepiaBrush.png",
     "BadgeUpdateVersionRequired":  "Creators Update required",

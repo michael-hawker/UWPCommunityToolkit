@@ -1,7 +1,7 @@
 {
     "Name":  "AlignmentGrid",
     "Type":  "AlignmentGridPage",
-    "About":  "AlignmentGrid is used to display a grid to help aligning controls.",
+    "Description":  "AlignmentGrid is used to display a grid to help aligning controls.",
     "CodeUrl":  "https://github.com/Microsoft/UWPCommunityToolkit/tree/master/Microsoft.Toolkit.Uwp.DeveloperTools/AlignmentGrid",
     "XamlCodeFile":  "AlignmentGridXaml.bind",
     "Icon":  "/SamplePages/AlignmentGrid/AlignmentGrid.png",

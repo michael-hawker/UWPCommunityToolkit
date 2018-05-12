@@ -1,7 +1,7 @@
 {
     "Name":  "Twitter Service",
     "Type":  "TwitterPage",
-    "About":  "The Twitter Service allows you to retrieve or publish data to Twitter.",
+    "Description":  "The Twitter Service allows you to retrieve or publish data to Twitter.",
     "CodeUrl":  "https://github.com/Microsoft/UWPCommunityToolkit/tree/master/Microsoft.Toolkit.Uwp.Services/Services/Twitter",
     "CodeFile":  "TwitterCode.code",
     "Icon":  "/SamplePages/Twitter Service/TwitterLogo.png",

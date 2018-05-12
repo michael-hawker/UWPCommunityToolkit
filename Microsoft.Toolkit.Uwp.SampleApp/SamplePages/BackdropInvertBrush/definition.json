@@ -1,7 +1,7 @@
 {
     "Name":  "BackdropInvertBrush",
     "Namespace":  "BackdropInvertBrushSamples",
-    "About":  "Brush which fills the contents with an inverted version of whatever\u0027s behind it.",
+    "Description":  "Brush which fills the contents with an inverted version of whatever\u0027s behind it.",
     "CodeUrl":  "https://github.com/Microsoft/UWPCommunitToolkit/tree/master/Microsoft.Toolkit.Uwp.UI/Brushes/BackdropInvertBrush.cs",
     "Icon":  "/SamplePages/BackdropInvertBrush/BackdropInvertBrush.png",
     "BadgeUpdateVersionRequired":  "Creators Update required",

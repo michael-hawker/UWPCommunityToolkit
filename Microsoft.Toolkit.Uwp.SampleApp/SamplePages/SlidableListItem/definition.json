@@ -1,7 +1,7 @@
 {
     "Name":  "SlidableListItem",
     "Type":  "SlidableListItemPage",
-    "About":  "The SlidableListItem is deprecated and will be removed in a future major release. Please use the SwipeControl available in the Fall Creators Update.",
+    "Description":  "The SlidableListItem is deprecated and will be removed in a future major release. Please use the SwipeControl available in the Fall Creators Update.",
     "CodeUrl":  "https://github.com/Microsoft/UWPCommunityToolkit/tree/master/Microsoft.Toolkit.Uwp.UI.Controls/SlidableListItem",
     "XamlCodeFile":  "SlidableListItemCode.bind",
     "Icon":  "/SamplePages/SlidableListItem/SlidableListItem.png",

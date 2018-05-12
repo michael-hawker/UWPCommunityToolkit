@@ -1,7 +1,7 @@
 {
     "Name":  "LinkedIn Service",
     "Type":  "LinkedInPage",
-    "About":  "The LinkedIn service allows you to connect to retrieve or publish data to LinkedIn.",
+    "Description":  "The LinkedIn service allows you to connect to retrieve or publish data to LinkedIn.",
     "CodeUrl":  "https://github.com/Microsoft/UWPCommunityToolkit/tree/master/Microsoft.Toolkit.Uwp.Services/Services/LinkedIn/",
     "CodeFile":  "LinkedInCode.code",
     "Icon":  "/SamplePages/LinkedIn Service/LinkedInLogo.png",

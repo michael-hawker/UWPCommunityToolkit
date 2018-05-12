@@ -1,7 +1,7 @@
 {
     "Name":  "PrintHelper",
     "Type":  "PrintHelperPage",
-    "About":  "Allows to easily print XAML controls",
+    "Description":  "Allows to easily print XAML controls",
     "CodeUrl":  "https://github.com/Microsoft/UWPCommunityToolkit/tree/master/Microsoft.Toolkit.Uwp/Helpers/PrintHelper",
     "CodeFile":  "PrintHelperCode.code",
     "Icon":  "/SamplePages/PrintHelper/PrintHelper.png",

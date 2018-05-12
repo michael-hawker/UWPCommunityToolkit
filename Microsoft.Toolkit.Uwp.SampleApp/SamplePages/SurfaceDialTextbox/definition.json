@@ -1,7 +1,7 @@
 {
     "Name":  "SurfaceDialTextbox",
     "Type":  "SurfaceDialTextboxPage",
-    "About":  "Enables support for Surface Dial on any given Textbox. Rotate the Dial to change the numeric value of the Textbox.",
+    "Description":  "Enables support for Surface Dial on any given Textbox. Rotate the Dial to change the numeric value of the Textbox.",
     "CodeUrl":  "https://github.com/Microsoft/UWPCommunityToolkit/tree/master/Microsoft.Toolkit.Uwp.UI/Extensions/SurfaceDialTextbox",
     "XamlCodeFile":  "SurfaceDialTextboxCode.bind",
     "Icon":  "/SamplePages/SurfaceDialTextbox/SurfaceDialTextbox.png",

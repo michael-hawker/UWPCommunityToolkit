@@ -1,7 +1,7 @@
 {
     "Name":  "ImageBlendBrush",
     "Namespace":  "ImageBlendBrushSamples",
-    "About":  "Brush which applies a blending effect a given image from whatever\u0027s behind it.",
+    "Description":  "Brush which applies a blending effect a given image from whatever\u0027s behind it.",
     "CodeUrl":  "https://github.com/Microsoft/UWPCommunitToolkit/tree/master/Microsoft.Toolkit.Uwp.UI/Brushes/ImageBlendBrush.cs",
     "Icon":  "/SamplePages/ImageBlendBrush/ImageBlendBrush.png",
     "BadgeUpdateVersionRequired":  "Creators Update required",

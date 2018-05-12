@@ -58,6 +58,18 @@ namespace Microsoft.Toolkit.Uwp.SampleApp
             return (await GetCategoriesAsync()).SelectMany(c => c.Samples).Where(s => s.Name.ToLower().Contains(query)).ToArray();
         }
 
+        /// <summary>
+        /// Searches all <see cref="Sample"/> and <see cref="SampleSet"/> for the query provided within Name, Description, and Tags.
+        /// </summary>
+        /// <param name="nameOrTag">Search query text.</param>
+        /// <returns>Array of samples.</returns>
+        public static async Task<ISampleMetadata[]> SearchSamples(string nameOrTag)
+        {
+            // TODO: Don't provide the Sample + SampleSet if the set only contains one sample (or vice versa?)
+            var query = nameOrTag.ToLower();
+            return (await GetCategoriesAsync()).SelectMany(c => c.Samples.SelectMany(set => set.Samples.ToList<ISampleMetadata>()).Union(c.Samples)).Where(s => s.Name.ToLower().Contains(query) || s.Description.ToLower().Contains(query) || s.Tags.Contains(query, StringComparer.CurrentCultureIgnoreCase)).ToArray();
+        }
+
         public static async Task<List<SampleCategory>> GetCategoriesAsync()
         {
             await _semaphore.WaitAsync();
@@ -190,7 +202,7 @@ namespace Microsoft.Toolkit.Uwp.SampleApp
                             var template = await XamlTemplateLoader.LoadTemplateFromPackagedFileAsync($"SamplePages/{sample.Name}/{file.Name}");
                             dict[file.DisplayName].XamlTemplate = template;
 
-                            if (dict[file.DisplayName].Name == null && !string.IsNullOrWhiteSpace(template.Name))
+                            if (string.IsNullOrWhiteSpace(dict[file.DisplayName].Name) && !string.IsNullOrWhiteSpace(template.Name))
                             {
                                 dict[file.DisplayName].Name = template.Name;
                                 dict[file.DisplayName].Description = template.Description;
@@ -201,7 +213,7 @@ namespace Microsoft.Toolkit.Uwp.SampleApp
                         case ".code":
                             dict[file.DisplayName].CodeFile = file.Name;
 
-                            // TODO: Figure out metadata here as well...
+                            // TODO: Figure out metadata here as well...?
                             break;
                     }
                 }
@@ -223,7 +235,7 @@ namespace Microsoft.Toolkit.Uwp.SampleApp
 
                     dict[name].Type = type;
 
-                    if (dict[name].Name == null && type.GetTypeInfo().GetCustomAttribute(typeof(SampleMetadataAttribute)) is SampleMetadataAttribute attribute)
+                    if (string.IsNullOrWhiteSpace(dict[name].Name) && type.GetTypeInfo().GetCustomAttribute(typeof(SampleMetadataAttribute)) is SampleMetadataAttribute attribute)
                     {
                         dict[name].Name = attribute.Name;
                         dict[name].Description = attribute.Description;

@@ -1,7 +1,7 @@
 {
     "Name":  "OneDrive Service",
     "Namespace":  "OneDriveSamples",
-    "About":  "The OneDrive service allows you to get your files from OneDrive using an Microsoft Account or OneDrive For Business using an Office 365 account",
+    "Description":  "The OneDrive service allows you to get your files from OneDrive using an Microsoft Account or OneDrive For Business using an Office 365 account",
     "CodeUrl":  "https://github.com/Microsoft/UWPCommunityToolkit/tree/master/Microsoft.Toolkit.Uwp.Services/Services/OneDrive/",
     "Icon":  "/SamplePages/OneDrive Service/OneDriveLogo.png",
     "DocumentationUrl":  "https://raw.githubusercontent.com/Microsoft/UWPCommunityToolkit/master/docs/services/OneDrive.md",

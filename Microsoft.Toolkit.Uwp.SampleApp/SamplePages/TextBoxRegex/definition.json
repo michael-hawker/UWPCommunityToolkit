@@ -1,7 +1,7 @@
 {
     "Name":  "TextBoxRegex",
     "Type":  "TextBoxRegexPage",
-    "About":  "TextBoxRegex helps developer to validate a TextBox with a regular expression using the Regex property.",
+    "Description":  "TextBoxRegex helps developer to validate a TextBox with a regular expression using the Regex property.",
     "CodeUrl":  "https://github.com/Microsoft/UWPCommunityToolkit/tree/master/Microsoft.Toolkit.Uwp.UI/Extensions/TextBoxRegEx",
     "XamlCodeFile":  "TextBoxRegex.bind",
     "Icon":  "/SamplePages/TextBoxRegex/TextBoxRegex.png",

@@ -26,6 +26,12 @@ namespace Microsoft.Toolkit.Uwp.SampleApp.Services
         /// <inheritdoc/>
         public List<string> Tags { get; set; }
 
+        // Not required on individual Sample as retrieved from parent.
+        public string Icon => throw new System.NotImplementedException();
+
+        // Not required on individual Sample as retrieved from parent.
+        public string BadgeUpdateVersionRequired => throw new System.NotImplementedException();
+
         // TODO: Listen to all property changes and notify of property updates???
         public PropertyDescriptor Properties { get; set; }
 

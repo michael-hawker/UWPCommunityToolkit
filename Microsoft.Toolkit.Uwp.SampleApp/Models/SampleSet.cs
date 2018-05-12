@@ -10,8 +10,6 @@
 // THE CODE OR THE USE OR OTHER DEALINGS IN THE CODE.
 // ******************************************************************
 
-using Microsoft.Toolkit.Uwp.Helpers;
-using Microsoft.Toolkit.Uwp.SampleApp.Models;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -19,13 +17,15 @@ using System.Linq;
 using System.Net.Http;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using Microsoft.Toolkit.Uwp.Helpers;
+using Microsoft.Toolkit.Uwp.SampleApp.Models;
 using Windows.Foundation.Metadata;
 using Windows.Storage;
 using Windows.Storage.Streams;
 
 namespace Microsoft.Toolkit.Uwp.SampleApp
 {
-    public class SampleSet
+    public class SampleSet : ISampleMetadata
     {
         private const string _repoOnlineRoot = "https://raw.githubusercontent.com/Microsoft/UWPCommunityToolkit/";
         private const string _docsOnlineRoot = "https://raw.githubusercontent.com/MicrosoftDocs/UWPCommunityToolkitDocs/";
@@ -48,7 +48,10 @@ namespace Microsoft.Toolkit.Uwp.SampleApp
         /// </summary>
         public string Name { get; set; }
 
-        public string About { get; set; }
+        public string Description { get; set; }
+
+        /// <inheritdoc/>
+        public List<string> Tags { get; set; } = new List<string>();
 
         public string Category { get; set; }
 

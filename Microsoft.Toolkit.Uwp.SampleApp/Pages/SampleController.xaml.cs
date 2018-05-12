@@ -157,9 +157,14 @@ namespace Microsoft.Toolkit.Uwp.SampleApp
         protected override async void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
-            if (e.Parameter is SampleSet sample)
+            if (e.Parameter is Sample sample)
             {
-                SampleSuite = sample;
+                SampleSuite = sample.Parent;
+                CurrentSample = SampleSuite.Samples.FirstOrDefault(s => s.Name == sample.Name);
+            }
+            else if (e.Parameter is SampleSet sampleset)
+            {
+                SampleSuite = sampleset;
                 CurrentSample = SampleSuite.Samples.First();
             }
         }

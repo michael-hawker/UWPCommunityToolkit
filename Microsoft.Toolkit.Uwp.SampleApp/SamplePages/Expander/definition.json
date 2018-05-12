@@ -1,7 +1,7 @@
 {
     "Name":  "Expander",
     "Type":  "ExpanderPage",
-    "About":  "Expander control allows user to show/hide content based on a boolean state.",
+    "Description":  "Expander control allows user to show/hide content based on a boolean state.",
     "CodeUrl":  "https://github.com/Microsoft/UWPCommunityToolkit/tree/master/Microsoft.Toolkit.Uwp.UI.Controls/Expander",
     "XamlCodeFile":  "ExpanderXaml.bind",
     "Icon":  "/SamplePages/Expander/Expander.png",

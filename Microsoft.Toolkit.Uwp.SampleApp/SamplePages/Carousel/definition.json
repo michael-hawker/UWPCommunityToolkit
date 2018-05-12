@@ -1,7 +1,7 @@
 {
     "Name":  "Carousel",
     "Type":  "CarouselPage",
-    "About":  "Presents items in a carousel control. It reacts to changes in the layout as well as the content so it can adapt to different form factors automatically.",
+    "Description":  "Presents items in a carousel control. It reacts to changes in the layout as well as the content so it can adapt to different form factors automatically.",
     "CodeUrl":  "https://github.com/Microsoft/UWPCommunityToolkit/tree/master/Microsoft.Toolkit.Uwp.UI.Controls/Carousel",
     "XamlCodeFile":  "CarouselCode.bind",
     "Icon":  "/SamplePages/Carousel/Carousel.png",

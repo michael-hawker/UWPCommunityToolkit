@@ -1,7 +1,7 @@
 {
     "Name":  "BackdropSaturationBrush",
     "Namespace":  "BackdropSaturationBrushSamples",
-    "About":  "Brush which applies a Saturation effect to whatever\u0027s behind it.",
+    "Description":  "Brush which applies a Saturation effect to whatever\u0027s behind it.",
     "CodeUrl":  "https://github.com/Microsoft/UWPCommunitToolkit/tree/master/Microsoft.Toolkit.Uwp.UI/Brushes/BackdropSaturationBrush.cs",
     "Icon":  "/SamplePages/BackdropSaturationBrush/BackdropSaturationBrush.png",
     "BadgeUpdateVersionRequired":  "Creators Update required",

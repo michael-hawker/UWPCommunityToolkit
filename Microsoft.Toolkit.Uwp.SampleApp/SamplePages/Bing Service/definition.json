@@ -1,7 +1,7 @@
 {
     "Name":  "Bing Service",
     "Type":  "BingPage",
-    "About":  "The Bing Service allows you to retrieve Microsoft Bing web search engine results.",
+    "Description":  "The Bing Service allows you to retrieve Microsoft Bing web search engine results.",
     "CodeUrl":  "https://github.com/Microsoft/UWPCommunityToolkit/tree/master/Microsoft.Toolkit.Uwp.Services/Services/Bing",
     "CodeFile":  "BingCode.code",
     "Icon":  "/SamplePages/Bing Service/icon.png",

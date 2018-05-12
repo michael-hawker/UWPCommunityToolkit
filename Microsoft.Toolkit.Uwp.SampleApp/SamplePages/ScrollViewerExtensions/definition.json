@@ -1,7 +1,7 @@
 {
     "Name":  "ScrollViewerExtensions",
     "Type":  "ScrollViewerExtensionsPage",
-    "About":  "Extensions for all controls that contain a ScrollViewer like ListView.",
+    "Description":  "Extensions for all controls that contain a ScrollViewer like ListView.",
     "CodeUrl":  "https://github.com/Microsoft/UWPCommunityToolkit/tree/master/Microsoft.Toolkit.Uwp.UI/Extensions/ScrollViewer",
     "XamlCodeFile":  "ScrollViewerExtensionsCode.bind",
     "Icon":  "/Assets/Helpers.png",
