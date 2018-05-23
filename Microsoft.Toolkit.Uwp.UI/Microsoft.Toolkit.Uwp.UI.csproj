@@ -8,6 +8,8 @@
 
     <UseWindowsDesktopSdk>true</UseWindowsDesktopSdk>
     <UseWindowsMobileSdk>true</UseWindowsMobileSdk>
+    
+    <LangVersion>7.2</LangVersion>
   </PropertyGroup>
 
   <ItemGroup>
