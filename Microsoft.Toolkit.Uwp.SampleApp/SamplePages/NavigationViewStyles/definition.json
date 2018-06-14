@@ -2,7 +2,7 @@
     "Name":  "NavigationViewStyles",
     "Type":  "NavigationViewStylesPage",
     "XamlCodeFile":  "NavigationViewStylesXaml.bind",
-    "DocumentationUrl":  "https://raw.githubusercontent.com/Microsoft/UWPCommunityToolkit/master/docs/extensions/NavigationView.md",
+    "DocumentationUrl":  "https://raw.githubusercontent.com/Microsoft/WindowsCommunityToolkit/master/docs/extensions/NavigationView.md",
     "Icon":  "/SamplePages/NavigationViewStyles/NavigationViewStyles.png",
     "Description":  "Style extensions for the NavigationView to appear like the one used by Visual Studio Code.",
     "BadgeUpdateVersionRequired":  "Fall Creators Update required",

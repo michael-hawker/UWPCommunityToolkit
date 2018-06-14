@@ -1,6 +1,6 @@
 {
     "Name":  "Analytics",
-    "DocumentationUrl":  "https://raw.githubusercontent.com/Microsoft/UWPCommunityToolkit/master/docs/developer-tools/Analytics.md",
+    "DocumentationUrl":  "https://raw.githubusercontent.com/Microsoft/WindowsCommunityToolkit/master/docs/developer-tools/Analytics.md",
     "Description":  "List of frameworks to help you track activity in your apps.",
     "CodeFile":  "AnalyticsCode.code",
     "Icon":  "/SamplePages/Analytics/Analytics.png",

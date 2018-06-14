@@ -6,6 +6,6 @@
     "Icon":  "/SamplePages/RadialGradientBrush/RadialGradientBrush.png",
     "BadgeUpdateVersionRequired":  "Creators Update required",
     "ApiCheck":  "Windows.UI.Xaml.Media.XamlCompositionBrushBase",
-    "DocumentationUrl":  "https://raw.githubusercontent.com/Microsoft/UWPCommunityToolkit/master/docs/brushes/RadialGradientBrush.md",
+    "DocumentationUrl":  "https://raw.githubusercontent.com/Microsoft/WindowsCommunityToolkit/master/docs/brushes/RadialGradientBrush.md",
     "Category":  "Brushes"
 }

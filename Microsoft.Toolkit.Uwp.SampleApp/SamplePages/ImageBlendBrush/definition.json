@@ -6,6 +6,6 @@
     "Icon":  "/SamplePages/ImageBlendBrush/ImageBlendBrush.png",
     "BadgeUpdateVersionRequired":  "Creators Update required",
     "ApiCheck":  "Windows.UI.Xaml.Media.XamlCompositionBrushBase",
-    "DocumentationUrl":  "https://raw.githubusercontent.com/Microsoft/UWPCommunityToolkit/master/docs/brushes/ImageBlendBrush.md",
+    "DocumentationUrl":  "https://raw.githubusercontent.com/Microsoft/WindowsCommunityToolkit/master/docs/brushes/ImageBlendBrush.md",
     "Category":  "Brushes"
 }

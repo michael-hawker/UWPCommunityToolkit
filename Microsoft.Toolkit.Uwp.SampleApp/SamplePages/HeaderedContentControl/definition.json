@@ -2,9 +2,9 @@
     "Name":  "HeaderedContentControl",
     "Type":  "HeaderedContentControlPage",
     "Description":  "Allows content to be displayed with a specified header.",
-    "CodeUrl":  "https://github.com/Microsoft/UWPCommunityToolkit/tree/master/Microsoft.Toolkit.Uwp.UI.Controls/HeaderedContentControl",
+    "CodeUrl":  "https://github.com/Microsoft/WindowsCommunityToolkit/tree/master/Microsoft.Toolkit.Uwp.UI.Controls/HeaderedContentControl",
     "XamlCodeFile":  "HeaderedContentControlXaml.bind",
     "Icon":  "/SamplePages/HeaderedContentControl/HeaderedContentControl.png",
-    "DocumentationUrl":  "https://raw.githubusercontent.com/Microsoft/UWPCommunityToolkit/master/docs/controls/HeaderedContentControl.md",
+    "DocumentationUrl":  "https://raw.githubusercontent.com/Microsoft/WindowsCommunityToolkit/master/docs/controls/HeaderedContentControl.md",
     "Category":  "Controls"
 }

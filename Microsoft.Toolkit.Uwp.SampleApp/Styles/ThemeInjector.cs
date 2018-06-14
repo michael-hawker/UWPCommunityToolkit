@@ -1,14 +1,6 @@
-﻿// ******************************************************************
-// Copyright (c) Microsoft. All rights reserved.
-// This code is licensed under the MIT License (MIT).
-// THE CODE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
-// INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
-// IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
-// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
-// TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH
-// THE CODE OR THE USE OR OTHER DEALINGS IN THE CODE.
-// ******************************************************************
+// Licensed to the .NET Foundation under one or more agreements.
+// The .NET Foundation licenses this file to you under the MIT license.
+// See the LICENSE file in the project root for more information.
 
 using Windows.Foundation.Metadata;
 using Windows.UI;
@@ -50,7 +42,7 @@ namespace Microsoft.Toolkit.Uwp.SampleApp.Styles
 
                 AddAcrylic(new ThemeAcrylic
                 {
-                    Names = new[] { "Brush-SampleInfo-Background", "Commands-Background" },
+                    Names = new[] { "Commands-Background" },
                     DarkAcrylic = new AcrylicBrush
                     {
                         TintColor = Helpers.ColorHelper.ToColor("#FF111111"),
@@ -59,42 +51,8 @@ namespace Microsoft.Toolkit.Uwp.SampleApp.Styles
                     },
                     LightAcrylic = new AcrylicBrush
                     {
-                        TintColor = Colors.White,
+                        TintColor = Helpers.ColorHelper.ToColor("#FFDDDDDD"),
                         TintOpacity = 0.6,
-                        BackgroundSource = AcrylicBackgroundSource.Backdrop,
-                    }
-                });
-
-                AddAcrylic(new ThemeAcrylic
-                {
-                    Name = "Brush-Sample-HostAcrylic",
-                    DarkAcrylic = new AcrylicBrush
-                    {
-                        TintColor = Colors.Black,
-                        TintOpacity = 0.5,
-                        BackgroundSource = AcrylicBackgroundSource.HostBackdrop
-                    },
-                    LightAcrylic = new AcrylicBrush
-                    {
-                        TintColor = Colors.White,
-                        TintOpacity = 0.3,
-                        BackgroundSource = AcrylicBackgroundSource.HostBackdrop,
-                    }
-                });
-
-                AddAcrylic(new ThemeAcrylic
-                {
-                    Name = "Brush-Sample-AppAcrylic",
-                    DarkAcrylic = new AcrylicBrush
-                    {
-                        TintColor = Colors.Black,
-                        TintOpacity = 0.6,
-                        BackgroundSource = AcrylicBackgroundSource.Backdrop
-                    },
-                    LightAcrylic = new AcrylicBrush
-                    {
-                        TintColor = Colors.White,
-                        TintOpacity = 0.4,
                         BackgroundSource = AcrylicBackgroundSource.Backdrop,
                     }
                 });

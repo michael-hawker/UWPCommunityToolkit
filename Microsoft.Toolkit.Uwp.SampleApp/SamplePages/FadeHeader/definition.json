@@ -2,10 +2,10 @@
     "Name":  "FadeHeader",
     "Type":  "FadeHeaderBehaviorPage",
     "Description":  "Fade ListView and GridView Headers",
-    "CodeUrl":  "https://github.com/Microsoft/UWPCommunityToolkit/tree/master/Microsoft.Toolkit.Uwp.UI.Animations/Behaviors",
+    "CodeUrl":  "https://github.com/Microsoft/WindowsCommunityToolkit/tree/master/Microsoft.Toolkit.Uwp.UI.Animations/Behaviors",
     "CodeFile":  "FadeHeaderBehaviorCode.code",
     "XamlCodeFile":  "FadeHeaderBehaviorXaml.bind",
     "Icon":  "/SamplePages/FadeHeader/FadeHeaderBehavior.png",
-    "DocumentationUrl":  "https://raw.githubusercontent.com/Microsoft/UWPCommunityToolkit/master/docs/animations/FadeHeader.md",
+    "DocumentationUrl":  "https://raw.githubusercontent.com/Microsoft/WindowsCommunityToolkit/master/docs/animations/FadeHeader.md",
     "Category":  "Animations"
 }

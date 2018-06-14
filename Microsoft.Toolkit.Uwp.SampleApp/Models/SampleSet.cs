@@ -1,17 +1,10 @@
-﻿// ******************************************************************
-// Copyright (c) Microsoft. All rights reserved.
-// This code is licensed under the MIT License (MIT).
-// THE CODE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
-// INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
-// IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
-// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
-// TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH
-// THE CODE OR THE USE OR OTHER DEALINGS IN THE CODE.
-// ******************************************************************
+﻿// Licensed to the .NET Foundation under one or more agreements.
+// The .NET Foundation licenses this file to you under the MIT license.
+// See the LICENSE file in the project root for more information.
 
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Net.Http;
@@ -19,18 +12,55 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Microsoft.Toolkit.Uwp.Helpers;
 using Microsoft.Toolkit.Uwp.SampleApp.Models;
+using Newtonsoft.Json;
 using Windows.Foundation.Metadata;
 using Windows.Storage;
 using Windows.Storage.Streams;
 
 namespace Microsoft.Toolkit.Uwp.SampleApp
 {
+    /// <summary>
+    /// A SampleSet consists of a named group of examples for a particular control.
+    /// It can contain multiple compiled Pages (.xaml+.xaml.cs), .bind live-editable examples, and a .code flat examples (or any combination thereof).
+    /// These are discovered automatically by any set of files sharing the same name within a directory and bundled as a sample.
+    /// </summary>
     public class SampleSet : ISampleMetadata
     {
-        private const string _repoOnlineRoot = "https://raw.githubusercontent.com/Microsoft/UWPCommunityToolkit/";
+        private const string _repoOnlineRoot = "https://raw.githubusercontent.com/Microsoft/WindowsCommunityToolkit/";
         private const string _docsOnlineRoot = "https://raw.githubusercontent.com/MicrosoftDocs/UWPCommunityToolkitDocs/";
+        private const string _cacheSHAKey = "docs-cache-sha";
 
         private static HttpClient client = new HttpClient();
+
+        public static async void EnsureCacheLatest()
+        {
+            var settingsStorage = new LocalObjectStorageHelper();
+
+            var onlineDocsSHA = await GetDocsSHA();
+            var cacheSHA = settingsStorage.Read<string>(_cacheSHAKey);
+
+            bool outdatedCache = onlineDocsSHA != null && cacheSHA != null && onlineDocsSHA != cacheSHA;
+            bool noCache = onlineDocsSHA != null && cacheSHA == null;
+
+            if (outdatedCache || noCache)
+            {
+                // Delete everything in the Cache Folder. Could be Pre 3.0.0 Cache data.
+                foreach (var item in await ApplicationData.Current.LocalCacheFolder.GetItemsAsync())
+                {
+                    try
+                    {
+                        await item.DeleteAsync(StorageDeleteOption.Default);
+                    }
+                    catch
+                    {
+                    }
+                }
+
+                // Update Cache Version info.
+                settingsStorage.Save(_cacheSHAKey, onlineDocsSHA);
+            }
+        }
+
         private string _cachedDocumentation = string.Empty;
         private string _cachedPath = string.Empty;
 
@@ -83,7 +113,7 @@ namespace Microsoft.Toolkit.Uwp.SampleApp
 #if DEBUG
                 _codeUrl = value;
 #else
-                var regex = new Regex("^https://github.com/Microsoft/UWPCommunityToolkit/(tree|blob)/(?<branch>.+?)/(?<path>.*)");
+                var regex = new Regex("^https://github.com/Microsoft/WindowsCommunityToolkit/(tree|blob)/(?<branch>.+?)/(?<path>.*)");
                 var docMatch = regex.Match(value);
 
                 var branch = string.Empty;
@@ -100,7 +130,7 @@ namespace Microsoft.Toolkit.Uwp.SampleApp
                 }
                 else
                 {
-                    _codeUrl = $"https://github.com/Microsoft/UWPCommunityToolkit/tree/master/{path}";
+                    _codeUrl = $"https://github.com/Microsoft/WindowsCommunityToolkit/tree/master/{path}";
                 }
 #endif
             }
@@ -304,6 +334,48 @@ namespace Microsoft.Toolkit.Uwp.SampleApp
             result = regex.Replace(result, "##");
 
             return result;
+        }
+
+        private static async Task<string> GetDocsSHA()
+        {
+            try
+            {
+                var branchEndpoint = "https://api.github.com/repos/microsoftdocs/uwpcommunitytoolkitdocs/git/refs/heads/live";
+
+                var request = new HttpRequestMessage(HttpMethod.Get, branchEndpoint);
+                request.Headers.Add("User-Agent", "Windows Community Toolkit Sample App");
+
+                using (request)
+                {
+                    using (var response = await client.SendAsync(request))
+                    {
+                        if (response.IsSuccessStatusCode)
+                        {
+                            var raw = await response.Content.ReadAsStringAsync();
+                            Debug.WriteLine(raw);
+                            var json = JsonConvert.DeserializeObject<GitRef>(raw);
+                            return json?.RefObject?.Sha;
+                        }
+                    }
+                }
+            }
+            catch
+            {
+            }
+
+            return null;
+        }
+
+        public class GitRef
+        {
+            [JsonProperty("object")]
+            public GitRefObject RefObject { get; set; }
+        }
+
+        public class GitRefObject
+        {
+            [JsonProperty("sha")]
+            public string Sha { get; set; }
         }
     }
 }

@@ -2,9 +2,9 @@
     "Name":  "HeaderedItemsControl",
     "Type":  "HeaderedItemsControlPage",
     "Description":  "Allows items to be displayed with a specified header.",
-    "CodeUrl":  "https://github.com/Microsoft/UWPCommunityToolkit/tree/master/Microsoft.Toolkit.Uwp.UI.Controls/HeaderedItemsControl",
+    "CodeUrl":  "https://github.com/Microsoft/WindowsCommunityToolkit/tree/master/Microsoft.Toolkit.Uwp.UI.Controls/HeaderedItemsControl",
     "XamlCodeFile":  "HeaderedItemsControlXaml.bind",
     "Icon":  "/SamplePages/HeaderedItemsControl/HeaderedItemsControl.png",
-    "DocumentationUrl":  "https://raw.githubusercontent.com/Microsoft/UWPCommunityToolkit/master/docs/controls/HeaderedItemsControl.md",
+    "DocumentationUrl":  "https://raw.githubusercontent.com/Microsoft/WindowsCommunityToolkit/master/docs/controls/HeaderedItemsControl.md",
     "Category":  "Controls"
 }

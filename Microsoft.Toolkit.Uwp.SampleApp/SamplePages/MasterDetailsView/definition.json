@@ -2,10 +2,10 @@
     "Name":  "MasterDetailsView",
     "Type":  "MasterDetailsViewPage",
     "Description":  "The MasterDetailsView control allows the user to implement the Master/Details design pattern.",
-    "CodeUrl":  "https://github.com/Microsoft/UWPCommunityToolkit/tree/master/Microsoft.Toolkit.Uwp.UI.Controls/MasterDetailsView",
+    "CodeUrl":  "https://github.com/Microsoft/WindowsCommunityToolkit/tree/master/Microsoft.Toolkit.Uwp.UI.Controls/MasterDetailsView",
     "XamlCodeFile":  "MasterDetailsView.bind",
     "CodeFile":  "MasterDetailsViewCode.code",
     "Icon":  "/SamplePages/MasterDetailsView/MasterDetailsView.png",
-    "DocumentationUrl":  "https://raw.githubusercontent.com/Microsoft/UWPCommunityToolkit/master/docs/controls/MasterDetailsView.md",
+    "DocumentationUrl":  "https://raw.githubusercontent.com/Microsoft/WindowsCommunityToolkit/master/docs/controls/MasterDetailsView.md",
     "Category":  "Controls"
 }

@@ -119,15 +119,6 @@
                         <ColumnDefinition />
                     </Grid.ColumnDefinitions>
 
-                    <animations:Implicit.ShowAnimations>
-                        <animations:TranslationAnimation From="200, 0, 0" To="0" Duration="0:0:0.3" />
-                        <animations:OpacityAnimation From="0" To="1" Duration="0:0:0.3" />
-                    </animations:Implicit.ShowAnimations>
-                    <animations:Implicit.HideAnimations>
-                        <animations:TranslationAnimation To="200, 0, 0" Duration="0:0:0.2" />
-                        <animations:OpacityAnimation To="0" From="1" Duration="0:0:0.2" />
-                    </animations:Implicit.HideAnimations>
-
                     <AppBarButton x:Name="ExpandPane"
                     Visibility="{x:Bind CanChangePaneState}"
                     Icon="ClosePane"
@@ -152,16 +143,7 @@
                 HorizontalContentAlignment="Stretch"
                 Margin="8,0,8,8"
                 Visibility="{x:Bind GreaterThanZero(Commands.Count), Mode=OneWay}">
-
-                    <animations:Implicit.ShowAnimations>
-                        <animations:TranslationAnimation From="0, 100, 0" To="0" Duration="0:0:0.3" />
-                        <animations:OpacityAnimation From="0" To="1" Duration="0:0:0.3" />
-                    </animations:Implicit.ShowAnimations>
-                    <animations:Implicit.HideAnimations>
-                        <animations:TranslationAnimation To="0, 100, 0" From="0" Duration="0:0:0.3" />
-                        <animations:OpacityAnimation To="0" From="1" Duration="0:0:0.3" />
-                    </animations:Implicit.HideAnimations>
-
+                    
                     <Border
                     Background="{ThemeResource Commands-Background}"
                     CornerRadius="6">
@@ -205,15 +187,6 @@
                     <RowDefinition Height="50" />
                     <RowDefinition />
                 </Grid.RowDefinitions>
-
-                <animations:Implicit.ShowAnimations>
-                    <animations:TranslationAnimation From="200, 0, 0" To="0" Duration="0:0:0.3" />
-                    <animations:OpacityAnimation From="0" To="1" Duration="0:0:0.3" />
-                </animations:Implicit.ShowAnimations>
-                <animations:Implicit.HideAnimations>
-                    <animations:TranslationAnimation To="200, 0, 0" Duration="0:0:0.2" />
-                    <animations:OpacityAnimation To="0" From="1" Duration="0:0:0.2" />
-                </animations:Implicit.HideAnimations>
 
                 <Pivot Style="{StaticResource PivotUnderlineStyle}" x:Name="InfoAreaPivot"
                         Grid.Row="1"
@@ -260,10 +233,15 @@
                             <controls:MarkdownTextBlock x:Name="DocumentationTextblock"
                                                     Foreground="{ThemeResource DocumentationForeground}"
                                                     Background="Transparent"
+                                                    CodeBackground="{ThemeResource SampleMarkdownBackgroundBrush}"
+                                                    QuoteBackground="{ThemeResource SampleMarkdownBackgroundBrush}"
+                                                    InlineCodeBackground="{ThemeResource SampleMarkdownInlineCodeBackgroundBrush}"
                                                     LinkForeground="{ThemeResource Brush-Link-Normal}"
                                                     ImageResolving="DocumentationTextblock_ImageResolving"
                                                     LinkClicked="DocumentationTextblock_OnLinkClicked"
-                                                    IsFocusEngagementEnabled="False" />
+                                                    IsFocusEngagementEnabled="False"
+                                                    ImageMaxWidth="500"
+                                                    ImageMaxHeight="500"/>
                         </ScrollViewer>
                     </PivotItem>
                 </Pivot>
@@ -273,7 +251,7 @@
                                     Width="11"
                                     Background="Transparent"
                                     HorizontalAlignment="Left"
-                                    GripperForeground="White"
+                                    GripperForeground="{ThemeResource Brush-Alt}"
                                     ParentLevel="1" />
             </Grid>
 
@@ -289,16 +267,21 @@
             </Border>
 
             <controls:InAppNotification x:Name="ExceptionNotification"
+                                        Grid.Row="2"
                                         Grid.RowSpan="2"
                                         Style="{StaticResource ExceptionNotification}"
                                         Grid.ColumnSpan="2"
-                                        VerticalAlignment="Top"
+                                        VerticalAlignment="Bottom"
                                         HorizontalAlignment="Center"
-                                        Margin="15"></controls:InAppNotification>
+                                        StackMode="QueueBehind" 
+                                        Margin="10"
+                                        Canvas.ZIndex="999"/>
             <Grid x:Name="waitRing"
-                    Grid.RowSpan="2"
+                    Grid.Row="1"
+                    Grid.RowSpan="3"
                     Grid.ColumnSpan="2"
-                    Visibility="Collapsed">
+                    Visibility="Collapsed"
+                    Canvas.ZIndex="999">
                 <Grid Background="{ThemeResource BackingTint}" />
                 <ProgressRing Width="100"
                                 Height="100"

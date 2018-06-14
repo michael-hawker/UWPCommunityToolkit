@@ -2,8 +2,8 @@
     "Name":  "AdvancedCollectionView",
     "Namespace":  "AdvancedCollectionViewSamples",
     "Description":  "Allows you to easily sort and filter your collections before displaying them.",
-    "CodeUrl":  "https://github.com/Microsoft/UWPCommunityToolkit/tree/master/Microsoft.Toolkit.Uwp.UI/AdvancedCollectionView",
+    "CodeUrl":  "https://github.com/Microsoft/WindowsCommunityToolkit/tree/master/Microsoft.Toolkit.Uwp.UI/AdvancedCollectionView",
     "Icon":  "/SamplePages/AdvancedCollectionView/AdvancedCollectionView.png",
-    "DocumentationUrl":  "https://raw.githubusercontent.com/Microsoft/UWPCommunityToolkit/master/docs/helpers/AdvancedCollectionView.md",
+    "DocumentationUrl":  "https://raw.githubusercontent.com/Microsoft/WindowsCommunityToolkit/master/docs/helpers/AdvancedCollectionView.md",
     "Category":  "Helpers"
 }

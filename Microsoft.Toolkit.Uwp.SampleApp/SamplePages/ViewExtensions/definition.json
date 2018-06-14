@@ -2,9 +2,9 @@
     "Name":  "ViewExtensions",
     "Type":  "ViewExtensionsPage",
     "Description":  "View extensions to set StatusBar and TitleBar properties.",
-    "CodeUrl":  "https://github.com/Microsoft/UWPCommunityToolkit/tree/master/Microsoft.Toolkit.Uwp.UI/Extensions",
+    "CodeUrl":  "https://github.com/Microsoft/WindowsCommunityToolkit/tree/master/Microsoft.Toolkit.Uwp.UI/Extensions",
     "XamlCodeFile":  "ViewExtensionsCode.bind",
     "Icon":  "/SamplePages/ViewExtensions/ViewExtensions.png",
-    "DocumentationUrl":  "https://raw.githubusercontent.com/Microsoft/UWPCommunityToolkit/master/docs/extensions/ViewExtensions.md",
+    "DocumentationUrl":  "https://raw.githubusercontent.com/Microsoft/WindowsCommunityToolkit/master/docs/extensions/ViewExtensions.md",
     "Category":  "Extensions"
 }

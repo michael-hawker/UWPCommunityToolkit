@@ -2,11 +2,11 @@
     "Name":  "Light",
     "Type":  "LightBehaviorPage",
     "Description":  "Light XAML elements using composition",
-    "CodeUrl":  "https://github.com/Microsoft/UWPCommunityToolkit/tree/master/Microsoft.Toolkit.Uwp.UI.Animations/Behaviors",
+    "CodeUrl":  "https://github.com/Microsoft/WindowsCommunityToolkit/tree/master/Microsoft.Toolkit.Uwp.UI.Animations/Behaviors",
     "CodeFile":  "LightBehaviorCode.code",
     "XamlCodeFile":  "LightBehaviorXaml.bind",
     "Icon":  "/SamplePages/Light/LightBehavior.png",
     "BadgeUpdateVersionRequired":  "Anniversary Update required",
-    "DocumentationUrl":  "https://raw.githubusercontent.com/Microsoft/UWPCommunityToolkit/master/docs/animations/Light.md",
+    "DocumentationUrl":  "https://raw.githubusercontent.com/Microsoft/WindowsCommunityToolkit/master/docs/animations/Light.md",
     "Category":  "Animations"
 }

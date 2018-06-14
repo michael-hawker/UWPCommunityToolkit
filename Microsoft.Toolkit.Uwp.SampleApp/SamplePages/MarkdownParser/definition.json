@@ -4,5 +4,5 @@
     "Type": "MarkdownParserPage",
     "Description": "The Markdown Parser allows you to parse a Markdown String into a Markdown Document, and then Render it with a Markdown Renderer.",
     "Icon": "/Assets/Helpers.png",
-    "DocumentationUrl": "https://raw.githubusercontent.com/Microsoft/UWPCommunityToolkit/master/docs/parsers/MarkdownParser.md"
+    "DocumentationUrl": "https://raw.githubusercontent.com/Microsoft/WindowsCommunityToolkit/master/docs/parsers/MarkdownParser.md"
 }

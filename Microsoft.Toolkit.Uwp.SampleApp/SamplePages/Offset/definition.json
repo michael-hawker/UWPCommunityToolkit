@@ -2,10 +2,10 @@
     "Name":  "Offset",
     "Type":  "OffsetBehaviorPage",
     "Description":  "Offset of XAML elements using composition",
-    "CodeUrl":  "https://github.com/Microsoft/UWPCommunityToolkit/tree/master/Microsoft.Toolkit.Uwp.UI.Animations/Behaviors",
+    "CodeUrl":  "https://github.com/Microsoft/WindowsCommunityToolkit/tree/master/Microsoft.Toolkit.Uwp.UI.Animations/Behaviors",
     "CodeFile":  "OffsetBehaviorCode.code",
     "XamlCodeFile":  "OffsetBehaviorXaml.bind",
     "Icon":  "/SamplePages/Offset/offsetBehavior.png",
-    "DocumentationUrl":  "https://raw.githubusercontent.com/Microsoft/UWPCommunityToolkit/master/docs/animations/Offset.md",
+    "DocumentationUrl":  "https://raw.githubusercontent.com/Microsoft/WindowsCommunityToolkit/master/docs/animations/Offset.md",
     "Category":  "Animations"
 }

@@ -2,11 +2,11 @@
     "Name":  "ParallaxService",
     "Type":  "ParallaxPage",
     "Description":  "The ParallaxService is deprecated and will be removed in a future major release. Please use the ParallaxView available in the Fall Creators Update.",
-    "CodeUrl":  "https://github.com/Microsoft/UWPCommunityToolkit/tree/master/Microsoft.Toolkit.Uwp.UI.Animations",
+    "CodeUrl":  "https://github.com/Microsoft/WindowsCommunityToolkit/tree/master/Microsoft.Toolkit.Uwp.UI.Animations",
     "XamlCodeFile":  "ParallaxPage.bind",
     "Icon":  "/SamplePages/ParallaxService/Parallax.png",
     "BadgeUpdateVersionRequired":  "DEPRECATED",
     "DeprecatedWarning":  "The ParallaxService is deprecated and will be removed in a future major release. Please use the ParallaxView available in the Fall Creators Update.",
-    "DocumentationUrl":  "https://raw.githubusercontent.com/Microsoft/UWPCommunityToolkit/master/docs/animations/ParallaxService.md",
+    "DocumentationUrl":  "https://raw.githubusercontent.com/Microsoft/WindowsCommunityToolkit/master/docs/animations/ParallaxService.md",
     "Category":  "Animations"
 }

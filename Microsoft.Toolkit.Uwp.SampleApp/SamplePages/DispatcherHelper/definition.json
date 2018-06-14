@@ -2,9 +2,9 @@
     "Name":  "DispatcherHelper",
     "Type":  "DispatcherHelperPage",
     "Description":  "Allows easy interaction with Windows Runtime core message dispatcher for multi-threaded scenario (I.E: Run code on UI thread). ",
-    "CodeUrl":  "https://github.com/Microsoft/UWPCommunityToolkit/blob/master/Microsoft.Toolkit.Uwp/Helpers/DispatcherHelper.cs",
+    "CodeUrl":  "https://github.com/Microsoft/WindowsCommunityToolkit/blob/master/Microsoft.Toolkit.Uwp/Helpers/DispatcherHelper.cs",
     "CodeFile":  "DispatcherHelperCode.code",
     "Icon":  "/Assets/Helpers.png",
-    "DocumentationUrl":  "https://raw.githubusercontent.com/Microsoft/UWPCommunityToolkit/master/docs/helpers/DispatcherHelper.md",
+    "DocumentationUrl":  "https://raw.githubusercontent.com/Microsoft/WindowsCommunityToolkit/master/docs/helpers/DispatcherHelper.md",
     "Category":  "Helpers"
 }

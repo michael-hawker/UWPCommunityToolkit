@@ -25,8 +25,7 @@ steps:
     arguments: -c $(BuildConfiguration)   
   displayName: Set Version
 
-- powershell: |
-    .\build\build.ps1 -target=SignNuGet
+- powershell: .\build\build.ps1 -target=SignNuGet
   displayName: Build 
   env:
     SignClientSecret: $(SignClientSecret)

@@ -6,6 +6,6 @@
     "Icon":  "/SamplePages/BackdropGammaTransferBrush/BackdropGammaTransferBrush.png",
     "BadgeUpdateVersionRequired":  "Creators Update required",
     "ApiCheck":  "Windows.UI.Xaml.Media.XamlCompositionBrushBase",
-    "DocumentationUrl":  "https://raw.githubusercontent.com/Microsoft/UWPCommunityToolkit/master/docs/brushes/BackdropGammaTransferBrush.md",
+    "DocumentationUrl":  "https://raw.githubusercontent.com/Microsoft/WindowsCommunityToolkit/master/docs/brushes/BackdropGammaTransferBrush.md",
     "Category":  "Brushes"
 }

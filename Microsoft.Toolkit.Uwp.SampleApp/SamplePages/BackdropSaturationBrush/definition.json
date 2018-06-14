@@ -6,6 +6,6 @@
     "Icon":  "/SamplePages/BackdropSaturationBrush/BackdropSaturationBrush.png",
     "BadgeUpdateVersionRequired":  "Creators Update required",
     "ApiCheck":  "Windows.UI.Xaml.Media.XamlCompositionBrushBase",
-    "DocumentationUrl":  "https://raw.githubusercontent.com/Microsoft/UWPCommunityToolkit/master/docs/brushes/BackdropSaturationBrush.md",
+    "DocumentationUrl":  "https://raw.githubusercontent.com/Microsoft/WindowsCommunityToolkit/master/docs/brushes/BackdropSaturationBrush.md",
     "Category":  "Brushes"
 }
