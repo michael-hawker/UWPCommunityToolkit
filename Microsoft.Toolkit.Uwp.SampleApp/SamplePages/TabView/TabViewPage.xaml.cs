@@ -30,6 +30,7 @@ namespace Microsoft.Toolkit.Uwp.SampleApp.SamplePages
             {
                 _tabs.TabDraggedOutside += Tabs_TabDraggedOutside;
                 _tabs.TabClosing += Tabs_TabClosing;
+                _tabs.DragOver += _tabs_DragOver;
             }
 
             var btn = control.FindDescendantByName("AddTabButtonUpper") as Button;
@@ -37,6 +38,17 @@ namespace Microsoft.Toolkit.Uwp.SampleApp.SamplePages
             {
                 btn.Click += AddUpperTabClick;
             }
+
+            var _tabs2 = control.FindChildByName("Tabs2") as TabView;
+            if (_tabs2 != null)
+            {
+                _tabs2.DragOver += _tabs_DragOver;
+            }
+        }
+
+        private void _tabs_DragOver(object sender, DragEventArgs e)
+        {
+            e.AcceptedOperation = Windows.ApplicationModel.DataTransfer.DataPackageOperation.Move;
         }
 
         private void AddUpperTabClick(object sender, RoutedEventArgs e)
