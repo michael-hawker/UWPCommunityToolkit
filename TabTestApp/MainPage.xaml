@@ -7,21 +7,49 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:animations="using:Microsoft.Toolkit.Uwp.UI.Animations"
     xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
-    xmlns:converters="using:Microsoft.Toolkit.Uwp.UI.Converters"
+    xmlns:Windows10version1803="http://schemas.microsoft.com/winfx/2006/xaml/presentation?IsApiContractPresent(Windows.Foundation.UniversalApiContract, 6)"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Page.Resources>
-        <converters:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter"/>
-        <converters:BoolToObjectConverter x:Key="TitleFullScreenBackgroundConverter" TrueValue="{ThemeResource ApplicationPageBackgroundThemeBrush}" FalseValue="Transparent"/>
-
         <animations:AnimationCollection x:Key="TitleShowAnimation">
             <animations:TranslationAnimation Duration="0:0:0.3" From="0, -200, 0" To="0" ></animations:TranslationAnimation>
             <animations:OpacityAnimation Duration="0:0:0.3" From="0" To="1.0"></animations:OpacityAnimation>
         </animations:AnimationCollection>
     </Page.Resources>
-    
-    <Grid>
+
+    <Grid Windows10version1803:KeyboardAcceleratorPlacementMode="Hidden">
+        <Grid.KeyboardAccelerators>
+            <KeyboardAccelerator
+                            Modifiers="None"
+                            Key="F11"
+                            Invoked="AppFullScreenShortcut"/>
+        </Grid.KeyboardAccelerators>
+        
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup x:Name="FullScreenStates">
+                <VisualState x:Name="Default">
+                    <VisualState.Setters>
+                        <Setter Target="AppTitleBar.Background" Value="Transparent"/>
+                        <Setter Target="ContentPresenter.(Grid.Row)" Value="1" />
+                        <Setter Target="ContentPresenter.(Grid.RowSpan)" Value="1" />
+                        <Setter Target="FullScreenButton.Visibility" Value="Visible" />
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="FullScreen">
+                    <VisualState.Setters>
+                        <Setter Target="AppTitleBar.Background" Value="{ThemeResource ApplicationPageBackgroundThemeBrush}"/>
+                        <Setter Target="ContentPresenter.(Grid.Row)" Value="0" />
+                        <Setter Target="ContentPresenter.(Grid.RowSpan)" Value="2" />
+                        <Setter Target="FullScreenButton.Visibility" Value="Collapsed" />
+                    </VisualState.Setters>
+                    <VisualState.StateTriggers>
+                        <StateTrigger IsActive="{x:Bind IsFullScreen, Mode=OneWay}"/>
+                    </VisualState.StateTriggers>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition/>
@@ -33,6 +61,7 @@
             <ColumnDefinition Width="{Binding Width, ElementName=RightPaddingColumn}"/>
         </Grid.ColumnDefinitions>
 
+        <!-- Our main content, we'll move this up in the grid when we're fullscreen with the VSM above. -->
         <TextBlock x:Name="ContentPresenter" Grid.Row="1" Grid.ColumnSpan="3">
             <Run FontSize="24" Foreground="#FFFC5185">Get Started with Tabs!</Run><LineBreak/>
             <Run> There's a few lines of stuff here.</Run><LineBreak/>
@@ -41,7 +70,10 @@
             <Run>Is FullScreen:</Run><Run Text="{x:Bind Path=IsFullScreen, Mode=OneWay}"/>
         </TextBlock>
 
-        <Grid x:Name="AppTitleBar" Background="{x:Bind IsFullScreen, Converter={StaticResource TitleFullScreenBackgroundConverter}, Mode=OneWay}" Grid.ColumnSpan="3"
+        <!-- This is a 'dummy' blank area to actually capture mouse events that are needed to drag the window around. -->
+        <Grid x:Name="AppTitleBar"
+              Background="Transparent"
+              Grid.ColumnSpan="3"
               animations:Implicit.ShowAnimations="{StaticResource TitleShowAnimation}">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition x:Name="LeftPaddingColumn" Width="0"/>
@@ -50,6 +82,7 @@
             </Grid.ColumnDefinitions>
         </Grid>
 
+        <!-- This is below our content as we want it to be above it when we're fullscreen and it pops down from above. -->
         <controls:TabView x:Name="TabView" Background="Transparent" Grid.Column="1"
                           animations:Implicit.ShowAnimations="{StaticResource TitleShowAnimation}">
             <controls:TabView.Resources>
@@ -66,14 +99,8 @@
             <controls:TabViewItem Header="Tab 2"/>
             <controls:TabViewItem Header="Tab 3"/>
             <controls:TabView.TabEndHeader>
-                <Button Click="Button_FullScreen_Click" Style="{StaticResource ButtonRevealStyle}" Background="Transparent"
-                        Visibility="{x:Bind IsFullScreen, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=True, Mode=OneWay}">
-                    <Button.KeyboardAccelerators>
-                        <KeyboardAccelerator
-                            Modifiers="None"
-                            Key="F11" />
-                    </Button.KeyboardAccelerators>
-                    <FontIcon x:Name="FullScreenButton" Glyph="&#xE1D9;" FontFamily="Segoe MDL2 Assets"/>
+                <Button x:Name="FullScreenButton" Click="Button_FullScreen_Click" Style="{StaticResource ButtonRevealStyle}" Background="Transparent">
+                    <FontIcon Glyph="&#xE1D9;" FontFamily="Segoe MDL2 Assets"/>
                 </Button>
             </controls:TabView.TabEndHeader>
         </controls:TabView>

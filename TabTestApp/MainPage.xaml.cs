@@ -2,6 +2,7 @@
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Input;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
@@ -19,7 +20,7 @@ namespace TabTestApp
 
         // Using a DependencyProperty as the backing store for IsFullScreen.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty IsFullScreenProperty =
-            DependencyProperty.Register(nameof(IsFullScreen), typeof(bool), typeof(MainPage), new PropertyMetadata(false, IsFullScreenPropertyChanged));
+            DependencyProperty.Register(nameof(IsFullScreen), typeof(bool), typeof(MainPage), new PropertyMetadata(false));
 
         public MainPage()
         {
@@ -46,6 +47,7 @@ namespace TabTestApp
         private void CoreTitleBar_IsVisibleChanged(CoreApplicationViewTitleBar sender, object args)
         {
             // Adjust our content based on the Titlebar's visibility
+            // This is used when fullscreen to hide/show the titlebar when the mouse is near the top of the window automatically.
             TabView.Visibility = sender.IsVisible ? Visibility.Visible : Visibility.Collapsed;
             AppTitleBar.Visibility = TabView.Visibility;
         }
@@ -67,9 +69,9 @@ namespace TabTestApp
             AppTitleBar.Height = sender.Height;
         }
 
-        private void Button_FullScreen_Click(object sender, RoutedEventArgs e)
+        private void AppFullScreenShortcut(KeyboardAccelerator sender, KeyboardAcceleratorInvokedEventArgs args)
         {
-            // Toggle FullScreen manually
+            // Toggle FullScreen from F11 Keyboard Shortcut
             if (!IsFullScreen)
             {
                 IsFullScreen = ApplicationView.GetForCurrentView().TryEnterFullScreenMode();
@@ -81,22 +83,10 @@ namespace TabTestApp
             }
         }
 
-        private static void IsFullScreenPropertyChanged(DependencyObject sender, DependencyPropertyChangedEventArgs args)
+        private void Button_FullScreen_Click(object sender, RoutedEventArgs e)
         {
-            // When we change, make some layout changes so we can overlay TabView on top of Content.
-            if (sender is MainPage mainpage)
-            {
-                if (args.NewValue as bool? == true)
-                {
-                    Grid.SetRowSpan(mainpage.ContentPresenter, 2);
-                    Grid.SetRow(mainpage.ContentPresenter, 0);
-                }
-                else
-                {
-                    Grid.SetRowSpan(mainpage.ContentPresenter, 1);
-                    Grid.SetRow(mainpage.ContentPresenter, 1);
-                }
-            }
+            // Redirect to our shortcut key.
+            AppFullScreenShortcut(null, null);
         }
     }
 }
