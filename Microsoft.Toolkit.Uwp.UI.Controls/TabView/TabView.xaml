@@ -296,6 +296,8 @@
                                 Background="{TemplateBinding Background}"
                                 Visibility="Collapsed">
                             <Button x:Name="CloseButton"
+                                    AutomationProperties.Name="Close"
+                                    x:Uid="WindowsCommunityToolkit_TabView_CloseButton"
                                     Style="{StaticResource TabViewItemCloseButtonStyle}">
                                 &#xE711;
                             </Button>

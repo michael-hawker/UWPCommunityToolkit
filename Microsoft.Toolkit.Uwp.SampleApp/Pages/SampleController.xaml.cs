@@ -494,7 +494,9 @@ namespace Microsoft.Toolkit.Uwp.SampleApp
             }
         }
 
+#pragma warning disable CS1998 // Async method lacks 'await' operators and will run synchronously
         private async Task UpdateXamlRenderAsync(string text)
+#pragma warning restore CS1998 // Async method lacks 'await' operators and will run synchronously
         {
             // Hide any Previous Errors
             XamlCodeEditor.ClearErrors();

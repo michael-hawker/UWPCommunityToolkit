@@ -84,6 +84,7 @@
 
         <!-- This is below our content as we want it to be above it when we're fullscreen and it pops down from above. -->
         <controls:TabView x:Name="TabView" Background="Transparent" Grid.Column="1"
+                          CanCloseTabs="True"
                           animations:Implicit.ShowAnimations="{StaticResource TitleShowAnimation}">
             <controls:TabView.Resources>
                 <x:Double x:Key="TabViewItemHeaderMinHeight">32</x:Double>

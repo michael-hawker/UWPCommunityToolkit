@@ -106,6 +106,7 @@
     <AppxManifest Include="Package.appxmanifest">
       <SubType>Designer</SubType>
     </AppxManifest>
+    <PRIResource Include="Strings\en-us\Resources.resw" />
     <None Include="TabTestApp_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
