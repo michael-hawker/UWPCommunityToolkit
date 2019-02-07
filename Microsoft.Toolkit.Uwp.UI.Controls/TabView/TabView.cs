@@ -4,6 +4,8 @@
 
 using System;
 using System.Linq;
+using Microsoft.Toolkit.Extensions;
+using Microsoft.Toolkit.Uwp.Extensions;
 using Microsoft.Toolkit.Uwp.UI.Extensions;
 using Windows.ApplicationModel.DataTransfer;
 using Windows.UI.Xaml;
@@ -112,6 +114,8 @@ namespace Microsoft.Toolkit.Uwp.UI.Controls
             {
                 _tabScroller.Loaded += ScrollViewer_Loaded;
             }
+
+            var value = "/Microsoft.Toolkit.Uwp.UI.Controls/Resources/SomeString".GetLocalized().AsFormat(1);
         }
 
         private void ScrollViewer_Loaded(object sender, RoutedEventArgs e)

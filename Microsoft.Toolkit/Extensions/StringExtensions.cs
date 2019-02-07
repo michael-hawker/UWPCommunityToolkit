@@ -100,6 +100,17 @@ namespace Microsoft.Toolkit.Extensions
         }
 
         /// <summary>
+        /// Short-cut to string.Format.
+        /// </summary>
+        /// <param name="template">template string to use on parameters</param>
+        /// <param name="args">input variables for template</param>
+        /// <returns>formatted string</returns>
+        public static string AsFormat(this string template, params object[] args)
+        {
+            return string.Format(template, args);
+        }
+
+        /// <summary>
         /// Returns a string representation of an object.
         /// </summary>
         /// <param name="value">The object to convert.</param>

@@ -297,7 +297,7 @@
                                 Visibility="Collapsed">
                             <Button x:Name="CloseButton"
                                     AutomationProperties.Name="Close"
-                                    x:Uid="WindowsCommunityToolkit_TabView_CloseButton"
+                                    x:Uid="/Microsoft.Toolkit.Uwp.UI.Controls/Resources/WindowsCommunityToolkit_TabView_CloseButton"
                                     Style="{StaticResource TabViewItemCloseButtonStyle}">
                                 &#xE711;
                             </Button>
