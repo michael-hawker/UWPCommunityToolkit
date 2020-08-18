@@ -28,7 +28,9 @@ namespace Microsoft.Toolkit.Uwp.UI.Controls
             "Right",
             "Up",
             "Left",
-            "Down"
+            "Down",
+            "Tab",
+            "Enter"
         };
 
         private Point _lastInputPoint;
@@ -41,10 +43,8 @@ namespace Microsoft.Toolkit.Uwp.UI.Controls
         {
             get
             {
-                if (!string.IsNullOrWhiteSpace(_canvasComboBoxFontSizeTextBox.SelectedValue.ToString()) &&
-                    Regex.IsMatch(_canvasComboBoxFontSizeTextBox.Text, "^[0-9]*$"))
+                if (int.TryParse(_canvasComboBoxFontSizeTextBox.Text, out int fontSize))
                 {
-                    var fontSize = int.Parse((_canvasComboBoxFontSizeTextBox.SelectedItem as ComboBoxItem).Content.ToString());
                     _lastValidTextFontSizeValue = fontSize;
                 }
 
@@ -95,12 +95,18 @@ namespace Microsoft.Toolkit.Uwp.UI.Controls
 
         private void CanvasComboBoxFontSizeTextBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            _canvasTextBox.UpdateFontSize(TextFontSize);
+            var size = TextFontSize;
+            _canvasTextBox.UpdateFontSize(size);
             if (SelectedTextDrawable != null)
             {
-                _drawingSurfaceRenderer.ExecuteUpdateTextBoxFontSize(TextFontSize);
+                _drawingSurfaceRenderer.ExecuteUpdateTextBoxFontSize(size);
                 ReDrawCanvas();
             }
+        }
+
+        private void CanvasComboBoxFontSizeTextBox_TextSubmitted(ComboBox sender, ComboBoxTextSubmittedEventArgs args)
+        {
+            CanvasComboBoxFontSizeTextBox_SelectionChanged(sender, null);
         }
 
         private void CanvasTextBox_SizeChanged(object sender, SizeChangedEventArgs e)

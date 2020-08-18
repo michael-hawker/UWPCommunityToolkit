@@ -297,6 +297,8 @@ namespace Microsoft.Toolkit.Uwp.UI.Controls
         private void UnRegisterEvents()
         {
             _canvasComboBoxFontSizeTextBox.SelectionChanged -= CanvasComboBoxFontSizeTextBox_SelectionChanged;
+            _canvasComboBoxFontSizeTextBox.TextSubmitted -= CanvasComboBoxFontSizeTextBox_TextSubmitted;
+            _canvasComboBoxFontSizeTextBox.PreviewKeyDown -= CanvasComboBoxFontSizeTextBox_PreviewKeyDown;
             _canvasTextBoxItalicButton.Click -= CanvasTextBoxItalicButton_Clicked;
             _canvasTextBoxBoldButton.Click -= CanvasTextBoxBoldButton_Clicked;
             _canvasTextBoxColorPicker.ColorChanged -= CanvasTextBoxColorPicker_ColorChanged;
@@ -314,13 +316,14 @@ namespace Microsoft.Toolkit.Uwp.UI.Controls
             Unloaded -= InfiniteCanvas_Unloaded;
             Application.Current.LeavingBackground -= Current_LeavingBackground;
             _drawingSurfaceRenderer.CommandExecuted -= DrawingSurfaceRenderer_CommandExecuted;
-            _canvasComboBoxFontSizeTextBox.PreviewKeyDown -= CanvasComboBoxFontSizeTextBox_PreviewKeyDown;
             Loaded -= InfiniteCanvas_Loaded;
         }
 
         private void RegisterEvents()
         {
             _canvasComboBoxFontSizeTextBox.SelectionChanged += CanvasComboBoxFontSizeTextBox_SelectionChanged;
+            _canvasComboBoxFontSizeTextBox.TextSubmitted += CanvasComboBoxFontSizeTextBox_TextSubmitted;
+            _canvasComboBoxFontSizeTextBox.PreviewKeyDown += CanvasComboBoxFontSizeTextBox_PreviewKeyDown;
             _canvasTextBoxItalicButton.Click += CanvasTextBoxItalicButton_Clicked;
             _canvasTextBoxBoldButton.Click += CanvasTextBoxBoldButton_Clicked;
             _canvasTextBoxColorPicker.ColorChanged += CanvasTextBoxColorPicker_ColorChanged;
@@ -338,7 +341,6 @@ namespace Microsoft.Toolkit.Uwp.UI.Controls
             Unloaded += InfiniteCanvas_Unloaded;
             Application.Current.LeavingBackground += Current_LeavingBackground;
             _drawingSurfaceRenderer.CommandExecuted += DrawingSurfaceRenderer_CommandExecuted;
-            _canvasComboBoxFontSizeTextBox.PreviewKeyDown += CanvasComboBoxFontSizeTextBox_PreviewKeyDown;
             Loaded += InfiniteCanvas_Loaded;
         }
 
