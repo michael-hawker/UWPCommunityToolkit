@@ -8,6 +8,7 @@ using System.Linq;
 using Windows.Security.Authentication.OnlineId;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Markup;
 using Windows.UI.Xaml.Media.Animation;
 
@@ -16,63 +17,23 @@ namespace Microsoft.Toolkit.Uwp.UI.Controls
     /// <summary>
     /// A basic ribbon control that houses <see cref="TabbedCommandBarItem"/>s
     /// </summary>
-    [ContentProperty(Name = nameof(Items))]
-    [TemplatePart(Name = "PART_RibbonNavigationView", Type = typeof(NavigationView))]
+    [ContentProperty(Name = nameof(MenuItems))]
     [TemplatePart(Name = "PART_RibbonContent", Type = typeof(ContentControl))]
     [TemplatePart(Name = "PART_TabChangedStoryboard", Type = typeof(Storyboard))]
-    public class TabbedCommandBar : Control
+    public class TabbedCommandBar : NavigationView
     {
-        private NavigationView _ribbonNavigationView = null;
         private ContentControl _ribbonContent = null;
         private Storyboard _tabChangedStoryboard = null;
-
-        // This should probably be made public at some point
-        private TabbedCommandBarItem SelectedTab { get; set; }
-
-        /// <summary>
-        /// Identifies the <see cref="Items"/> property.
-        /// </summary>
-        public static readonly DependencyProperty ItemsProperty = DependencyProperty.Register(
-            nameof(Items),
-            typeof(ObservableCollection<TabbedCommandBarItem>),
-            typeof(TabbedCommandBar),
-            new PropertyMetadata(null));
-
-        /// <summary>
-        /// Identifies the <see cref="Footer"/> property.
-        /// </summary>
-        public static readonly DependencyProperty FooterProperty = DependencyProperty.Register(
-            nameof(Footer),
-            typeof(UIElement),
-            typeof(TabbedCommandBar),
-            new PropertyMetadata(null));
-
-        /// <summary>
-        /// Gets or sets A list of <see cref="TabbedCommandBarItem"/>s to display in this <see cref="TabbedCommandBar"/>.
-        /// </summary>
-        public ObservableCollection<TabbedCommandBarItem> Items
-        {
-            get { return (ObservableCollection<TabbedCommandBarItem>)GetValue(ItemsProperty); }
-            set { SetValue(ItemsProperty, value); }
-        }
-
-        /// <summary>
-        /// Gets or sets the <see cref="UIElement"/> to be displayed in the footer of the ribbon tab strip.
-        /// </summary>
-        public UIElement Footer
-        {
-            get { return (UIElement)GetValue(FooterProperty); }
-            set { SetValue(FooterProperty, value); }
-        }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="TabbedCommandBar"/> class.
         /// </summary>
         public TabbedCommandBar()
+            : base()
         {
             DefaultStyleKey = typeof(TabbedCommandBar);
 
-            Items = new ObservableCollection<TabbedCommandBarItem>();
+            SelectionChanged += RibbonNavigationView_SelectionChanged;
         }
 
         /// <inheritdoc/>
@@ -80,10 +41,6 @@ namespace Microsoft.Toolkit.Uwp.UI.Controls
         {
             base.OnApplyTemplate();
 
-            if (_ribbonNavigationView != null)
-            {
-                _ribbonNavigationView.SelectionChanged -= RibbonNavigationView_SelectionChanged;
-            }
 
             if (_ribbonContent != null)
             {
@@ -93,16 +50,7 @@ namespace Microsoft.Toolkit.Uwp.UI.Controls
             // Get RibbonContent first, since setting SelectedItem requires it
             _ribbonContent = GetTemplateChild("PART_RibbonContent") as ContentControl;
 
-            _ribbonNavigationView = GetTemplateChild("PART_RibbonNavigationView") as NavigationView;
-            if (_ribbonNavigationView != null)
-            {
-                // Populate the NavigationView with items
-                // TODO: Get binding working, necessary for contextual tabs
-                ////_ribbonNavigationView.PaneFooter = Footer;
-
-                _ribbonNavigationView.SelectionChanged += RibbonNavigationView_SelectionChanged;
-                _ribbonNavigationView.SelectedItem = _ribbonNavigationView.MenuItems.FirstOrDefault();
-            }
+            SelectedItem = MenuItems.FirstOrDefault();
 
             _tabChangedStoryboard = GetTemplateChild(nameof(_tabChangedStoryboard)) as Storyboard;
         }
@@ -118,7 +66,7 @@ namespace Microsoft.Toolkit.Uwp.UI.Controls
             {
                 // This code is a hack and is only temporary, because I can't get binding to work.
                 // RibbonContent might be null here, there should be a check
-                _ribbonContent.Content = Items[System.Math.Min(Items.Count - 1, _ribbonNavigationView.MenuItems.IndexOf(navItem))];
+                _ribbonContent.Content = MenuItems[System.Math.Min(MenuItems.Count - 1, MenuItems.IndexOf(navItem))];
             }
         }
     }
