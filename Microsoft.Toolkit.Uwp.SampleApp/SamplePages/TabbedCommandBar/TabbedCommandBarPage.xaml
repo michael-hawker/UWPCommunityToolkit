@@ -10,8 +10,7 @@
 
     <!--  Shallow Copy  -->
     <Grid Visibility="Collapsed">
-        <controls:TabbedCommandBar>
-            <controls:TabbedCommandBarItem />
-        </controls:TabbedCommandBar>
+        <controls:TabbedCommandBar />
+        <controls:TabbedCommandBarItem Header="Dummy" />
     </Grid>
 </Page>

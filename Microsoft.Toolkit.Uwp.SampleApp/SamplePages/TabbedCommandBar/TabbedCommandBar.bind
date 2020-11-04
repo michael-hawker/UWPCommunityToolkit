@@ -12,10 +12,6 @@
                     <AppBarButton Label="Comments" Icon="Message"/>
                 </CommandBar>
             </controls:TabbedCommandBar.Footer>
-            <controls:TabbedCommandBar.Resources>
-                <StaticResource x:Key="NavigationViewTopPaneBackground" ResourceKey="SystemControlChromeMediumLowAcrylicWindowMediumBrush" />
-                <StaticResource x:Key="TabbedCommandBarContentBackground" ResourceKey="SystemControlChromeLowAcrylicWindowBrush" />
-            </controls:TabbedCommandBar.Resources>
             <controls:TabbedCommandBarItem Header="Home">
                 <AppBarButton Icon="Undo" Label="Undo"/>
                 <AppBarButton Icon="Redo" Label="Redo"/>

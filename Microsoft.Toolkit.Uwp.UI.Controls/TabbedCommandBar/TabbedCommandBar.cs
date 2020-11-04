@@ -3,7 +3,9 @@
 // See the LICENSE file in the project root for more information.
 
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
+using Windows.Security.Authentication.OnlineId;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Markup;
@@ -32,9 +34,9 @@ namespace Microsoft.Toolkit.Uwp.UI.Controls
         /// </summary>
         public static readonly DependencyProperty ItemsProperty = DependencyProperty.Register(
             nameof(Items),
-            typeof(IList<object>),
+            typeof(ObservableCollection<TabbedCommandBarItem>),
             typeof(TabbedCommandBar),
-            new PropertyMetadata(new List<object>()));
+            new PropertyMetadata(null));
 
         /// <summary>
         /// Identifies the <see cref="Footer"/> property.
@@ -43,15 +45,14 @@ namespace Microsoft.Toolkit.Uwp.UI.Controls
             nameof(Footer),
             typeof(UIElement),
             typeof(TabbedCommandBar),
-            new PropertyMetadata(new Border()));
+            new PropertyMetadata(null));
 
-        // I would prefer this be an IList<TabbedCommandBarItem>, but Intellisense really doesn't like that.
         /// <summary>
         /// Gets or sets A list of <see cref="TabbedCommandBarItem"/>s to display in this <see cref="TabbedCommandBar"/>.
         /// </summary>
-        public IList<object> Items
+        public ObservableCollection<TabbedCommandBarItem> Items
         {
-            get { return (IList<object>)GetValue(ItemsProperty); }
+            get { return (ObservableCollection<TabbedCommandBarItem>)GetValue(ItemsProperty); }
             set { SetValue(ItemsProperty, value); }
         }
 
@@ -70,12 +71,24 @@ namespace Microsoft.Toolkit.Uwp.UI.Controls
         public TabbedCommandBar()
         {
             DefaultStyleKey = typeof(TabbedCommandBar);
+
+            Items = new ObservableCollection<TabbedCommandBarItem>();
         }
 
         /// <inheritdoc/>
         protected override void OnApplyTemplate()
         {
             base.OnApplyTemplate();
+
+            if (_ribbonNavigationView != null)
+            {
+                _ribbonNavigationView.SelectionChanged -= RibbonNavigationView_SelectionChanged;
+            }
+
+            if (_ribbonContent != null)
+            {
+                _ribbonContent.Content = null;
+            }
 
             // Get RibbonContent first, since setting SelectedItem requires it
             _ribbonContent = GetTemplateChild("PART_RibbonContent") as ContentControl;
@@ -85,12 +98,7 @@ namespace Microsoft.Toolkit.Uwp.UI.Controls
             {
                 // Populate the NavigationView with items
                 // TODO: Get binding working, necessary for contextual tabs
-                _ribbonNavigationView.MenuItems.Clear();
-                foreach (TabbedCommandBarItem item in Items)
-                {
-                    _ribbonNavigationView.MenuItems.Add(item);
-                }
-                _ribbonNavigationView.PaneFooter = Footer;
+                ////_ribbonNavigationView.PaneFooter = Footer;
 
                 _ribbonNavigationView.SelectionChanged += RibbonNavigationView_SelectionChanged;
                 _ribbonNavigationView.SelectedItem = _ribbonNavigationView.MenuItems.FirstOrDefault();

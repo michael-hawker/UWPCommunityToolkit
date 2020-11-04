@@ -65,7 +65,9 @@
                         <NavigationView x:Name="PART_RibbonNavigationView"
                                         Background="{TemplateBinding Background}"
                                         MenuItemTemplateSelector="{StaticResource DefaultTabbedCommandBarItemTemplateSelector}"
+                                        MenuItemsSource="{TemplateBinding Items}"
                                         PaneDisplayMode="Top"
+                                        PaneFooter="{TemplateBinding Footer}"
                                         Style="{StaticResource RibbonTabNavigationViewStyle}" />
 
                         <Border Grid.Row="1"
