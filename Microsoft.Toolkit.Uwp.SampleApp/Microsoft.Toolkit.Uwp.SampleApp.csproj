@@ -1,4 +1,4 @@
-<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+﻿<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -493,9 +493,6 @@
     <Content Include="SamplePages\DataGrid\DataGridCode.bind" />
     <Content Include="SamplePages\ViewportBehavior\ViewportBehaviorCode.bind" />
     <Compile Include="Common\TextBlockHyperlinkBehavior.cs" />
-    <Compile Include="SamplePages\ContentSizer\ContentSizerPage.xaml.cs">
-      <DependentUpon>ContentSizerPage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="SamplePages\AutoFocusBehavior\AutoFocusBehaviorPage.xaml.cs">
       <DependentUpon>AutoFocusBehaviorPage.xaml</DependentUpon>
     </Compile>
@@ -960,10 +957,6 @@
     <Page Include="Pages\SampleController.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="SamplePages\ContentSizer\ContentSizerPage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
     </Page>
     <Page Include="SamplePages\AutoFocusBehavior\AutoFocusBehaviorPage.xaml">
       <SubType>Designer</SubType>
